@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,7 +16,7 @@ public class User {
     @Column(name = "password")
     private String password;
     @Column(name = "role")
-    private String[] role;
+    private String role;
     @Column(name = "score")
     private long score;
 
@@ -44,11 +44,11 @@ public class User {
         this.password = password;
     }
 
-    public String[] getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(String[] role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
