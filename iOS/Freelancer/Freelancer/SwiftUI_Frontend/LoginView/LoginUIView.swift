@@ -4,7 +4,7 @@
 //
 //  Created by Kiss Dániel Márk on 2021. 10. 12..
 //
-
+//ikonok : https://www.flaticon.com/packs/transportation-icon-set
 import SwiftUI
 
 struct LoginUIView: View {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
+		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01427026003008871B3 /* FreelancerApp.swift */; };
 		29F2F01727026003008871B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01627026003008871B3 /* ContentView.swift */; };
 		29F2F01927026005008871B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01827026005008871B3 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
+		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29F2F01127026003008871B3 /* Freelancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freelancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F2F01427026003008871B3 /* FreelancerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreelancerApp.swift; sourceTree = "<group>"; };
 		29F2F01627026003008871B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 		29E548D727159A5A00033FD6 /* SwiftUI_Backend */ = {
 			isa = PBXGroup;
 			children = (
+				29E548DC2715DE5400033FD6 /* Item.swift */,
 			);
 			path = SwiftUI_Backend;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
 				29F2F01727026003008871B3 /* ContentView.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
 				29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */,
