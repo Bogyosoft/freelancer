@@ -14,21 +14,26 @@ struct LoginUIView: View {
     var body: some View {
         NavigationView
         {
-            VStack
+            VStack(alignment: .center)
             {
                 Text("Freelancer")
-                Image(systemName: "car").frame(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 2, alignment: .center)
-                TextField("E-Mail", text: $eMailField)
-                SecureField("Jelszó", text: $passwordField)
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Image(systemName: "car").resizable().frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3, alignment: .center)
+                TextField("E-Mail", text: $eMailField).padding(.top).keyboardType(.emailAddress)
+                SecureField("Jelszó", text: $passwordField).padding(.top)
+                
+                NavigationLink(destination: MainUIView()) {
                     Text("Login")
-                }.padding()
+                }
+                /*Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Text("Login")
+                }.padding()*/
                 
                 NavigationLink(destination: RegistartionUIView()) {
                     Text("Registartion")
                 
                 }.padding()
             }.padding()
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .top)
         }
         
         
