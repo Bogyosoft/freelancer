@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginUIView: View {
     
-    @State private var eMailField: String = "Test"
-    @State private var passwordField: String = "test"
+    @State private var eMailField: String = ""
+    @State private var passwordField: String = ""
     
     var body: some View {
         VStack

@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct RegistartionUIView: View {
+    
+    @State private var nameField: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack
+        {
+            TextField("Név", text: $nameField)
+            TextField("E-Mail", text: $nameField)
+            TextField("Jelszó", text: $nameField)
+            TextField("Jelszó megerősítés", text: $nameField)
+            TextField("Telefon", text: $nameField)
+        }
     }
 }
 
