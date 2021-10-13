@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainUIView: View {
     
-    let data = (1...4).map { "Item \($0)" }
-    
+    //let data = (1...4).map { "Item \($0)" }
+    let data = ["Szállítok","Feladok","Hirdetések böngészése","Szállítmányaim"]
     let columns = [
             //GridItem(.fixed(100)),
             GridItem(.flexible()),
