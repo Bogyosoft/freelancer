@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
+		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
 		29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01427026003008871B3 /* FreelancerApp.swift */; };
-		29F2F01727026003008871B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01627026003008871B3 /* ContentView.swift */; };
 		29F2F01927026005008871B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01827026005008871B3 /* Assets.xcassets */; };
 		29F2F01C27026005008871B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01B27026005008871B3 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -18,9 +18,9 @@
 /* Begin PBXFileReference section */
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
 		29F2F01127026003008871B3 /* Freelancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freelancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F2F01427026003008871B3 /* FreelancerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreelancerApp.swift; sourceTree = "<group>"; };
-		29F2F01627026003008871B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		29F2F01827026005008871B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29F2F01B27026005008871B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		29F2F01D27026005008871B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,6 +48,7 @@
 		29E548D827159AF400033FD6 /* SwiftUI_Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				29E548DE2716CF4D00033FD6 /* RegistrationView */,
 				29E548D927159B0600033FD6 /* LoginView */,
 			);
 			path = SwiftUI_Frontend;
@@ -59,6 +60,14 @@
 				29E548DA27159B1F00033FD6 /* LoginUIView.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		29E548DE2716CF4D00033FD6 /* RegistrationView */ = {
+			isa = PBXGroup;
+			children = (
+				29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */,
+			);
+			path = RegistrationView;
 			sourceTree = "<group>";
 		};
 		29F2F00827026003008871B3 = {
@@ -83,7 +92,6 @@
 				29E548D827159AF400033FD6 /* SwiftUI_Frontend */,
 				29E548D727159A5A00033FD6 /* SwiftUI_Backend */,
 				29F2F01427026003008871B3 /* FreelancerApp.swift */,
-				29F2F01627026003008871B3 /* ContentView.swift */,
 				29F2F01827026005008871B3 /* Assets.xcassets */,
 				29F2F01D27026005008871B3 /* Info.plist */,
 				29F2F01A27026005008871B3 /* Preview Content */,
@@ -169,9 +177,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
-				29F2F01727026003008871B3 /* ContentView.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
 				29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */,
+				29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
