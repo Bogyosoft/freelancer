@@ -11,17 +11,28 @@ struct LoginUIView: View {
     
     @State private var eMailField: String = ""
     @State private var passwordField: String = ""
-    
     var body: some View {
-        VStack
+        NavigationView
         {
-            Text("Freelancer")
-            TextField("E-Mail", text: $eMailField)
-            SecureField("Jelszó", text: $passwordField)
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("Login")
-            }
+            VStack
+            {
+                Text("Freelancer")
+                Image(systemName: "car").frame(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 2, alignment: .center)
+                TextField("E-Mail", text: $eMailField)
+                SecureField("Jelszó", text: $passwordField)
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Text("Login")
+                }.padding()
+                
+                NavigationLink(destination: RegistartionUIView()) {
+                    Text("Registartion")
+                
+                }.padding()
+            }.padding()
         }
+        
+        
+        
         
     }
 }
