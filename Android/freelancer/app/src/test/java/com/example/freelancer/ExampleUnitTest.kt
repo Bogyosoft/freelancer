@@ -1,4 +1,4 @@
-package hu.bme.aut.android.freelancer
+package com.example.freelancer
 
 import org.junit.Test
 
