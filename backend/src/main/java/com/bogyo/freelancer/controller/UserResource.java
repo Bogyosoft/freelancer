@@ -2,8 +2,11 @@ package com.bogyo.freelancer.controller;
 
 import com.bogyo.freelancer.model.User;
 import com.bogyo.freelancer.repository.UserRepository;
-import com.bogyo.freelancer.service.UserService;
+
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,13 +24,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class UserResource {
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     UserRepository userRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserResource.class);
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
+        logger.info("User {} {} {}",user.getUsername(),user.getPassword(),user.getRole());
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }

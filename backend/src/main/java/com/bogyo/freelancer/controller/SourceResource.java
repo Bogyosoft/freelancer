@@ -25,6 +25,7 @@ public class SourceResource {
 
   @PostMapping
   public ResponseEntity<Source> createSource(@RequestBody Source source){
+    source.getOwner();
     return ResponseEntity.ok(sourceRepository.save(source));
   }
 }

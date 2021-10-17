@@ -1,0 +1,17 @@
+{
+  "destination": "dest",
+  "id": 0,
+  "properties": "properties",
+  "source": {
+    "id": 1,
+    "location": "string",
+    "owner": {
+      "id": 1,
+      "password": "string",
+      "role": "string",
+      "score": 0,
+      "username": "string"
+    }
+  },
+  "status": "OK"
+}
