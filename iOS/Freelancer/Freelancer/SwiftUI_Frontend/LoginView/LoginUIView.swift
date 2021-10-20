@@ -35,7 +35,12 @@ struct LoginUIView: View {
                 }.padding()
             }.padding()
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .top)
-        }
+        }.onAppear(perform: {
+            
+            let com:APICommunicator = APICommunicator()
+            
+            com.request()
+        })
         
         
         

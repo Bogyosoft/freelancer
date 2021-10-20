@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1C99CCD32B1836849DB2FFD0 /* Pods_Freelancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */; };
+		29A863C727207B170071C54F /* APICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C627207B170071C54F /* APICommunicator.swift */; };
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Freelancer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29A863C627207B170071C54F /* APICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicator.swift; sourceTree = "<group>"; };
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
@@ -52,13 +54,21 @@
 				AD5D98CBEB225BE92239F444 /* Pods-Freelancer.debug.xcconfig */,
 				F11FA2B5B43852EB18F9378F /* Pods-Freelancer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		29A863C527207ADE0071C54F /* API_Communication */ = {
+			isa = PBXGroup;
+			children = (
+				29A863C627207B170071C54F /* APICommunicator.swift */,
+			);
+			path = API_Communication;
 			sourceTree = "<group>";
 		};
 		29E548D727159A5A00033FD6 /* SwiftUI_Backend */ = {
 			isa = PBXGroup;
 			children = (
+				29A863C527207ADE0071C54F /* API_Communication */,
 				29E548DC2715DE5400033FD6 /* Item.swift */,
 			);
 			path = SwiftUI_Backend;
@@ -268,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
+				29A863C727207B170071C54F /* APICommunicator.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
