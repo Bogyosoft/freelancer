@@ -23,6 +23,7 @@ struct MainUIView: View {
         VStack
         {
             //Text("MAIN")
+            
             LazyVGrid(columns: columns) {
                 
                 ForEach(data, id: \.self)
@@ -33,7 +34,13 @@ struct MainUIView: View {
                    
                     
                 }
-            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+            }//.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+            
+            
+            NavigationLink(destination: ProfileUpdateUIView()) {
+                Text("Profil")
+            }
+            
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .top)
         
             

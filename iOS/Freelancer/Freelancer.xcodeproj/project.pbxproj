@@ -11,6 +11,7 @@
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
 		29E548E327170BD000033FD6 /* MainUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548E227170BD000033FD6 /* MainUIView.swift */; };
+		29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */; };
 		29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01427026003008871B3 /* FreelancerApp.swift */; };
 		29F2F01927026005008871B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01827026005008871B3 /* Assets.xcassets */; };
 		29F2F01C27026005008871B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01B27026005008871B3 /* Preview Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
 		29E548E227170BD000033FD6 /* MainUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIView.swift; sourceTree = "<group>"; };
+		29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateUIView.swift; sourceTree = "<group>"; };
 		29F2F01127026003008871B3 /* Freelancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freelancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F2F01427026003008871B3 /* FreelancerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreelancerApp.swift; sourceTree = "<group>"; };
 		29F2F01827026005008871B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 		29E548D827159AF400033FD6 /* SwiftUI_Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				29EACCFF2720445C00A433D9 /* ProfileUpdateView */,
 				29E548E127170B5900033FD6 /* MainView */,
 				29E548DE2716CF4D00033FD6 /* RegistrationView */,
 				29E548D927159B0600033FD6 /* LoginView */,
@@ -79,6 +82,14 @@
 				29E548E227170BD000033FD6 /* MainUIView.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		29EACCFF2720445C00A433D9 /* ProfileUpdateView */ = {
+			isa = PBXGroup;
+			children = (
+				29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */,
+			);
+			path = ProfileUpdateView;
 			sourceTree = "<group>";
 		};
 		29F2F00827026003008871B3 = {
@@ -190,6 +201,7 @@
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
+				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
 				29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */,
 				29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */,
 			);

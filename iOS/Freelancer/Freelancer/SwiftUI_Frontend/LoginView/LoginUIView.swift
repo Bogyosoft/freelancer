@@ -16,8 +16,9 @@ struct LoginUIView: View {
         {
             VStack(alignment: .center)
             {
-                Text("Freelancer")
-                Image(systemName: "car").resizable().frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3, alignment: .center)
+                //Text("Freelancer")
+                /*Image(systemName: "car")*/
+                Image("truckIKON").resizable().frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2, alignment: .center)
                 TextField("E-Mail", text: $eMailField).padding(.top).keyboardType(.emailAddress)
                 SecureField("Jelszó", text: $passwordField).padding(.top)
                 
