@@ -28,6 +28,14 @@ struct MainUIView: View {
                 
                 ForEach(data, id: \.self)
                 { item in
+                    
+                    if item == "Feladok"
+                    {
+                        NavigationLink(destination: CreateAdvertisementUIView()) {
+                            Text("Feladok").frame(width: 200.0, height: 200.0, alignment: .center).foregroundColor(.red)
+                        
+                        }
+                    }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         Text(item)
                     }.frame(width: 100, height: 100, alignment: .center)

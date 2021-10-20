@@ -37,9 +37,9 @@ struct LoginUIView: View {
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .top)
         }.onAppear(perform: {
             
-            let com:APICommunicator = APICommunicator()
+            //let com:APICommunicator = APICommunicator()
             
-            com.request()
+            //com.request()
         })
         
         

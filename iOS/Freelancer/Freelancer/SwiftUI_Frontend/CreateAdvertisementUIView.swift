@@ -12,6 +12,10 @@ struct CreateAdvertisementUIView: View {
     @State private var weight = 50.0
     @State private var volume = 50.0
     
+    @State private var price: String  = ""
+    
+    @State private var description: String  = ""
+    
     var body: some View {
         VStack
         {
@@ -49,6 +53,15 @@ struct CreateAdvertisementUIView: View {
                     )
             Text("Ár")
             
+            TextField("pl.: 1000 Ft", text: $price)
+            
+            TextField("Leírás", text: $description)
+            
+            
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Text("Hirdetés feladása")
+            }
+
 
         }
         
