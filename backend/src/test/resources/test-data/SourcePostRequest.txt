@@ -1,11 +1,11 @@
 {
-  "id": 0,
-  "location": "string",
+  "id": 1,
+  "location": "test_location",
   "owner": {
     "id": 1,
-    "password": "string",
-    "role": "string",
-    "score": 0,
-    "username": "string"
+    "password": "pw",
+    "role": "ROLE_TEST",
+    "score": 1,
+    "username": "user"
   }
 }
