@@ -1,5 +1,6 @@
-package com.example.freelancer.ui.fields
+package com.example.freelancer.ui.parts
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.freelancer.MainActivity
+import com.example.freelancer.ui.screens.LoginScreen
+import com.example.freelancer.ui.theme.PrimaryColor
+import java.util.logging.Logger
 
 @Composable
 fun navButton(
@@ -37,15 +42,21 @@ fun navButton(
                 else -> {
                     passwordErrorState.value = false
                     emailErrorState.value = false
+                    if(MainActivity.repo.checkLogin(email.value.text,password.value.text)){
+                        Log.d("navButton", "navigate")
+                        navController.navigate("Main")
+                    }
+
                 }
             }
-
         },
         content = {
             Text(text = text, color = Color.White)
         },
-        modifier = Modifier.fillMaxWidth().height(50.dp),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp),
+        colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
         shape = RoundedCornerShape(50.dp)
     )
     Spacer(Modifier.size(16.dp))
@@ -55,12 +66,17 @@ fun navButton(
 fun elseButton(text: String, navController: NavHostController){
 
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-        TextButton(onClick = {navController.navigate(text)},
+        TextButton(
+            onClick =
+            {
+                navController.navigate(text)
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .border(width = 2.dp, color = Color.Red, shape = RoundedCornerShape(50.dp)).height(50.dp),
+                .border(width = 2.dp, color = PrimaryColor, shape = RoundedCornerShape(50.dp))
+                .height(50.dp),
         ) {
-            Text(text = text, color = Color.Red)
+            Text(text = text, color = PrimaryColor)
 
         }
     }
