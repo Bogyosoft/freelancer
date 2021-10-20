@@ -1,0 +1,27 @@
+{
+  "freelancer": {
+    "id": 0,
+    "password": "string",
+    "role": "string",
+    "score": 0,
+    "username": "string"
+  },
+  "id": 0,
+  "item": {
+    "destination": "dest",
+    "id": 0,
+    "properties": "properties",
+    "source": {
+      "id": 0,
+      "location": "string",
+      "owner": {
+        "id": 1,
+        "password": "string",
+        "role": "string",
+        "score": 0,
+        "username": "string"
+      }
+    },
+    "status": "OK"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": 0,
+  "location": "string",
+  "owner": {
+    "id": 1,
+    "password": "string",
+    "role": "string",
+    "score": 0,
+    "username": "string"
+  }
+}
