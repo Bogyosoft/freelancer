@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C99CCD32B1836849DB2FFD0 /* Pods_Freelancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */; };
 		29A863C727207B170071C54F /* APICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C627207B170071C54F /* APICommunicator.swift */; };
+		29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */; };
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Freelancer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A863C627207B170071C54F /* APICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicator.swift; sourceTree = "<group>"; };
+		29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertisementUIView.swift; sourceTree = "<group>"; };
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				29E548E127170B5900033FD6 /* MainView */,
 				29E548DE2716CF4D00033FD6 /* RegistrationView */,
 				29E548D927159B0600033FD6 /* LoginView */,
+				29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */,
 			);
 			path = SwiftUI_Frontend;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
 				29A863C727207B170071C54F /* APICommunicator.swift in Sources */,
+				29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
