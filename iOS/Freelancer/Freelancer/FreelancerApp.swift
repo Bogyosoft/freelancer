@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 @main
 struct FreelancerApp: App {
     var body: some Scene {
@@ -14,4 +14,4 @@ struct FreelancerApp: App {
             LoginUIView()
         }
     }
-}
+}*/
