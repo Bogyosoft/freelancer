@@ -1,25 +1,25 @@
 {
   "freelancer": {
-    "id": 0,
-    "password": "string",
-    "role": "string",
-    "score": 0,
-    "username": "string"
+    "id": 1,
+    "password": "pw",
+    "role": "ROLE_TEST",
+    "score": 1,
+    "username": "user"
   },
-  "id": 0,
+  "id": 1,
   "item": {
     "destination": "dest",
-    "id": 0,
+    "id": 1,
     "properties": "properties",
     "source": {
-      "id": 0,
+      "id": 1,
       "location": "string",
       "owner": {
         "id": 1,
-        "password": "string",
-        "role": "string",
-        "score": 0,
-        "username": "string"
+        "password": "pw",
+        "role": "ROLE_TEST",
+        "score": 1,
+        "username": "user"
       }
     },
     "status": "OK"
