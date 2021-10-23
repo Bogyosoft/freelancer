@@ -15,6 +15,17 @@
 		29A863C727207B170071C54F /* APICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C627207B170071C54F /* APICommunicator.swift */; };
 		29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */; };
 		29DE5DAD2724161400431A75 /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DAC2724161400431A75 /* LoginSignupView.swift */; };
+		29DE5DAF27249EC100431A75 /* ModernMainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DAE27249EC100431A75 /* ModernMainMenu.swift */; };
+		29DE5DB127249EF500431A75 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DB027249EF500431A75 /* Home.swift */; };
+		29DE5DB327249F7D00431A75 /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DB227249F7C00431A75 /* HomeList.swift */; };
+		29DE5DB52724A19500431A75 /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DB42724A19500431A75 /* UpdateList.swift */; };
+		29DE5DB82724A1E000431A75 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DB72724A1E000431A75 /* UpdateDetail.swift */; };
+		29DE5DBA2724A26900431A75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DB92724A26900431A75 /* ContentView.swift */; };
+		29DE5DBC2724A29700431A75 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DBB2724A29600431A75 /* BlurView.swift */; };
+		29DE5DBE2724A2D200431A75 /* CertificateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DBD2724A2D200431A75 /* CertificateRow.swift */; };
+		29DE5DC02724A3CC00431A75 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DBF2724A3CC00431A75 /* TabBar.swift */; };
+		29DE5DC22724A3E900431A75 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DC12724A3E900431A75 /* Settings.swift */; };
+		29DE5DC42724A43700431A75 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DC32724A43700431A75 /* UpdateStore.swift */; };
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
@@ -34,6 +45,17 @@
 		29A863C627207B170071C54F /* APICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicator.swift; sourceTree = "<group>"; };
 		29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertisementUIView.swift; sourceTree = "<group>"; };
 		29DE5DAC2724161400431A75 /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
+		29DE5DAE27249EC100431A75 /* ModernMainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernMainMenu.swift; sourceTree = "<group>"; };
+		29DE5DB027249EF500431A75 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		29DE5DB227249F7C00431A75 /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
+		29DE5DB42724A19500431A75 /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
+		29DE5DB72724A1E000431A75 /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
+		29DE5DB92724A26900431A75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		29DE5DBB2724A29600431A75 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		29DE5DBD2724A2D200431A75 /* CertificateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateRow.swift; sourceTree = "<group>"; };
+		29DE5DBF2724A3CC00431A75 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		29DE5DC12724A3E900431A75 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		29DE5DC32724A43700431A75 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
@@ -77,6 +99,23 @@
 			path = API_Communication;
 			sourceTree = "<group>";
 		};
+		29DE5DB62724A1B200431A75 /* EXTERNAL */ = {
+			isa = PBXGroup;
+			children = (
+				29DE5DB027249EF500431A75 /* Home.swift */,
+				29DE5DB227249F7C00431A75 /* HomeList.swift */,
+				29DE5DB42724A19500431A75 /* UpdateList.swift */,
+				29DE5DB72724A1E000431A75 /* UpdateDetail.swift */,
+				29DE5DB92724A26900431A75 /* ContentView.swift */,
+				29DE5DBB2724A29600431A75 /* BlurView.swift */,
+				29DE5DBD2724A2D200431A75 /* CertificateRow.swift */,
+				29DE5DBF2724A3CC00431A75 /* TabBar.swift */,
+				29DE5DC12724A3E900431A75 /* Settings.swift */,
+				29DE5DC32724A43700431A75 /* UpdateStore.swift */,
+			);
+			path = EXTERNAL;
+			sourceTree = "<group>";
+		};
 		29E548D727159A5A00033FD6 /* SwiftUI_Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +128,7 @@
 		29E548D827159AF400033FD6 /* SwiftUI_Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				29DE5DB62724A1B200431A75 /* EXTERNAL */,
 				29EACCFF2720445C00A433D9 /* ProfileUpdateView */,
 				29E548E127170B5900033FD6 /* MainView */,
 				29E548DE2716CF4D00033FD6 /* RegistrationView */,
@@ -120,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				29E548E227170BD000033FD6 /* MainUIView.swift */,
+				29DE5DAE27249EC100431A75 /* ModernMainMenu.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -300,13 +341,24 @@
 				29A863C727207B170071C54F /* APICommunicator.swift in Sources */,
 				29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */,
 				2947C4182721677C006FEA8B /* LaunchViewUIView.swift in Sources */,
+				29DE5DB82724A1E000431A75 /* UpdateDetail.swift in Sources */,
 				2947C41427216600006FEA8B /* AppDelegate.swift in Sources */,
+				29DE5DC02724A3CC00431A75 /* TabBar.swift in Sources */,
+				29DE5DAF27249EC100431A75 /* ModernMainMenu.swift in Sources */,
+				29DE5DB327249F7D00431A75 /* HomeList.swift in Sources */,
+				29DE5DB127249EF500431A75 /* Home.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
+				29DE5DC42724A43700431A75 /* UpdateStore.swift in Sources */,
+				29DE5DBE2724A2D200431A75 /* CertificateRow.swift in Sources */,
 				29DE5DAD2724161400431A75 /* LoginSignupView.swift in Sources */,
+				29DE5DB52724A19500431A75 /* UpdateList.swift in Sources */,
 				2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
+				29DE5DBA2724A26900431A75 /* ContentView.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
+				29DE5DBC2724A29700431A75 /* BlurView.swift in Sources */,
 				29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */,
+				29DE5DC22724A3E900431A75 /* Settings.swift in Sources */,
 				29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

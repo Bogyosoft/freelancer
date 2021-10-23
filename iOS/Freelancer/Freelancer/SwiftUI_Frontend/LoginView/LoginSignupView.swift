@@ -32,6 +32,7 @@ struct LoginSignupView: View {
                     Image("villam")
                         .resizable()
                         .frame(width: 100, height: 100)
+                        .shadow(color: Color.black.opacity(0.3), radius: 1, x: 5, y: 5)
                 }
                 
                 ZStack

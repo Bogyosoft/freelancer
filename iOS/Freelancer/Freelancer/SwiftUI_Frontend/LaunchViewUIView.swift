@@ -17,7 +17,7 @@ struct LaunchView: View {
         VStack
         {
             
-            LoginUIView()
+            LoginSignupView()
             /*
             if viewlaunch.currentPage == "newsView" {
                 //NewsView()
