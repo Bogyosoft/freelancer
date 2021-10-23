@@ -14,6 +14,7 @@
 		2947C41A2721696E006FEA8B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2947C4192721696E006FEA8B /* Launch Screen.storyboard */; };
 		29A863C727207B170071C54F /* APICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C627207B170071C54F /* APICommunicator.swift */; };
 		29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */; };
+		29DE5DAD2724161400431A75 /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DAC2724161400431A75 /* LoginSignupView.swift */; };
 		29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DA27159B1F00033FD6 /* LoginUIView.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
@@ -32,6 +33,7 @@
 		2947C4192721696E006FEA8B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		29A863C627207B170071C54F /* APICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicator.swift; sourceTree = "<group>"; };
 		29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertisementUIView.swift; sourceTree = "<group>"; };
+		29DE5DAC2724161400431A75 /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
 		29E548DA27159B1F00033FD6 /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIView.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				29E548D927159B0600033FD6 /* LoginView */,
 				29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */,
 				2947C4172721677C006FEA8B /* LaunchViewUIView.swift */,
+				29DE5DAC2724161400431A75 /* LoginSignupView.swift */,
 			);
 			path = SwiftUI_Frontend;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				2947C4182721677C006FEA8B /* LaunchViewUIView.swift in Sources */,
 				2947C41427216600006FEA8B /* AppDelegate.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
+				29DE5DAD2724161400431A75 /* LoginSignupView.swift in Sources */,
 				2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,

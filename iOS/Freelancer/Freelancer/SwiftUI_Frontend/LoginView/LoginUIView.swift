@@ -8,6 +8,53 @@
 import SwiftUI
 
 
+
+
+extension LinearGradient {
+    init(_ colors: Color...) {
+        self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+}
+
+struct SimpleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .padding(30)
+            .background(
+                Group {
+                    if configuration.isPressed {
+                        Circle()
+                            .fill(Color.offWhite)
+                        
+                        /*Circle()
+                            .fill(Color.offWhite)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.gray, lineWidth: 4)
+                                    .blur(radius: 4)
+                                    .offset(x: 2, y: 2)
+                                    .mask(Circle().fill(LinearGradient(Color.black, Color.clear)))
+                            )
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 8)
+                                    .blur(radius: 4)
+                                    .offset(x: -2, y: -2)
+                                    .mask(Circle().fill(LinearGradient(Color.clear, Color.black)))
+                            )*/
+                        
+                    } else {
+                        Circle()
+                            .fill(Color.offWhite)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    }
+                }
+            )
+    }
+}
+
+
 struct GrowingButtonRegistration: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -27,8 +74,27 @@ struct LoginUIView: View {
     @State private var eMailField: String = ""
     @State private var passwordField: String = ""
     var body: some View {
-        NavigationView
+        ZStack
         {
+            Color.offWhite
+            
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.offWhite)
+                .frame(width: 300, height: 300)
+                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+            
+            Button(action: {
+                print("Button tapped")
+            }) {
+                Text("Bejelnetkezés")
+                /*Image(systemName: "heart.fill")
+                    .foregroundColor(.gray)*/
+            }
+            .buttonStyle(SimpleButtonStyle())
+            
+        }.edgesIgnoringSafeArea(.all)
+        
             VStack(alignment: .center)
             {
                 //Text("Freelancer")
@@ -59,7 +125,7 @@ struct LoginUIView: View {
                 
             }.padding()
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .top)
-        }.onAppear(perform: {
+        .onAppear(perform: {
             
             //let com:APICommunicator = APICommunicator()
             
