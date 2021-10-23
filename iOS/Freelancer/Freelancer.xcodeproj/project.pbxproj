@@ -95,7 +95,6 @@
 				29E548D927159B0600033FD6 /* LoginView */,
 				29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */,
 				2947C4172721677C006FEA8B /* LaunchViewUIView.swift */,
-				29DE5DAC2724161400431A75 /* LoginSignupView.swift */,
 			);
 			path = SwiftUI_Frontend;
 			sourceTree = "<group>";
@@ -103,6 +102,7 @@
 		29E548D927159B0600033FD6 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
+				29DE5DAC2724161400431A75 /* LoginSignupView.swift */,
 				29E548DA27159B1F00033FD6 /* LoginUIView.swift */,
 			);
 			path = LoginView;
