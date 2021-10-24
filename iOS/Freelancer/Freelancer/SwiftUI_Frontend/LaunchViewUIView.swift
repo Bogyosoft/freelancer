@@ -17,18 +17,23 @@ struct LaunchView: View {
         VStack
         {
             
-            LoginSignupView()
-            /*
-            if viewlaunch.currentPage == "newsView" {
+            
+            
+            if viewlaunch.currentPage == "newsView"
+            {
                 //NewsView()
-            } else if viewlaunch.currentPage == "login" {
-                LoginUIView()
-            } else if viewlaunch.currentPage == "menuView" {
+            } else if viewlaunch.currentPage == "login"
+            {
+                LoginSignupView()
+            }
+            else if viewlaunch.currentPage == "menuView"
+            {
+                TabBar()
                 /*if (!UserSettings.shared.loggedIn && !UserSettings.shared.guest)
                 {
                     LoginPageUIView()
                 }*/
-            }*/
+            }
         }
     }
 }
@@ -37,10 +42,11 @@ class ViewLaunch: ObservableObject {
     
     init() {
         print("IDE LEPETT BE")
-        if !UserDefaults.standard.bool(forKey: "LaunchBefore") {
+        if UserDefaults.standard.bool(forKey: "LaunchBefore") {
+        //if 1 == 2{
             currentPage = "newsView"
         } else {
-            currentPage = "menuView"
+            currentPage = "login"
         }
     }
     @Published var currentPage: String

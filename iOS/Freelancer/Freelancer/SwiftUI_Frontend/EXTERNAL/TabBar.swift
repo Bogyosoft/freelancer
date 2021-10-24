@@ -17,14 +17,19 @@ struct TabBar: View {
          .tag(1)
          ContentView().tabItem {
             Image("IconCards")
-            Text("Certificates")
+            Text("Feladványok")
          }
          .tag(2)
+          ContentView().tabItem {
+             Image("IconCards")
+             Text("Munkák")
+          }
+          .tag(3)
          Settings().tabItem {
             Image("IconSettings")
             Text("Settings")
          }
-         .tag(3)
+         .tag(4)
       }
       .edgesIgnoringSafeArea(.top)
    }

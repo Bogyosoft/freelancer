@@ -17,11 +17,11 @@ struct HomeList: View {
          VStack {
             HStack {
                VStack(alignment: .leading) {
-                  Text("Courses")
+                  Text("Név")
                      .font(.largeTitle)
                      .fontWeight(.heavy)
 
-                  Text("22 Courses")
+                  Text("22 munka")
                      .foregroundColor(.gray)
                }
                Spacer()
@@ -39,7 +39,7 @@ struct HomeList: View {
                                       shadowColor: item.shadowColor)
                               .rotation3DEffect(Angle(degrees:
                                  Double(geometry.frame(in: .global).minX - 30) / -40), axis: (x: 0, y: 10.0, z: 0))
-                              .sheet(isPresented: self.$showContent) { ContentView() }
+                              .sheet(isPresented: self.$showContent) { /*ContentView()*/ }
                         }
                         .frame(width: 246, height: 360)
                      }
@@ -106,23 +106,23 @@ struct Course: Identifiable {
 }
 
 let coursesData = [
-   Course(title: "Build an app with SwiftUI",
+   Course(title: "Munka leírása",
           image: "Illustration1",
           color: Color("background3"),
           shadowColor: Color("backgroundShadow3")),
-   Course(title: "Design and animate your UI",
+   Course(title: "Munka leírása",
           image: "Illustration2",
           color: Color("background4"),
           shadowColor: Color("backgroundShadow4")),
-   Course(title: "Swift UI Advanced",
+   Course(title: "Munka leírása",
           image: "Illustration3",
           color: Color("background7"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),
-   Course(title: "Framer Playground",
+   Course(title: "Munka leírása",
           image: "Illustration4",
           color: Color("background8"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),
-   Course(title: "Flutter for Designers",
+   Course(title: "Munka leírása",
           image: "Illustration5",
           color: Color("background9"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),

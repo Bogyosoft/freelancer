@@ -23,12 +23,12 @@ struct Home: View {
             .scaleEffect(showProfile ? 0.95 : 1)
             .animation(.default)
 
-         ContentView()
+         /*ContentView()
             .frame(minWidth: 0, maxWidth: 712)
             .cornerRadius(30)
             .shadow(radius: 20)
             .animation(.spring())
-            .offset(y: showProfile ? statusBarHeight + 40 : UIScreen.main.bounds.height)
+            .offset(y: showProfile ? statusBarHeight + 40 : UIScreen.main.bounds.height)*/
 
          HStack {
              MenuButton(show: $show)
@@ -36,7 +36,7 @@ struct Home: View {
                  Spacer()
 
              MenuRight(show: $showProfile)
-                .offset(x: -16)
+                 .padding(.trailing, 5)//.offset(x: -16)
          }
          .offset(y: showProfile ? statusBarHeight : 80)
          .animation(.spring())
@@ -97,17 +97,29 @@ struct MenuView: View {
    var menu = menuData
    @Binding var show: Bool
    @State var showSettings = false
+    @EnvironmentObject var viewlaunch: ViewLaunch
 
    var body: some View {
       return HStack {
          VStack(alignment: .leading) {
             ForEach(menu) { item in
-               if item.title == "Settings" {
-                  Button(action: { self.showSettings.toggle() }) {
+               if item.title == "Settings"
+                {
+                  Button(action: { self.showSettings.toggle() })
+                   {
                      MenuRow(image: item.icon, text: item.title)
                         .sheet(isPresented: self.$showSettings) { Settings() }
                   }
-               } else {
+               }
+                else if item.title == "Sign out"
+                {
+                    Button(action: { self.viewlaunch.currentPage = "login" })
+                     {
+                       MenuRow(image: item.icon, text: item.title)
+                          .sheet(isPresented: self.$showSettings) { /*Settings()*/ }
+                    }
+                }
+                else {
                   MenuRow(image: item.icon, text: item.title)
                }
             }

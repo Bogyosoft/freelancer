@@ -51,10 +51,26 @@ struct LoginSignupView: View {
     }
 }
 
+struct GrowingButtonRegistration: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            //.padding()
+            //.frame(width: UIScreen.main.bounds.width*0.8, height: UIScreen.main.bounds.height*0.1, alignment: .center).background(Color.orange)
+            //.background(Color.blue)
+            //.foregroundColor(.blue)
+            //.clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
+
 struct LoginView: View
 {
     @State var email = ""
+    @State var loginSuccess = false
     @State var pass = ""
+    @EnvironmentObject var viewlaunch: ViewLaunch
     
     @Binding var index : Int
     
@@ -138,7 +154,7 @@ struct LoginView: View
                 
                 //EZ LEHET A ZSTACKBEN KENE
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            Button(action: {}) {
                 Text("Belépés")
                     .foregroundColor(.black)
                     .fontWeight(.bold)
@@ -147,10 +163,21 @@ struct LoginView: View
                     .background(Color.yellowCustom)
                     .clipShape(Capsule())
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    
             }.offset(y: 25)
             .opacity(self.index == 0 ? 1: 0)
+            .buttonStyle(GrowingButtonRegistration())
         }
     }
+                   
+    /*if self.loginSucces == true{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                    withAnimation()
+                    {
+                        self.viewlaunch.currentPage = "menuView"
+                    }
+    }*/
+                   
     
 }
 
