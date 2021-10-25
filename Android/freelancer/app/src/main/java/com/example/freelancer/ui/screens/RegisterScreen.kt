@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,7 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
 import com.example.freelancer.model.User
-import com.example.freelancer.ui.parts.*
+import com.example.freelancer.ui.parts.elseButton
+import com.example.freelancer.ui.parts.inputField
+import com.example.freelancer.ui.parts.passwordField
+import com.example.freelancer.ui.parts.title
 import com.example.freelancer.ui.theme.PrimaryColor
 
 @Composable
@@ -36,7 +38,9 @@ fun RegisterScreen(navController: NavHostController) {
     val passwordErrorState = remember { mutableStateOf(false) }
     val password = remember { mutableStateOf(TextFieldValue()) }
     val passwordVisibility = remember { mutableStateOf(true) }
+    val (showDialog,setShowDialog) = remember { mutableStateOf(false)}
 
+    registrationDialog(showDialog,setShowDialog)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -74,7 +78,7 @@ fun RegisterScreen(navController: NavHostController) {
                             navController.navigate("Main")
                         }
                         else{
-
+                            setShowDialog(true)
                         }
 
                     }
