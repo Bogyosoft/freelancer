@@ -15,17 +15,17 @@ struct TabBar: View {
             Text("Home")
          }
          .tag(1)
-         ContentView().tabItem {
+         /*ContentView()*/EmptyView().tabItem {
             Image("IconCards")
             Text("Feladványok")
          }
          .tag(2)
-          ContentView().tabItem {
+          /*ContentView()*/EmptyView().tabItem {
              Image("IconCards")
              Text("Munkák")
           }
           .tag(3)
-         Settings().tabItem {
+         /*Settings()*/EmptyView().tabItem {
             Image("IconSettings")
             Text("Settings")
          }

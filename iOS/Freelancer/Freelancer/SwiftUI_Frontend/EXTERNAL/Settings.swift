@@ -19,7 +19,7 @@ struct Settings: View {
    var body: some View {
       NavigationView {
          Form {
-            Toggle(isOn: $receive) {
+            /*Toggle(isOn: $receive) {
                Text("Recieve Notifications")
             }
             Stepper(value: $number, in: 1...10) {
@@ -41,7 +41,8 @@ struct Settings: View {
             }
             .alert(isPresented: $submit, content: {
                Alert(title: Text("Thanks"), message: Text("Email: \(email)"))
-            })
+            })*/
+             Text("Settings")
          }
          .navigationBarTitle("Settings")
       }

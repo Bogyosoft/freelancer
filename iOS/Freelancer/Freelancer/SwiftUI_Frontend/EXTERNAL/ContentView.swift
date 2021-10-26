@@ -101,7 +101,7 @@ struct CertificateView: View {
                   .foregroundColor(Color("accent"))
                   .padding(.top)
 
-               Text("Certificate")
+               Text("Leírás")
                   .foregroundColor(.white)
             }
             Spacer()

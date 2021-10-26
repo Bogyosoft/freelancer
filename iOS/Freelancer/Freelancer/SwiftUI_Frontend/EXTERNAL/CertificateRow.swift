@@ -49,9 +49,9 @@ struct Certificate: Identifiable {
 }
 
 let certificateData = [
-   Certificate(title: "UI Design", image: "Certificate1", width: 230, height: 150),
-   Certificate(title: "SwiftUI", image: "Certificate2", width: 230, height: 150),
-   Certificate(title: "Sketch", image: "Certificate3", width: 230, height: 150),
-   Certificate(title: "Framer", image: "Certificate4", width: 230, height: 150)
+   Certificate(title: "Folymatban lévő munka", image: "Certificate1", width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka", image: "Certificate2", width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka", image: "Certificate3", width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka", image: "Certificate4", width: 230, height: 150)
 ]
 

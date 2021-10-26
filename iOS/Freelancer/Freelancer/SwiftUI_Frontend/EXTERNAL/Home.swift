@@ -85,11 +85,11 @@ struct Menu: Identifiable {
 }
 
 let menuData = [
-   Menu(title: "My Account", icon: "person.crop.circle"),
-   Menu(title: "Settings", icon: "gear"),
-   Menu(title: "Billing", icon: "creditcard"),
-   Menu(title: "Team", icon: "person.2"),
-   Menu(title: "Sign out", icon: "arrow.uturn.down")
+   Menu(title: "Profil", icon: "person.crop.circle"),
+   Menu(title: "Beállítások", icon: "gear"),
+   Menu(title: "Fizetés", icon: "creditcard"),
+   //Menu(title: "Team", icon: "person.2"),
+   Menu(title: "Kijelentkezés", icon: "arrow.uturn.down")
 ]
 
 struct MenuView: View {
@@ -103,7 +103,7 @@ struct MenuView: View {
       return HStack {
          VStack(alignment: .leading) {
             ForEach(menu) { item in
-               if item.title == "Settings"
+               if item.title == "Beállítások"
                 {
                   Button(action: { self.showSettings.toggle() })
                    {
@@ -111,7 +111,7 @@ struct MenuView: View {
                         .sheet(isPresented: self.$showSettings) { Settings() }
                   }
                }
-                else if item.title == "Sign out"
+                else if item.title == "Kijelentkezés"
                 {
                     Button(action: { self.viewlaunch.currentPage = "login" })
                      {
