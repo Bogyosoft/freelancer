@@ -47,6 +47,12 @@ struct LoginSignupView: View {
                 
             }.background(Color.offWhite).edgesIgnoringSafeArea(.all)
         }.edgesIgnoringSafeArea(.all)
+            .onAppear(perform: {
+                
+                let com:APICommunicator = APICommunicator()
+                
+                com.GetRequest()
+            })
             
     }
 }
@@ -61,6 +67,17 @@ struct GrowingButtonRegistration: ButtonStyle {
             //.clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+struct Shake: GeometryEffect {
+    var amount: CGFloat = 10
+    var shakesPerUnit = 3
+    var animatableData: CGFloat
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        ProjectionTransform(CGAffineTransform(translationX:
+            amount * sin(animatableData * .pi * CGFloat(shakesPerUnit)),
+            y: 0))
     }
 }
 
@@ -154,7 +171,7 @@ struct LoginView: View
                 
                 //EZ LEHET A ZSTACKBEN KENE
             }
-            Button(action: {}) {
+            Button(action: {self.viewlaunch.currentPage = "menuView"}) {
                 Text("Belépés")
                     .foregroundColor(.black)
                     .fontWeight(.bold)
@@ -186,7 +203,7 @@ struct RegistrationView: View
     @State var email = ""
     @State var pass = ""
     @State var passAgain = ""
-    
+    @State var attempts: Int = 0
     @Binding var index : Int
     
     var body: some View
@@ -235,7 +252,7 @@ struct RegistrationView: View
                         HStack(spacing: 15)
                         {
                             Image(systemName: "eye.slash.fill").foregroundColor(Color.offWhite)
-                            SecureField("Jelszó", text: self.$pass)
+                            SecureField("Jelszó", text: self.$pass).modifier(Shake(animatableData: CGFloat(attempts)))
                             
                         }
                         
@@ -273,7 +290,11 @@ struct RegistrationView: View
                 
                 //EZ LEHET A ZSTACKBEN KENE
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            Button(action: {
+                withAnimation(.default) {
+                                    self.attempts += 1
+                                }
+            }) {
                 Text("Regisztrálás")
                     .foregroundColor(.black)
                     .fontWeight(.bold)

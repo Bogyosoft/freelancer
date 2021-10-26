@@ -11,11 +11,12 @@ import Alamofire
 
 class APICommunicator
 {
-    func request()
+    func GetRequest()
     {
-        AF.request("https://httpbin.org/get").response{response in
+        AF.request("http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user/", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).response{response in
             
             debugPrint(response)
         }
+        
     }
 }
