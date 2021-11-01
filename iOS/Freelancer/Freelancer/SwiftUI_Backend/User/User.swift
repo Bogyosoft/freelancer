@@ -7,18 +7,49 @@
 
 import Foundation
 
-class User
+class User: Transferable
 {
-    var id: String = "nil"
+    var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user/"
+
+    var id: UUID = UUID()
     var userName: String = "username"
     var passWord: String = "pass"
-    var role: String = "role"
+    var role: String = "default"
     var score: Int = 0
     
-    init(inID: String, inUserName: String)
+    init(inUserName: String, inPassword: String)
     {
-        print("Createing USER credetials....")
-        id = inID
+        print("Createing USER credentials....")
+        passWord = inPassword
         userName = inUserName
+    }
+    
+    func createJSON() ->[String:Any]
+    {
+        let parameters: [String: Any] = [
+            "id" : self.id,
+            "password" : self.passWord,
+            "role" : self.role,
+            "score": self.score,
+            "username": self.userName]
+        
+        
+        /*"List": [
+            /*[
+                "IdQuestion" : 5,
+                "IdProposition": 2,
+                "Time" : 32
+            ],*/
+            /*[
+                "IdQuestion" : 4,
+                "IdProposition": 3,
+                "Time" : 9
+            ]*/
+        ]*/
+        
+       
+        
+        
+        return parameters
     }
 }
