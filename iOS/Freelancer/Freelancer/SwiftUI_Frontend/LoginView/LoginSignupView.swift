@@ -49,9 +49,9 @@ struct LoginSignupView: View {
         }.edgesIgnoringSafeArea(.all)
             .onAppear(perform: {
                 
-                let com:APICommunicator = APICommunicator()
+                /*let com:APICommunicator = APICommunicator()
                 
-                com.GetRequest()
+                com.GetRequest()*/
             })
             
     }
@@ -69,6 +69,7 @@ struct GrowingButtonRegistration: ButtonStyle {
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
+
 struct Shake: GeometryEffect {
     var amount: CGFloat = 10
     var shakesPerUnit = 3
@@ -81,9 +82,7 @@ struct Shake: GeometryEffect {
     }
 }
 
-
-struct LoginView: View
-{
+struct LoginView: View{
     @State var email = ""
     @State var loginSuccess = false
     @State var pass = ""
@@ -198,13 +197,15 @@ struct LoginView: View
     
 }
 
-struct RegistrationView: View
-{
+struct RegistrationView: View{
     @State var email = ""
     @State var pass = ""
     @State var passAgain = ""
-    @State var attempts: Int = 0
+    
     @Binding var index : Int
+    
+    @State var attemptsEmail: Int = 0
+    @State var attemptsPassword: Int = 0
     
     var body: some View
     {
@@ -238,7 +239,7 @@ struct RegistrationView: View
                         HStack(spacing: 15)
                         {
                             Image(systemName: "envelope.fill").foregroundColor(Color.offWhite)
-                            TextField("E-mail", text: self.$email)
+                            TextField("E-mail", text: self.$email).modifier(Shake(animatableData: CGFloat(attemptsEmail)))
                             
                         }
                         
@@ -252,7 +253,7 @@ struct RegistrationView: View
                         HStack(spacing: 15)
                         {
                             Image(systemName: "eye.slash.fill").foregroundColor(Color.offWhite)
-                            SecureField("Jelszó", text: self.$pass).modifier(Shake(animatableData: CGFloat(attempts)))
+                            SecureField("Jelszó", text: self.$pass).modifier(Shake(animatableData: CGFloat(attemptsPassword)))
                             
                         }
                         
@@ -266,7 +267,7 @@ struct RegistrationView: View
                         HStack(spacing: 15)
                         {
                             Image(systemName: "eye.slash.fill").foregroundColor(Color.offWhite)
-                            SecureField("Jelszó újra", text: self.$passAgain)
+                            SecureField("Jelszó újra", text: self.$passAgain).modifier(Shake(animatableData: CGFloat(attemptsPassword)))
                             
                         }
                         
@@ -291,9 +292,38 @@ struct RegistrationView: View
                 //EZ LEHET A ZSTACKBEN KENE
             }
             Button(action: {
-                withAnimation(.default) {
-                                    self.attempts += 1
-                                }
+                self.attemptsEmail = 0
+                self.attemptsPassword = 0
+                withAnimation(.default)
+                {
+                    if self.email != ""
+                    {
+                        print("nem ures email")
+                        self.attemptsEmail = 0
+                    }
+                    else
+                    {
+                        self.attemptsEmail += 1
+                    }
+                    
+                    if self.pass != "" && self.passAgain != "" && self.passAgain == self.pass
+                    {
+                        print("jelszo minden ok")
+                        self.attemptsPassword = 0
+                    }
+                    else
+                    {
+                        self.attemptsPassword += 1
+                    }
+                    
+                    if self.attemptsEmail == 0 && self.attemptsPassword == 0
+                    {
+                        print("LETS GET REGISTRATING")
+                        //check if already register or not
+                        //check registered ID-s
+                    }
+                    
+                }
             }) {
                 Text("Regisztrálás")
                     .foregroundColor(.black)
