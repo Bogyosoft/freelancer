@@ -1,5 +1,6 @@
 package com.example.freelancer
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,20 +26,22 @@ class MainActivity : ComponentActivity() {
     companion object{
         val repo = testRepository()
     }
-
+    private lateinit var screen: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        screen = intent.getStringExtra("screen")!!
+
         setContent {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer()
+                Freelancer(screen = screen)
             }
         }
     }
 }
 @Composable
-fun Freelancer(){
+fun Freelancer(screen: String){
     val navController = rememberNavController()
 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -66,7 +69,7 @@ fun Freelancer(){
         }
     ) {
 
-        NavHost(navController = navController, startDestination = "Login") {
+        NavHost(navController = navController, startDestination = screen) {
             composable("Login") { LoginScreen(navController) }
             composable("Register") { RegisterScreen(navController) }
             composable("Main") { MainScreen(navController,openDrawer) }
