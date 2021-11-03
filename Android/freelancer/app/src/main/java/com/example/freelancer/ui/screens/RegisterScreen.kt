@@ -15,15 +15,17 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
-import com.example.freelancer.model.User
+import com.example.freelancer.model.UserItem
 import com.example.freelancer.ui.parts.elseButton
 import com.example.freelancer.ui.parts.inputField
 import com.example.freelancer.ui.parts.passwordField
 import com.example.freelancer.ui.parts.title
 import com.example.freelancer.ui.theme.PrimaryColor
+import com.example.freelancer.ui.viewmodel.RegisterViewModel
+
 
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
 
     val context = LocalContext.current
     val firstName = remember { mutableStateOf(TextFieldValue()) }
@@ -73,7 +75,7 @@ fun RegisterScreen(navController: NavHostController) {
                     else -> {
                         passwordErrorState.value = false
                         emailErrorState.value = false
-                        if(MainActivity.repo.register(User(email.value.text,password.value.text,firstName.value.text,lastName.value.text))){
+                        if(registerViewModel.registerUser(UserItem(0,password.value.text,"????",0,firstName.value.text+lastName.value.text))){
                             Log.d("navButton", "Registration successful")
                             navController.navigate("Main")
                         }
