@@ -4,7 +4,9 @@ package com.example.freelancer.ui.parts
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -53,7 +55,9 @@ fun ListViewItem(
         .clickable {
             onItemClicked(userItem)
             navController.navigate("userDetails")
-        })}
+        }
+        .fillMaxWidth()
+    )}
 
 
 @Composable

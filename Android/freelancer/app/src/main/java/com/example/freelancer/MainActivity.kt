@@ -1,6 +1,5 @@
 package com.example.freelancer
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,14 +37,14 @@ class MainActivity : ComponentActivity() {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer(viewModel = viewModel)
+                Freelancer(viewModel = viewModel, screen = screen)
             }
         }
     }
 }
 @ExperimentalFoundationApi
 @Composable
-fun Freelancer(viewModel : UsersViewModel){
+fun Freelancer(viewModel: UsersViewModel, screen: String){
     val registerViewModel = RegisterViewModel()
     val navController = rememberNavController()
 
@@ -75,7 +74,7 @@ fun Freelancer(viewModel : UsersViewModel){
     ) {
 
 
-        NavHost(navController = navController, startDestination = "Register") {
+        NavHost(navController = navController, startDestination = screen) {
             composable("Login") { LoginScreen(navController) }
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
