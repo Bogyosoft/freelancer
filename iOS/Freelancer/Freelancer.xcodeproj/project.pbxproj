@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C99CCD32B1836849DB2FFD0 /* Pods_Freelancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */; };
+		293C699C2733E7C0001BC990 /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293C699B2733E7C0001BC990 /* JsonSerializer.swift */; };
 		2947C41427216600006FEA8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C413272165FF006FEA8B /* AppDelegate.swift */; };
 		2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C41527216735006FEA8B /* SceneDelegate.swift */; };
 		2947C4182721677C006FEA8B /* LaunchViewUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C4172721677C006FEA8B /* LaunchViewUIView.swift */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		03E52F305D2FC76191EC58AD /* Pods_Freelancer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Freelancer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		293C699A2733E7C0001BC990 /* JsonSerializerSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonSerializerSwift.h; sourceTree = "<group>"; };
+		293C699B2733E7C0001BC990 /* JsonSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
 		2947C413272165FF006FEA8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2947C41527216735006FEA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2947C4172721677C006FEA8B /* LaunchViewUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewUIView.swift; sourceTree = "<group>"; };
@@ -97,6 +100,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		293C69992733E78B001BC990 /* JSONSerializer */ = {
+			isa = PBXGroup;
+			children = (
+				293C699B2733E7C0001BC990 /* JsonSerializer.swift */,
+				293C699A2733E7C0001BC990 /* JsonSerializerSwift.h */,
+			);
+			path = JSONSerializer;
+			sourceTree = "<group>";
+		};
 		29A863C527207ADE0071C54F /* API_Communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +146,7 @@
 		29E548D727159A5A00033FD6 /* SwiftUI_Backend */ = {
 			isa = PBXGroup;
 			children = (
+				293C69992733E78B001BC990 /* JSONSerializer */,
 				29CB206C272882D9006EFF33 /* User */,
 				29A863C527207ADE0071C54F /* API_Communication */,
 				29E548DC2715DE5400033FD6 /* Item.swift */,
@@ -356,6 +369,7 @@
 			files = (
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
 				29A863C727207B170071C54F /* APICommunicator.swift in Sources */,
+				293C699C2733E7C0001BC990 /* JsonSerializer.swift in Sources */,
 				29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */,
 				2947C4182721677C006FEA8B /* LaunchViewUIView.swift in Sources */,
 				2957E800273028700039429D /* Transferable.swift in Sources */,

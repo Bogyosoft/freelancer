@@ -9,8 +9,14 @@ import Foundation
 
 class UserDataHandler
 {
-    let networkHandler: APICommunicator = APICommunicator()
+    private let networkHandler: APICommunicator = APICommunicator()
     
+    /*let woerk: User
+    
+    init(user: User)
+    {
+        woerk = user
+    }*/
     func getUsers(inputUser: User)
     {
         print("UserDataHandler_getUser()")
@@ -20,7 +26,7 @@ class UserDataHandler
     func registerUser(inputUser: User)
     {
         //get user db for checking id
-        getUsers(inputUser: inputUser)
+        //getUsers(inputUser: inputUser)
         networkHandler.PostRequest(input: inputUser)
     }
 }

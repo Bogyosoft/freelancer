@@ -17,21 +17,30 @@ class User: Transferable
     var role: String = "default"
     var score: Int = 0
     
+    //let handler: UserDataHandler
+    
     init(inUserName: String, inPassword: String)
     {
         print("Createing USER credentials....")
         passWord = inPassword
         userName = inUserName
+        //handler = UserDataHandler(user: self)
     }
     
     func createJSON() ->[String:Any]
     {
+        print("USER CREATE JSON")
+        
+        let id = 0//ID
+        
         let parameters: [String: Any] = [
-            "id" : self.id,
+            "id" : id,
             "password" : self.passWord,
             "role" : self.role,
             "score": self.score,
             "username": self.userName]
+        
+        print(parameters)
         
         
         /*"List": [
@@ -50,6 +59,6 @@ class User: Transferable
        
         
         
-        return parameters
+         return parameters
     }
 }

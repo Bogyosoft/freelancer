@@ -321,6 +321,9 @@ struct RegistrationView: View{
                         print("LETS GET REGISTRATING")
                         //check if already register or not
                         //check registered ID-s
+                        let user = User(inUserName: self.email, inPassword: self.pass)
+                        let hand = UserDataHandler()
+                        hand.registerUser(inputUser: user)
                     }
                     
                 }
