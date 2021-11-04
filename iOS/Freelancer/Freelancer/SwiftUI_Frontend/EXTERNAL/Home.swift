@@ -18,11 +18,17 @@ struct Home: View {
 
    var body: some View {
       ZStack(alignment: .top) {
+          
+          
+          
+          
          HomeList()
             .blur(radius: show ? 20 : 0)
             .scaleEffect(showProfile ? 0.95 : 1)
             .animation(.default)
 
+          
+          
          /*ContentView()
             .frame(minWidth: 0, maxWidth: 712)
             .cornerRadius(30)
@@ -40,6 +46,11 @@ struct Home: View {
          }
          .offset(y: showProfile ? statusBarHeight : 80)
          .animation(.spring())
+          
+          if show
+          {
+              BlurView(style: .light)
+          }
 
          MenuView(show: $show)
       }
@@ -97,6 +108,7 @@ struct MenuView: View {
    var menu = menuData
    @Binding var show: Bool
    @State var showSettings = false
+    @State var showProfile = false
     @EnvironmentObject var viewlaunch: ViewLaunch
 
    var body: some View {
@@ -119,7 +131,16 @@ struct MenuView: View {
                           .sheet(isPresented: self.$showSettings) { /*Settings()*/ }
                     }
                 }
-                else {
+                else if item.title == "Profil"
+                {
+                    Button(action: { self.showProfile.toggle() })
+                     {
+                       MenuRow(image: item.icon, text: item.title)
+                          .sheet(isPresented: self.$showProfile) { ProfileUpdateUIView() }
+                    }
+                }
+                else
+                {
                   MenuRow(image: item.icon, text: item.title)
                }
             }
@@ -191,9 +212,9 @@ struct MenuRight: View {
    var body: some View {
       return ZStack(alignment: .topTrailing) {
          HStack {
-            Button(action: { self.show.toggle() }) {
-               CircleButton(icon: "person.crop.circle")
-            }
+            /*Button(action: { self.show.toggle() }) {
+                CircleButton(icon: "person.crop.circle").sheet(isPresented: self.$show) { ProfileUpdateUIView() }
+            }*/
             Button(action: { self.showUpdate.toggle() }) {
                CircleButton(icon: "bell")
                   .sheet(isPresented: self.$showUpdate) { UpdateList() }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TabBar: View {
    var body: some View {
-      TabView {
+       Home()
+      /*TabView {
          Home().tabItem {
             Image("IconHome")
             Text("Home")
@@ -30,7 +31,7 @@ struct TabBar: View {
             Text("Settings")
          }
          .tag(4)
-      }
+      }*/
       .edgesIgnoringSafeArea(.top)
    }
 }
