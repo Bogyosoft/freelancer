@@ -27,7 +27,21 @@ class Item:Transferable
         let id = 0//ID
         
         let parameters: [String: Any] = [
-            "id" : id]
+            "destination": "cel",
+            "id" : 0,
+            "properties": "tulajdonsag",
+            "source":[
+                "id": 0,
+                "location": "poz",
+                "owner":[
+                    "id": 0,
+                    "password":"jelszo",
+                    "role": "role",
+                    "score":0,
+                    "username":"locs"]
+            ],
+            "status":"statusz"
+        ]
         
         return parameters
     }

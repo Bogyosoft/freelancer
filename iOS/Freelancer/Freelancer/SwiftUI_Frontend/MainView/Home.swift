@@ -13,9 +13,11 @@ let screen = UIScreen.main.bounds
 
 struct Home: View {
 
-   @State var show = false
-   @State var showProfile = false
+    @State var show = false
+    @State var showProfile = false
     @State var showPopUp = false
+    
+    @State var showNewItem = false
 
    var body: some View {
       ZStack(alignment: .top) {
@@ -52,7 +54,8 @@ struct Home: View {
           
           if showPopUp
           {
-              newJobnewItempopUPUIView().padding(.top, 135)
+              newJobnewItempopUPUIView(showPopUp: $showPopUp).padding(.top, 135)
+                  
           }
           
           if show
@@ -64,6 +67,7 @@ struct Home: View {
       }
       .background(Color("background"))
       .edgesIgnoringSafeArea(.all)
+      
    }
 }
 

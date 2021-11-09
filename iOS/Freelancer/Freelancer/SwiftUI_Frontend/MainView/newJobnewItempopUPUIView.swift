@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct newJobnewItempopUPUIView: View {
+    
+    
+    @Binding var showPopUp: Bool
+    @State var showNewItem: Bool = false
+    
     var body: some View {
         HStack
         {
@@ -15,16 +20,23 @@ struct newJobnewItempopUPUIView: View {
             {
                 //List
                 //{
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {}) {
                         Text("Új munka")
                     }
                     .frame(minWidth: 0, maxWidth: 180, minHeight: 0, maxHeight: 50)
                     .background(Color(red: 100 / 255, green: 200 / 255, blue: 100 / 255))
                     .cornerRadius(20)
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                        Text("Új tárgy")
+                Button(action: {
+                    self.showNewItem.toggle()
+                    print("FASZOM VAN")
+                    //self.showPopUp.toggle()
+                    
+                    
+                }) {
+                    Text("Új tárgy").sheet(isPresented: $showNewItem) { CreateNewItemUIView() }
                     }
+                    
                     .frame(minWidth: 0, maxWidth: 180, minHeight: 0, maxHeight: 50)
                     .background(Color(red: 100 / 255, green: 242 / 255, blue: 242 / 255))
                     .cornerRadius(20)
@@ -41,8 +53,9 @@ struct newJobnewItempopUPUIView: View {
     }
 }
 
-struct newJobnewItempopUPUIView_Previews: PreviewProvider {
+/*struct newJobnewItempopUPUIView_Previews: PreviewProvider {
     static var previews: some View {
-        newJobnewItempopUPUIView()
+        //@Binding var kamu: Bool = true
+        //newJobnewItempopUPUIView(showNewItem: kamu)
     }
-}
+}*/
