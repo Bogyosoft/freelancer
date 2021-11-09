@@ -78,7 +78,7 @@ fun Freelancer(viewModel: UsersViewModel, screen: String){
             composable("Login") { LoginScreen(navController) }
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
-            composable("UserList"){ MainList(navController = navController, usersViewModel = viewModel)}
+            composable("UserList"){ MainList(navController = navController, viewModel = viewModel)}
             composable("userDetails"){ UserDetails(userItem = viewModel.clickedItem)}
         }
     }

@@ -1,6 +1,7 @@
 package com.example.freelancer.network
 
 import com.example.freelancer.model.UserItem
+import com.example.freelancer.model.jobItem
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -32,6 +33,9 @@ interface FreelancerAPIService {
     @Headers("Content-Type: application/json")
     @POST("user")
     fun registerUser(@Body userItem: UserItem) : Call<UserItem>
+
+    @GET("jobs")
+    fun getJobs() : List<jobItem>
 
 }
 

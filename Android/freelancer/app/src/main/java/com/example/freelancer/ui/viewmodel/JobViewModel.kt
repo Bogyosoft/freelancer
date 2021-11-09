@@ -1,50 +1,53 @@
-package com.vyns.mvvmjetpackcomposesample.ui.viewmodel
+package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
-import com.example.freelancer.model.UserItem
+import com.example.freelancer.model.jobItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
-import com.example.freelancer.ui.viewmodel.IViewModel
 import kotlinx.coroutines.launch
 
-class UsersViewModel() : ViewModel(), IViewModel{
+class JobViewModel : ViewModel(),IViewModel{
     private val apiService = FreelancerApiClient.service
     private lateinit var repository: FreeLancerRepository
-    override var clickedItem: IItem
-        get() = clickedItem
-        set(value) {clickedItem=value}
+    var jobList: List<jobItem> by mutableStateOf(listOf())
+
+
+
+    lateinit var clickedItem: IItem
 
     init {
         fetchUsers()
     }
 
     fun fetchUsers() {
-
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
-            var response = repository.getAllUsers()
+            val response = repository.getAllUsers()
             when (response) {
                 is FreeLancerRepository.Result.Success -> {
 
-                    Log.d("MainViewModel", "Success")
-                    list = response.list as List<UserItem>
+                    Log.d("JobViewModel", "Success")
+                    jobList = response.list as List<jobItem>
                 }
                 is FreeLancerRepository.Result.Failure -> {
-                    Log.d("MainViewModel", "FAILURE")
+                    Log.d("JobViewModel", "FAILURE")
                 }
             }
         }
     }
 
     override fun itemClicked(item: IItem) {
-        clickedItem = item
+        clickedItem = item as jobItem
     }
 
     override var list: List<IItem>
         get() = list
-        set(value) {list = value}
+        set(value) {}
 
 }

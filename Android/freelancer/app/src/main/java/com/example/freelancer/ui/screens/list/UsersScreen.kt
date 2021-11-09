@@ -14,36 +14,36 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
-import com.example.freelancer.model.UserItem
-import com.example.freelancer.ui.parts.ListViewItem
-import com.vyns.mvvmjetpackcomposesample.ui.viewmodel.UsersViewModel
-
+import com.example.freelancer.model.IItem
+import com.example.freelancer.ui.viewmodel.IViewModel
 
 
 @ExperimentalFoundationApi
 @Composable
 fun MainList(navController: NavController,
-             usersViewModel: UsersViewModel){
-    UserList(navController = navController,userList = usersViewModel.userList,
-        onItemClicked = usersViewModel::itemClicked)
+             viewModel: IViewModel){
+    UserList(
+        navController = navController, list = viewModel.list,
+        onItemClicked = IViewModel::itemClicked as (item:IItem) ->Unit
+    )
 }
 
 @ExperimentalFoundationApi
 @Composable
 fun UserList(
     navController: NavController,
-    userList:List<UserItem>,
-    onItemClicked:(item:UserItem) ->Unit
+    list:List<IItem>,
+    onItemClicked: (item:IItem) ->Unit
 ){
-    var listState = rememberLazyListState()
+    val listState = rememberLazyListState()
     val Red = Color(red=35,green = 61,blue = 83)
 
     LazyColumn(state = listState) {
         stickyHeader {
             MainHeader()
         }
-        itemsIndexed(userList){ index, item ->
-            ListViewItem(navController = navController,userItem = item,onItemClicked)
+        itemsIndexed(list){ index, item ->
+            item.ListViewItem(navController = navController, item = item,onItemClicked)
         }
     }
 }
