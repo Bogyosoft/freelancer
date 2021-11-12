@@ -39,6 +39,9 @@
 		29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */; };
 		29E548E327170BD000033FD6 /* MainUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548E227170BD000033FD6 /* MainUIView.swift */; };
 		29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */; };
+		29F281D3273EF85000E63E63 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F281D2273EF85000E63E63 /* Source.swift */; };
+		29F281D5273F021500E63E63 /* SourceDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F281D4273F021500E63E63 /* SourceDataHandler.swift */; };
+		29F281D9273F0AD600E63E63 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F281D8273F0AD600E63E63 /* DataHandler.swift */; };
 		29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01427026003008871B3 /* FreelancerApp.swift */; };
 		29F2F01927026005008871B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01827026005008871B3 /* Assets.xcassets */; };
 		29F2F01C27026005008871B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01B27026005008871B3 /* Preview Assets.xcassets */; };
@@ -78,6 +81,9 @@
 		29E548DF2716CF6C00033FD6 /* RegistartionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistartionUIView.swift; sourceTree = "<group>"; };
 		29E548E227170BD000033FD6 /* MainUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIView.swift; sourceTree = "<group>"; };
 		29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateUIView.swift; sourceTree = "<group>"; };
+		29F281D2273EF85000E63E63 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		29F281D4273F021500E63E63 /* SourceDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDataHandler.swift; sourceTree = "<group>"; };
+		29F281D8273F0AD600E63E63 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		29F2F01127026003008871B3 /* Freelancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freelancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F2F01427026003008871B3 /* FreelancerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreelancerApp.swift; sourceTree = "<group>"; };
 		29F2F01827026005008871B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,7 +158,9 @@
 		29B5FB20273A719D00327744 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				29F281D1273EF83B00E63E63 /* Source */,
 				2957E7FF273028700039429D /* Transferable.swift */,
+				29F281D8273F0AD600E63E63 /* DataHandler.swift */,
 				29B5FB21273A71D100327744 /* Job */,
 				29CB206C272882D9006EFF33 /* User */,
 				293C69992733E78B001BC990 /* JSONSerializer */,
@@ -253,6 +261,15 @@
 				29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */,
 			);
 			path = ProfileUpdateView;
+			sourceTree = "<group>";
+		};
+		29F281D1273EF83B00E63E63 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				29F281D2273EF85000E63E63 /* Source.swift */,
+				29F281D4273F021500E63E63 /* SourceDataHandler.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		29F2F00827026003008871B3 = {
@@ -443,10 +460,13 @@
 				2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */,
 				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
 				29DE5DBA2724A26900431A75 /* ContentView.swift in Sources */,
+				29F281D9273F0AD600E63E63 /* DataHandler.swift in Sources */,
+				29F281D3273EF85000E63E63 /* Source.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
 				29DE5DBC2724A29700431A75 /* BlurView.swift in Sources */,
 				29B5FB23273A71EA00327744 /* Job.swift in Sources */,
 				29CB206E272882F4006EFF33 /* User.swift in Sources */,
+				29F281D5273F021500E63E63 /* SourceDataHandler.swift in Sources */,
 				29E548DB27159B1F00033FD6 /* LoginUIView.swift in Sources */,
 				29DE5DC22724A3E900431A75 /* Settings.swift in Sources */,
 				29E548E02716CF6C00033FD6 /* RegistartionUIView.swift in Sources */,

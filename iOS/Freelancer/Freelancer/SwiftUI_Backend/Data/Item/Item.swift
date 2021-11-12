@@ -24,21 +24,21 @@ class Item:Transferable
     }
 
     func createJSON() -> [String : Any] {
-        let id = 0//ID
+        //let id = 0//ID
         
         let parameters: [String: Any] = [
             "destination": "cel",
-            "id" : 0,
+            "id" : 10,
             "properties": "tulajdonsag",
             "source":[
-                "id": 0,
-                "location": "poz",
+                "id": 24,
+                "location": "TextFieldValue(text='jdueuue', selection=TextRange(7, 7), composition=null)",
                 "owner":[
-                    "id": 0,
-                    "password":"jelszo",
-                    "role": "role",
+                    "id": 1,
+                    "password":"ios",
+                    "role": "king",
                     "score":0,
-                    "username":"locs"]
+                    "username":"iOS"]
             ],
             "status":"statusz"
         ]

@@ -19,6 +19,7 @@ class APICommunicator
         AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil).response{response in
             
             debugPrint(response)
+            print("RESULT: \(response.result)!")
         }
     }
 
