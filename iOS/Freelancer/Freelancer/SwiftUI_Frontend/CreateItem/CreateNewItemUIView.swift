@@ -45,7 +45,7 @@ struct CreateNewItemUIView: View {
                 let hand = ItemDataHandler()
                 let source = Source()
                 let handSource = SourceHandler()
-                handSource.createItem(input: source)
+                handSource.create(input: source)
                 hand.createItem(inputItem: item)
                 
                 

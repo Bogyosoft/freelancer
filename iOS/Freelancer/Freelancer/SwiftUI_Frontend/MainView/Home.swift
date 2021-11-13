@@ -111,8 +111,8 @@ let menuData = [
    Menu(title: "Profil", icon: "person.crop.circle"),
    Menu(title: "Beállítások", icon: "gear"),
    Menu(title: "Fizetés", icon: "creditcard"),
-   Menu(title: "Munkák", icon: "creditcard"),
-   Menu(title: "Szállítmányok", icon: "creditcard"),
+   Menu(title: "Munkák", icon: "hammer"),
+   Menu(title: "Szállítmányok", icon: "giftcard"),
    //Menu(title: "Team", icon: "person.2"),
    Menu(title: "Kijelentkezés", icon: "arrow.uturn.down")
 ]

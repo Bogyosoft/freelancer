@@ -11,13 +11,13 @@ class SourceHandler: DataHandler
 {
     internal var networkHandler: APICommunicator = APICommunicator()
     
-    func getItems(input: Transferable)
+    func get(input: Transferable)
     {
         print("SourceHandler_getItems()")
         networkHandler.GetRequest(input: input)
     }
     
-    func createItem(input: Transferable)
+    func create(input: Transferable)
     {
         print("SourceHandler_createItem()")
         //get user db for checking id

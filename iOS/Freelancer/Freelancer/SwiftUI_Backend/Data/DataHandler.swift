@@ -11,7 +11,7 @@ protocol DataHandler
 {
     var networkHandler: APICommunicator{get set}
     
-    func getItems(input: Transferable)
+    func get(input: Transferable)
     
-    func createItem(input: Transferable)
+    func create(input: Transferable)
 }
