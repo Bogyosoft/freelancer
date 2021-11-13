@@ -9,6 +9,7 @@ import Foundation
 
 class Item:Transferable
 {
+    var enity: String = "ITEM"
     var id: String = ""
     var properties: String = ""
     var destination: Location = Location(_ln: 0.0, _lt: 0.0)

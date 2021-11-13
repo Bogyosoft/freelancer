@@ -45,8 +45,55 @@ struct CreateNewItemUIView: View {
                 let hand = ItemDataHandler()
                 let source = Source()
                 let handSource = SourceHandler()
-                handSource.create(input: source)
-                hand.createItem(inputItem: item)
+                
+                let globalQueue = DispatchQueue.global()
+                    let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
+                    let semaphore = DispatchSemaphore(value: 0)
+                    //https://medium.com/cubo-ai/concurrency-thread-safety-in-swift-5281535f7d3a
+                    globalQueue.async {
+                        queue.async{
+                           
+                            print("SOURCE ASYNC")
+                            handSource.create(input: source)
+                            semaphore.signal()
+                        }
+                        semaphore.wait()
+
+                        queue.async{
+                            print("ITEM ASYNC - \(ResponseData.shared.szam)")
+                            hand.createItem(inputItem: item)
+                            semaphore.signal()
+                        }
+                        semaphore.wait()
+                    }
+                
+                /*let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
+                    
+                queue.sync(flags: .barrier) {
+                    print("SOURCE ASYNC")
+                    handSource.create(input: source)
+                
+                }
+                //sleep(1)
+                queue.sync(flags: .barrier) {
+                    print("ITEM ASYNC")
+                    hand.createItem(inputItem: item)
+                }*/
+                
+                
+                
+                // read
+                /*Flag.shared.queue.sync {
+                    // perform read and assign value
+                    print("FLAG OLVASAS: \(Flag.shared.canGoOn)")
+                    if Flag.shared.canGoOn
+                    {
+                        
+                    }
+                }*/
+                
+                
+                
                 
                 
             }) {

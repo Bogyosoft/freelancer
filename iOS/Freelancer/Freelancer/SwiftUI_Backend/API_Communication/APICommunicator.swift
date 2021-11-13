@@ -31,7 +31,22 @@ class APICommunicator
                             if let dictionary = json as? [String: Any] {
                                 if let number = dictionary["id"] as? Int {
                                     // access individual value in dictionary
+                                    print("RESPONSE: \(ResponseData.shared.szam)")
                                     print("id------\(number)")
+                                    if input.enity == "SOURCE"
+                                    {
+                                        
+                                        
+                                        ResponseData.shared.szam = number
+                                        // write
+                                        /*Flag.shared.queue.sync(flags: .barrier) {
+                                            // perform writes on data
+                                            
+                                            Flag.shared.canGoOn.toggle()
+                                            print("FLAG: \(Flag.shared.canGoOn)")
+                                        }*/
+                                    }
+                                    
                                 }
                                 
                             }

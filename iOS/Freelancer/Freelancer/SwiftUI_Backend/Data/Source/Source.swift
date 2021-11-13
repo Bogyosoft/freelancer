@@ -9,6 +9,7 @@ import Foundation
 
 class Source: Transferable
 {
+    var enity: String = "SOURCE"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/sources/"
     
     //SHOULD BE IMPLEMENTED LATER....

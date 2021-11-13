@@ -9,6 +9,7 @@ import Foundation
 
 class Job: Transferable
 {
+    var enity: String = "JOB"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/jobs/"
     
     func createJSON() -> [String : Any] {

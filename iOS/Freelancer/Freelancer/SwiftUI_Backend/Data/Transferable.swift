@@ -9,6 +9,7 @@ import Foundation
 
 protocol Transferable
 {
+    var enity: String{get set}
     var link: String{get set}
     func createJSON() ->[String:Any]
 }
