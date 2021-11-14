@@ -9,6 +9,8 @@ import Foundation
 
 class Source: Transferable
 {
+    var id: Int = -1
+    var location: String = "sourceLocation"
     var enity: String = "SOURCE"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/sources/"
     
@@ -17,7 +19,7 @@ class Source: Transferable
     
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
-                "id": 0,
+                "id": self.id,
                 "location": "valamiLocation",
                 "owner":[
                     "id": 1,

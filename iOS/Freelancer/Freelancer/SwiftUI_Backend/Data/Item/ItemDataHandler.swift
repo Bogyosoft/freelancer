@@ -10,19 +10,24 @@ import Foundation
 
 class ItemDataHandler
 {
-    private let networkHandler: APICommunicator = APICommunicator()
+    internal var networkHandler: APICommunicator = APICommunicator()
     
-    func getItems(inputItem: Item)
+    func get(input: Item)
     {
-        print("ItemDataHandler_getItems()")
-        networkHandler.GetRequest(input: inputItem)
+        print("ItemDataHandler_get()")
+        networkHandler.GetRequest(input: input)
     }
     
-    func createItem(inputItem: Item)
+    func post(input: Item)
     {
-        print("ItemDataHandler_createItem()")
-        //get user db for checking id
-        //getUsers(inputUser: inputUser)
-        networkHandler.PostRequest(input: inputItem)
+        print("ItemDataHandler_create()")
+        input.source.id = ResponseData.shared.szam
+        print("input.source.id = \(input.source.id)")
+        if input.source.id == -1
+        {
+            print("\n\n\nHIBA LÉPETT FEL AZ ITEM REGISZTRÁLÁSAKOR(ROSSZ SOURCE ID)\n\n\n")
+            return
+        }
+        networkHandler.PostRequest(input: input)
     }
 }

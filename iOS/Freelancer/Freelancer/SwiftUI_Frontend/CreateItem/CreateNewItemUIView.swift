@@ -18,54 +18,105 @@ struct CreateNewItemUIView: View {
             HStack
             {
                 Text("Cél: ")
-                TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: $destination)
+                TextField("Placeholder", text: $destination)
             }
             
             HStack
             {
                 Text("Kiindulás: ")
-                TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
             }
             
             HStack
             {
                 Text("Tulajdonságok: ")
-                TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
             }
             
             HStack
             {
                 Text("Státusz: ")
-                TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
             }
             
             Button(action: {
                 
-                let item = Item()
-                let hand = ItemDataHandler()
                 let source = Source()
                 let handSource = SourceHandler()
                 
+                let item = Item()
+                let handItem = ItemDataHandler()
+                
+                
+                
+                /*print("SOURCE ASYNC")
+                handSource.post(input: source)
+                
+                sleep(1)
+                
+                print("ITEM ASYNC - \(ResponseData.shared.szam)")
+                handItem.post(input: item)*/
+                
+                //let lock = NSLock()
+                /*let queueLock = DispatchQueue(label: "communicatorLock", attributes: .concurrent)
+
+                queueLock.async{
+                        lock.lock()
+                        print("SOURCE ASYNC")
+                        handSource.post(input: source)
+                        lock.unlock()
+                    }
+                    
+                queueLock.async{
+                        lock.lock()
+                        print("ITEM ASYNC - \(ResponseData.shared.szam)")
+                    handItem.post(input: item)
+                        lock.unlock()
+                    }*/
+                
                 let globalQueue = DispatchQueue.global()
-                    let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
-                    let semaphore = DispatchSemaphore(value: 0)
-                    //https://medium.com/cubo-ai/concurrency-thread-safety-in-swift-5281535f7d3a
-                    globalQueue.async {
-                        queue.async{
+                let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
+                let semaphore = DispatchSemaphore(value: 0)
+                //https://medium.com/cubo-ai/concurrency-thread-safety-in-swift-5281535f7d3a
+                
+                globalQueue.async {
+                    queue.async{
                            
                             print("SOURCE ASYNC")
-                            handSource.create(input: source)
+                            handSource.post(input: source)
                             semaphore.signal()
-                        }
-                        semaphore.wait()
-
-                        queue.async{
-                            print("ITEM ASYNC - \(ResponseData.shared.szam)")
-                            hand.createItem(inputItem: item)
-                            semaphore.signal()
-                        }
-                        semaphore.wait()
+                            print(semaphore)
                     }
+                    semaphore.wait()
+
+                    queue.async{
+                            print("ITEM ASYNC - \(ResponseData.shared.szam)")
+                            handItem.post(input: item)
+                            semaphore.signal()
+                    }
+                    semaphore.wait()
+                    
+                }
+                
+               
+                
+                /*let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
+                    
+                    queue.async(flags: .barrier) {
+                        print("SOURCE ASYNC")
+                        handSource.post(input: source)
+                    }
+                
+                queue.async(flags: .barrier) {
+                    print("ITEM ASYNC - \(ResponseData.shared.szam)")
+                    handItem.post(input: item)
+                }*/
+                
+                
+                
+                
+                
+                
                 
                 /*let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
                     

@@ -13,5 +13,5 @@ protocol DataHandler
     
     func get(input: Transferable)
     
-    func create(input: Transferable)
+    func post(input: Transferable)
 }

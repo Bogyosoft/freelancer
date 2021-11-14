@@ -13,15 +13,13 @@ class SourceHandler: DataHandler
     
     func get(input: Transferable)
     {
-        print("SourceHandler_getItems()")
+        print("SourceHandler_get()")
         networkHandler.GetRequest(input: input)
     }
     
-    func create(input: Transferable)
+    func post(input: Transferable)
     {
-        print("SourceHandler_createItem()")
-        //get user db for checking id
-        //getUsers(inputUser: inputUser)
+        print("SourceHandler_create()")
         networkHandler.PostRequest(input: input)
     }
 }

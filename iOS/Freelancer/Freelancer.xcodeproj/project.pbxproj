@@ -163,11 +163,11 @@
 				29F281D1273EF83B00E63E63 /* Source */,
 				2957E7FF273028700039429D /* Transferable.swift */,
 				29F281D8273F0AD600E63E63 /* DataHandler.swift */,
+				29F281DC274060BB00E63E63 /* ResponseData.swift */,
 				29B5FB21273A71D100327744 /* Job */,
 				29CB206C272882D9006EFF33 /* User */,
 				293C69992733E78B001BC990 /* JSONSerializer */,
 				29B5FB1F273A718C00327744 /* Item */,
-				29F281DC274060BB00E63E63 /* ResponseData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";

@@ -11,14 +11,15 @@ import Alamofire
 
 class APICommunicator
 {
-    
     func PostRequest(input: Transferable)
     {
-        print("POST")
+        
+       
         
         AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil).response{response in
             
             debugPrint(response)
+            
             print("RESULT: \(response.result)!")
             //https://developer.apple.com/swift/blog/?id=37
             //https://stackoverflow.com/questions/35088237/any-way-to-get-the-response-body-during-http-errors
@@ -31,13 +32,12 @@ class APICommunicator
                             if let dictionary = json as? [String: Any] {
                                 if let number = dictionary["id"] as? Int {
                                     // access individual value in dictionary
-                                    print("RESPONSE: \(ResponseData.shared.szam)")
+                                    
                                     print("id------\(number)")
                                     if input.enity == "SOURCE"
                                     {
-                                        
-                                        
                                         ResponseData.shared.szam = number
+                                        print("RESPONSE: \(ResponseData.shared.szam)")
                                         // write
                                         /*Flag.shared.queue.sync(flags: .barrier) {
                                             // perform writes on data
@@ -58,6 +58,7 @@ class APICommunicator
                        //the successful cases, how do I get the response body?
                }
         }
+        
     }
 
     func GetRequest(input: Transferable)

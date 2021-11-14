@@ -16,6 +16,8 @@ class Item:Transferable
     var status: Status = Status.NotTaken
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/items/"
     
+    var source: Source = Source()
+    
     //SHOULD BE IMPLEMENTED LATER....
     var feladoUser: User = User(inUserName: "ITEM_CLASS", inPassword: "itemclass")
     
@@ -32,8 +34,8 @@ class Item:Transferable
             "id" : 10,
             "properties": "tulajdonsag",
             "source":[
-                "id": 24,
-                "location": "TextFieldValue(text='jdueuue', selection=TextRange(7, 7), composition=null)",
+                "id": source.id,
+                "location": source.location,
                 "owner":[
                     "id": 1,
                     "password":"ios",
