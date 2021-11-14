@@ -324,6 +324,7 @@ struct RegistrationView: View{
                         let user = User(inUserName: self.email, inPassword: self.pass)
                         let hand = UserDataHandler()
                         hand.registerUser(inputUser: user)
+                        hand.getUsers(inputUser: user)
                     }
                     
                 }

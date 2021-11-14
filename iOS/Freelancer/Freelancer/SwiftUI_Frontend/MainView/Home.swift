@@ -119,10 +119,11 @@ let menuData = [
 
 struct MenuView: View {
 
-   var menu = menuData
-   @Binding var show: Bool
-   @State var showSettings = false
+    var menu = menuData
+    @Binding var show: Bool
+    @State var showSettings = false
     @State var showProfile = false
+    @State var showItemList = false
     @EnvironmentObject var viewlaunch: ViewLaunch
 
    var body: some View {
@@ -151,6 +152,15 @@ struct MenuView: View {
                      {
                        MenuRow(image: item.icon, text: item.title)
                           .sheet(isPresented: self.$showProfile) { ProfileUpdateUIView() }
+                    }
+                }
+                
+                else if item.title == "Szállítmányok"
+                {
+                    Button(action: { self.showItemList.toggle() })
+                     {
+                       MenuRow(image: item.icon, text: item.title)
+                          .sheet(isPresented: self.$showItemList) { ItemListUIView() }
                     }
                 }
                 else

@@ -15,7 +15,6 @@ class Item:Transferable
     var destination: Location = Location(_ln: 0.0, _lt: 0.0)
     var status: Status = Status.NotTaken
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/items/"
-    
     var source: Source = Source()
     
     //SHOULD BE IMPLEMENTED LATER....
@@ -53,7 +52,7 @@ class Item:Transferable
 }
 
 
-class Location
+class Location: Codable
 {
     var long: Double
     var lat: Double
