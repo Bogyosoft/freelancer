@@ -64,8 +64,6 @@ public class ItemResourceComponentTests {
         assertEquals("Items status do not match", getExpectedItem().getStatus(), actualItem.getStatus());
         assertEquals("Items sources do not match", getExpectedItem().getSource(), actualItem.getSource());
         assertEquals("Items owner do not match", getExpectedItem().getSource().getOwner(), actualItem.getSource().getOwner());
-
-
     }
 
     private void postItem(String content) throws Exception {

@@ -14,3 +14,4 @@ create table users(user_id serial PRIMARY KEY,
             password varchar,
             role varchar,
             score integer);
+insert into public.users(username,password,role,score) values ('pd','pd','user',1);
