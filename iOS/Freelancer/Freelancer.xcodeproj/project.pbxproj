@@ -50,6 +50,8 @@
 		29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F2F01427026003008871B3 /* FreelancerApp.swift */; };
 		29F2F01927026005008871B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01827026005008871B3 /* Assets.xcassets */; };
 		29F2F01C27026005008871B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F2F01B27026005008871B3 /* Preview Assets.xcassets */; };
+		29F87911274570EA00BD38F3 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F87910274570EA00BD38F3 /* Token.swift */; };
+		29F87913274570FC00BD38F3 /* TokenDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F87912274570FC00BD38F3 /* TokenDataHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		29F2F01827026005008871B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29F2F01B27026005008871B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		29F2F01D27026005008871B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29F87910274570EA00BD38F3 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		29F87912274570FC00BD38F3 /* TokenDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDataHandler.swift; sourceTree = "<group>"; };
 		AD5D98CBEB225BE92239F444 /* Pods-Freelancer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freelancer.debug.xcconfig"; path = "Target Support Files/Pods-Freelancer/Pods-Freelancer.debug.xcconfig"; sourceTree = "<group>"; };
 		F11FA2B5B43852EB18F9378F /* Pods-Freelancer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freelancer.release.xcconfig"; path = "Target Support Files/Pods-Freelancer/Pods-Freelancer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +173,7 @@
 		29B5FB20273A719D00327744 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				29F8790F274570DC00BD38F3 /* Token */,
 				29F281D1273EF83B00E63E63 /* Source */,
 				2957E7FF273028700039429D /* Transferable.swift */,
 				29F281D8273F0AD600E63E63 /* DataHandler.swift */,
@@ -337,6 +342,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		29F8790F274570DC00BD38F3 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				29F87910274570EA00BD38F3 /* Token.swift */,
+				29F87912274570FC00BD38F3 /* TokenDataHandler.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
 		43D5FCC225E252222302FB6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +484,7 @@
 				29DE5DB82724A1E000431A75 /* UpdateDetail.swift in Sources */,
 				29CB207027288400006EFF33 /* UserDataHandler.swift in Sources */,
 				29B5FB1C273A6B6F00327744 /* newJobnewItempopUPUIView.swift in Sources */,
+				29F87913274570FC00BD38F3 /* TokenDataHandler.swift in Sources */,
 				2947C41427216600006FEA8B /* AppDelegate.swift in Sources */,
 				29DE5DC02724A3CC00431A75 /* TabBar.swift in Sources */,
 				29DE5DAF27249EC100431A75 /* ModernMainMenu.swift in Sources */,
@@ -490,6 +505,7 @@
 				29F281D3273EF85000E63E63 /* Source.swift in Sources */,
 				29F286FF27415C4500578D8E /* SourceData.swift in Sources */,
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
+				29F87911274570EA00BD38F3 /* Token.swift in Sources */,
 				29DE5DBC2724A29700431A75 /* BlurView.swift in Sources */,
 				29B5FB23273A71EA00327744 /* Job.swift in Sources */,
 				29CB206E272882F4006EFF33 /* User.swift in Sources */,

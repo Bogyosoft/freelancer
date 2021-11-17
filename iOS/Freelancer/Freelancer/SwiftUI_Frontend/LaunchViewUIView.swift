@@ -34,6 +34,11 @@ struct LaunchView: View {
                     LoginPageUIView()
                 }*/
             }
+        }.onAppear{
+            let token = Token()
+            let tokenWorker = TokenHandler()
+            
+            tokenWorker.post(input: token)
         }
     }
 }
