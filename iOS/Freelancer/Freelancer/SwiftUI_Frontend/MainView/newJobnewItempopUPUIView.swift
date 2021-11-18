@@ -24,7 +24,7 @@ struct newJobnewItempopUPUIView: View {
                         Text("Új munka")
                     }
                     .frame(minWidth: 0, maxWidth: 180, minHeight: 0, maxHeight: 50)
-                    .background(Color(red: 100 / 255, green: 200 / 255, blue: 100 / 255))
+                    .background(Color(red: 211 / 255, green: 211 / 255, blue: 211 / 255))
                     .cornerRadius(20)
                     
                 Button(action: {
@@ -38,7 +38,7 @@ struct newJobnewItempopUPUIView: View {
                     }
                     
                     .frame(minWidth: 0, maxWidth: 180, minHeight: 0, maxHeight: 50)
-                    .background(Color(red: 100 / 255, green: 242 / 255, blue: 242 / 255))
+                    .background(Color(red: 211 / 255, green: 211 / 255, blue: 211 / 255))
                     .cornerRadius(20)
 
                 //}
