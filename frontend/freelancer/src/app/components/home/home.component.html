@@ -1,1 +1,22 @@
-<p>home works!</p>
+
+
+<!doctype html>
+<section class="home-section">
+    <button  (click)="addTab()">
+        + Add Tab
+    </button>
+    <mat-tab-group [selectedIndex]="selected.value"
+        (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+    <button
+    class="delete-button"
+    [disabled]="tabs.length === 1"
+    (click)="removeTab(index)">
+    Delete Tab
+    </button>
+
+
+    </mat-tab>
+    </mat-tab-group>
+
+</section>

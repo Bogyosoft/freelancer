@@ -1,16 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { LoginComponent } from './components/login/login.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+import { RestapiService } from './restapi.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import "@angular/compiler";
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CommonModule } from '@angular/common';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { TableTemplateComponent } from './table-template/table-template.component';
+import {MatSortModule} from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { Routes} from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,12 +45,30 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    HttpClientModule,
+    MatSelectModule,
+    FormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    CommonModule,
+    MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    DragDropModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule,
+    MatProgressBarModule,
+    RouterModule.forRoot([
+      {path: '', redirectTo: 'home', pathMatch:'full' }
+    ])
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [RestapiService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
