@@ -15,25 +15,21 @@ import kotlinx.coroutines.launch
 class JobViewModel : ViewModel(),IViewModel{
     private val apiService = FreelancerApiClient.service
     private lateinit var repository: FreeLancerRepository
-    var jobList: List<jobItem> by mutableStateOf(listOf())
-
-
-
-    lateinit var clickedItem: IItem
+    override lateinit var clickedItem: IItem
 
     init {
-        fetchUsers()
+        fetchJobs()
     }
 
-    fun fetchUsers() {
+    fun fetchJobs() {
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
-            val response = repository.getAllUsers()
+            val response = repository.getJobs()
             when (response) {
                 is FreeLancerRepository.Result.Success -> {
 
                     Log.d("JobViewModel", "Success")
-                    jobList = response.list as List<jobItem>
+                    list = response.list as List<IItem>
                 }
                 is FreeLancerRepository.Result.Failure -> {
                     Log.d("JobViewModel", "FAILURE")
@@ -41,13 +37,31 @@ class JobViewModel : ViewModel(),IViewModel{
             }
         }
     }
+    fun createJobs(job : jobItem){
+        repository = FreeLancerRepository(apiService)
+        viewModelScope.launch {
+        repository.createJob(job){
+            if (it?.id != null) {
+                Log.d("job","succes ")
+
+
+
+
+            } else {
+                Log.d("job","failure ")
+            }
+        }
+
+
+        }
+
+
+        }
 
     override fun itemClicked(item: IItem) {
         clickedItem = item as jobItem
     }
 
-    override var list: List<IItem>
-        get() = list
-        set(value) {}
+    override var list: List<IItem> = emptyList()
 
 }

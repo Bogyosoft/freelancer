@@ -57,15 +57,19 @@ fun TopBar(title: String = "", onButtonClicked: () -> Unit) {
 
 sealed class DrawerScreens(val title: String, val route: String) {
     object Login : DrawerScreens("Login", "Login")
+    object Jobs : DrawerScreens("Jobs", "JobList")
     object Users : DrawerScreens("UserList", "UserList")
+    object CreateJobs : DrawerScreens("Create Jobs", "CreateJob")
 
 }
 
 private val screens = listOf(
     DrawerScreens.Login,
     DrawerScreens.Users,
+    DrawerScreens.Jobs,
+    DrawerScreens.CreateJobs
 
-)
+    )
 
 @Composable
 fun Drawer(

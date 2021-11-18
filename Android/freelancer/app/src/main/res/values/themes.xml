@@ -19,7 +19,5 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Freelancer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Freelancer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

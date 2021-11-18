@@ -1,7 +1,7 @@
 package com.example.freelancer.network
 
-import com.example.freelancer.model.UserItem
-import com.example.freelancer.model.jobItem
+import com.example.freelancer.model.*
+import okhttp3.Cookie
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,17 +26,34 @@ private val moshi = Moshi.Builder()
 
 
 interface FreelancerAPIService {
+    var token: String
 
-    @GET("user")
+    @GET("/api/v1/user")
     suspend fun getAllUsers(): List<UserItem>
 
     @Headers("Content-Type: application/json")
-    @POST("user")
+    @POST("/api/v1/user")
     fun registerUser(@Body userItem: UserItem) : Call<UserItem>
 
-    @GET("jobs")
-    fun getJobs() : List<jobItem>
+    @GET("/api/v1/jobs")
+    suspend fun getJobs() : List<jobItem>
 
+    @Headers("Content-Type: application/json")
+    @POST("/api/v1/jobs")
+    fun createJob(@Body jobItem: jobItem) : Call<jobItem>
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/v1/sources")
+    fun createSource(@Body source: Source) : Call<Source>
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/v1/items")
+    fun createItems(@Body item: itemsItem) : Call<itemsItem>
+
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/auth")
+    fun login(@Body userDTO: UserDTO) : Call<UserDTO>
 }
 
 //object FreelancerAPI{

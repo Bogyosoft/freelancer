@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
@@ -93,7 +94,8 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 .fillMaxWidth()
                 .height(50.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
-            shape = RoundedCornerShape(50.dp)
+            shape = RoundedCornerShape(50.dp),
+
         )
         Spacer(Modifier.size(16.dp))
         elseButton(text = "Login?", navController = navController)
@@ -118,7 +120,11 @@ fun registrationDialog(showDialog: Boolean, setShowDialog: (Boolean) -> Unit) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(width = 2.dp, color = PrimaryColor, shape = RoundedCornerShape(50.dp))
+                        .border(
+                            width = 2.dp,
+                            color = PrimaryColor,
+                            shape = RoundedCornerShape(50.dp)
+                        )
                         .height(50.dp)
                 ) {
                     Text(text = "Try again", color = PrimaryColor)

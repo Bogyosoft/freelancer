@@ -74,7 +74,7 @@ fun elseButton(text: String, navController: NavHostController){
             modifier = Modifier
                 .fillMaxWidth()
                 .border(width = 2.dp, color = PrimaryColor, shape = RoundedCornerShape(50.dp))
-                .height(50.dp),
+                .height(50.dp)
         ) {
             Text(text = text, color = PrimaryColor)
 

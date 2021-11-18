@@ -1,8 +1,9 @@
-package com.vyns.mvvmjetpackcomposesample.ui.viewmodel
+package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide.init
 import com.example.freelancer.model.IItem
 import com.example.freelancer.model.UserItem
 import com.example.freelancer.network.FreelancerApiClient
@@ -13,24 +14,21 @@ import kotlinx.coroutines.launch
 class UsersViewModel() : ViewModel(), IViewModel{
     private val apiService = FreelancerApiClient.service
     private lateinit var repository: FreeLancerRepository
-    override var clickedItem: IItem
-        get() = clickedItem
-        set(value) {clickedItem=value}
+    override lateinit var clickedItem: IItem
 
     init {
         fetchUsers()
     }
 
     fun fetchUsers() {
-
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
-            var response = repository.getAllUsers()
+            val response = repository.getAllUsers()
             when (response) {
                 is FreeLancerRepository.Result.Success -> {
 
                     Log.d("MainViewModel", "Success")
-                    list = response.list as List<UserItem>
+                    list = response.list as List<IItem>
                 }
                 is FreeLancerRepository.Result.Failure -> {
                     Log.d("MainViewModel", "FAILURE")
@@ -43,8 +41,7 @@ class UsersViewModel() : ViewModel(), IViewModel{
         clickedItem = item
     }
 
-    override var list: List<IItem>
-        get() = list
-        set(value) {list = value}
+    override var list: List<IItem> = emptyList()
+
 
 }

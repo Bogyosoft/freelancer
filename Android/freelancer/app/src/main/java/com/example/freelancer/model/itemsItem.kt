@@ -9,13 +9,4 @@ data class itemsItem(
     val properties: String,
     val source: Source,
     val status: String
-):IItem {
-    @Composable
-    override fun ListViewItem(
-        navController: NavController,
-        userItem: IItem,
-        onItemClicked: (item: IItem) -> Unit
-    ) {
-        TODO()
-    }
-}
+)

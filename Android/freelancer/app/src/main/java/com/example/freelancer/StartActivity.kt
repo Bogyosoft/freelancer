@@ -1,10 +1,12 @@
 package com.example.freelancer
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
+import com.example.freelancer.network.FreelancerApiClient
 import egolabsapps.basicodemine.videolayout.VideoLayout
 import kotlin.concurrent.thread
 
@@ -20,23 +22,18 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-
-        //initViews()
-
+        FreelancerApiClient.setContext(this.applicationContext as Application)
+        FreelancerApiClient.initRetrofit()
+        FreelancerApiClient.initService()
+        //findViewById<VideoLayout>(R.id.videoLayout).mediaPlayer.start()
 
 
     }
 
 
-    fun initViews() {
-        frameLayout = findViewById(R.id.frameLayout)
-        videoLayout = VideoLayout(this)
-        videoLayout.setGravity(VideoLayout.VGravity.centerCrop)
-        videoLayout.setIsLoop(true)
-        videoLayout.setPathOrUrl("loginvideotype3.mp4")
-        frameLayout.addView(videoLayout)
+    override fun onStop() {
+        super.onStop()
+        findViewById<VideoLayout>(R.id.videoLayout).mediaPlayer.stop()
+
     }
-
-
-
 }

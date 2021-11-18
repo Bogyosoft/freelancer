@@ -16,11 +16,19 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
+import com.example.freelancer.SessionManager
+import com.example.freelancer.model.UserDTO
+import com.example.freelancer.network.FreelancerAPIService
+import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.ui.parts.*
 import com.example.freelancer.ui.theme.PrimaryColor
-
+import com.example.freelancer.ui.viewmodel.LoginViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+//https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(navController: NavHostController,loginViewModel: LoginViewModel) {
     val context = LocalContext.current
     val email = remember { mutableStateOf(TextFieldValue()) }
     val emailErrorState = remember { mutableStateOf(false) }
@@ -41,7 +49,7 @@ fun LoginScreen(navController: NavHostController) {
 
         passwordField(password,passwordVisibility,passwordErrorState)
 
-        loginButton(passwordErrorState,password,email,emailErrorState,navController)
+        loginButton(passwordErrorState,password,email,emailErrorState,navController,loginViewModel)
         
         elseButton(text = "Register?",navController)
         
@@ -54,7 +62,8 @@ fun loginButton(
     password: MutableState<TextFieldValue>,
     email: MutableState<TextFieldValue>,
     emailErrorState: MutableState<Boolean>,
-    navController: NavHostController
+    navController: NavHostController,
+    loginViewModel: LoginViewModel
 )
 {
     val (showDialog,setShowDialog) = remember { mutableStateOf(false)}
@@ -71,7 +80,11 @@ fun loginButton(
                 else -> {
                     passwordErrorState.value = false
                     emailErrorState.value = false
-                    if(MainActivity.repo.checkLogin(email.value.text,password.value.text)){
+
+
+
+
+                    if(loginViewModel.loginUser(UserDTO(email.value.text,password.value.text))){
                         Log.d("navButton", "navigate")
                         navController.navigate("Main")
                     }
