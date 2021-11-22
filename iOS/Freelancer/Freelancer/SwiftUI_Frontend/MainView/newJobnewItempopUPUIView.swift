@@ -12,6 +12,7 @@ struct newJobnewItempopUPUIView: View {
     
     @Binding var showPopUp: Bool
     @State var showNewItem: Bool = false
+    @State var showNewJob: Bool = false
     
     var body: some View {
         HStack
@@ -20,16 +21,22 @@ struct newJobnewItempopUPUIView: View {
             {
                 //List
                 //{
-                Button(action: {}) {
-                        Text("Új munka")
-                    }
+                Button(action: {
+                    
+                    self.showNewJob.toggle()
+                    
+                }) {
+                        Text("Új munka").sheet(isPresented: $showNewJob) { CreateNewJobUIView()
+                            
+                        }
+                }
                     .frame(minWidth: 0, maxWidth: 180, minHeight: 0, maxHeight: 50)
                     .background(Color(red: 211 / 255, green: 211 / 255, blue: 211 / 255))
                     .cornerRadius(20)
                     
                 Button(action: {
                     self.showNewItem.toggle()
-                    print("FASZOM VAN")
+                    //print("FASZOM VAN")
                     //self.showPopUp.toggle()
                     
                     
@@ -55,7 +62,6 @@ struct newJobnewItempopUPUIView: View {
 
 /*struct newJobnewItempopUPUIView_Previews: PreviewProvider {
     static var previews: some View {
-        //@Binding var kamu: Bool = true
-        //newJobnewItempopUPUIView(showNewItem: kamu)
+        newJobnewItempopUPUIView()
     }
 }*/

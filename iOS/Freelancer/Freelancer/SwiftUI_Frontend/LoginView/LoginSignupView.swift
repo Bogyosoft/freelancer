@@ -60,11 +60,6 @@ struct LoginSignupView: View {
 struct GrowingButtonRegistration: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            //.padding()
-            //.frame(width: UIScreen.main.bounds.width*0.8, height: UIScreen.main.bounds.height*0.1, alignment: .center).background(Color.orange)
-            //.background(Color.blue)
-            //.foregroundColor(.blue)
-            //.clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
@@ -186,15 +181,6 @@ struct LoginView: View{
         }
     }
                    
-    /*if self.loginSucces == true{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                    withAnimation()
-                    {
-                        self.viewlaunch.currentPage = "menuView"
-                    }
-    }*/
-                   
-    
 }
 
 struct RegistrationView: View{
@@ -344,7 +330,7 @@ struct RegistrationView: View{
     
 }
 
-//Hullám
+//Hullám - bal
 struct CShape: Shape
 {
 

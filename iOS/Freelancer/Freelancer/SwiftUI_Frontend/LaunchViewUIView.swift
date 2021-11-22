@@ -16,9 +16,6 @@ struct LaunchView: View {
     {
         VStack
         {
-            
-            
-            
             if viewlaunch.currentPage == "newsView"
             {
                 //NewsView()
@@ -35,6 +32,7 @@ struct LaunchView: View {
                 }*/
             }
         }.onAppear{
+            print("LaunchView_onAppeare()")
             let token = Token()
             let tokenWorker = TokenHandler()
             
@@ -46,7 +44,7 @@ struct LaunchView: View {
 class ViewLaunch: ObservableObject {
     
     init() {
-        print("IDE LEPETT BE")
+        print("ViewLaunch()")
         if UserDefaults.standard.bool(forKey: "LaunchBefore") {
         //if 1 == 2{
             currentPage = "newsView"

@@ -7,6 +7,10 @@
 
 import SwiftUI
 /*
+ 
+ not used any more
+ 
+ 
 @main
 struct FreelancerApp: App {
     var body: some Scene {

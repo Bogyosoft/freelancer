@@ -16,7 +16,8 @@ class Token: Transferable
     
     func createJSON() -> [String : Any] {
         print("PASSZ")
-        return ["semmi":0]
+        return ["username": "string",
+                "password": "string"]
     }
     
 

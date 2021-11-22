@@ -124,6 +124,7 @@ struct MenuView: View {
     @State var showSettings = false
     @State var showProfile = false
     @State var showItemList = false
+    @State var showJobList = false
     @EnvironmentObject var viewlaunch: ViewLaunch
 
    var body: some View {
@@ -161,6 +162,14 @@ struct MenuView: View {
                      {
                        MenuRow(image: item.icon, text: item.title)
                           .sheet(isPresented: self.$showItemList) { ItemListUIView() }
+                    }
+                }
+                else if item.title == "Munkák"
+                {
+                    Button(action: { self.showJobList.toggle() })
+                     {
+                       MenuRow(image: item.icon, text: item.title)
+                          .sheet(isPresented: self.$showJobList) { JobListUIView() }
                     }
                 }
                 else
