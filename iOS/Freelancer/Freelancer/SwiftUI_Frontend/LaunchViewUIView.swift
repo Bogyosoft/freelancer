@@ -33,10 +33,8 @@ struct LaunchView: View {
             }
         }.onAppear{
             print("LaunchView_onAppeare()")
-            let token = Token()
-            let tokenWorker = TokenHandler()
-            
-            tokenWorker.post(input: token)
+        
+            Token.shared.tokenHandler.post(input: Token.shared)
         }
     }
 }

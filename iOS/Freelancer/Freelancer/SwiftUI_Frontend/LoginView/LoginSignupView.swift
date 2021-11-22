@@ -304,13 +304,9 @@ struct RegistrationView: View{
                     
                     if self.attemptsEmail == 0 && self.attemptsPassword == 0
                     {
-                        print("LETS GET REGISTRATING")
-                        //check if already register or not
-                        //check registered ID-s
+                        print("LoginSigUpView_registration()")
                         let user = User(inUserName: self.email, inPassword: self.pass)
-                        let hand = UserDataHandler()
-                        hand.registerUser(inputUser: user)
-                        hand.getUsers(inputUser: user)
+                        user.dataHandler.registerUser(inputUser: user)
                     }
                     
                 }

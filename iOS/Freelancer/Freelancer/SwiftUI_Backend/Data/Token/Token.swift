@@ -10,6 +10,11 @@ import Alamofire
 
 class Token: Transferable
 {
+    
+    static let shared = Token()//Singleton
+    
+    let tokenHandler = TokenHandler()
+    
     var enity: String = "TOKEN"
     
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/auth"

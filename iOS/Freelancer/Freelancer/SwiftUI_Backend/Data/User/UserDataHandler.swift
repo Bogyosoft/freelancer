@@ -10,13 +10,6 @@ import Foundation
 class UserDataHandler
 {
     private let networkHandler: APICommunicator = APICommunicator()
-    
-    /*let woerk: User
-    
-    init(user: User)
-    {
-        woerk = user
-    }*/
     func getUsers(inputUser: User)
     {
         print("UserDataHandler_getUser()")

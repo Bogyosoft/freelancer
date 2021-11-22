@@ -12,6 +12,9 @@ class User: Transferable
     var enity: String = "USER"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user"
 
+    let dataHandler = UserDataHandler()
+    
+    
     var id: UUID = UUID()
     var userName: String = "username"
     var passWord: String = "pass"
