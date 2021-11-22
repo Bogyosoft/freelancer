@@ -15,7 +15,7 @@ class Source: Transferable
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/sources/"
     
     //SHOULD BE IMPLEMENTED LATER....
-    var feladoUser: User = User(inUserName: "ITEM_CLASS", inPassword: "itemclass")
+    var feladoUser: User = User(inData: UserData(inUser: "proba", inPass: "proba"))
     
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [

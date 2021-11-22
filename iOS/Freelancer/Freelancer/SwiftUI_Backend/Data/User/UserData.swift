@@ -9,9 +9,15 @@ import Foundation
 
 class UserData: Codable
 {
-    let id: Int
+    var id: Int = 0
     let password: String
-    let role: String
-    let score: Int
+    var role: String = "default"
+    var score: Int = 0
     let username: String
+    
+    init(inUser: String, inPass: String)
+    {
+        username = inUser
+        password = inPass
+    }
 }

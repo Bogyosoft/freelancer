@@ -11,58 +11,27 @@ class User: Transferable
 {
     var enity: String = "USER"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user"
-
     let dataHandler = UserDataHandler()
+    var data: UserData
     
-    
-    var id: UUID = UUID()
-    var userName: String = "username"
-    var passWord: String = "pass"
-    var role: String = "default"
-    var score: Int = 0
-    
-    //let handler: UserDataHandler
-    
-    init(inUserName: String, inPassword: String)
+    init(inData: UserData)
     {
         print("Createing USER credentials....")
-        passWord = inPassword
-        userName = inUserName
-        //handler = UserDataHandler(user: self)
+        data = inData
     }
     
     func createJSON() ->[String:Any]
     {
         print("USER CREATE JSON")
         
-        let id = 0//ID
-        
         let parameters: [String: Any] = [
-            "id" : id,
-            "password" : self.passWord,
-            "role" : self.role,
-            "score": self.score,
-            "username": self.userName]
+            "id" : self.data.id,
+            "password" : self.data.password,
+            "role" : self.data.role,
+            "score": self.data.score,
+            "username": self.data.username]
         
         print(parameters)
-        
-        
-        /*"List": [
-            /*[
-                "IdQuestion" : 5,
-                "IdProposition": 2,
-                "Time" : 32
-            ],*/
-            /*[
-                "IdQuestion" : 4,
-                "IdProposition": 3,
-                "Time" : 9
-            ]*/
-        ]*/
-        
-       
-        
-        
          return parameters
     }
 }
