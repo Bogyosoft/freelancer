@@ -11,8 +11,8 @@ class User: Transferable
 {
     var enity: String = "USER"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user"
-    let dataHandler = UserDataHandler()
-    var data: UserData
+    let dataHandler = UserDataHandler()//OWN HANDLER FOR COMMUNICATION
+    var data: UserData//OWN DATA 
     
     init(inData: UserData)
     {

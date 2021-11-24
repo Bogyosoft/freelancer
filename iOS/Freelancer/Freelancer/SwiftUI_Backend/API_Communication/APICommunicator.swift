@@ -21,16 +21,26 @@ class APICommunicator
             debugPrint(response)
             
             print("RESULT: \(response.result)!")
+            
             //https://developer.apple.com/swift/blog/?id=37
             //https://stackoverflow.com/questions/35088237/any-way-to-get-the-response-body-during-http-errors
-            /*switch response.result {
+            switch response.result {
                    case .success:
+                        print("SIKER")
+                print("EZ A RESULT: \(response.result)")
+                
+                if let res = response.result {
+                    let json = try? JSONSerialization.jsonObject(with: res, options: [])
+//                            let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("VALASZ: \(String(describing: json))")
+                    
+                }
                         if let data = response.data {
                             let json = try? JSONSerialization.jsonObject(with: data, options: [])
 //                            let json = String(data: data, encoding: String.Encoding.utf8)
                             print("Failure Response: \(String(describing: json))")
                             if let dictionary = json as? [String: Any] {
-                                if let number = dictionary["id"] as? Int {
+                                /*if let number = dictionary["id"] as? Int {
                                     // access individual value in dictionary
                                     
                                     print("id------\(number)")
@@ -47,16 +57,17 @@ class APICommunicator
                                         }*/
                                     }
                                     
-                                }
+                                }*/
                                 
                             }
                         }
+                    
                    case .failure:
                         print("semmi")
                        //error tells me 403
                        //response.result.data can't be cast to NSDictionary or NSArray like
                        //the successful cases, how do I get the response body?
-               }*/
+               }
         }
         
     }

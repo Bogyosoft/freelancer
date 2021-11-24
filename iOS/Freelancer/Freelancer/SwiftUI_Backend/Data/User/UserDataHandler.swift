@@ -18,8 +18,7 @@ class UserDataHandler
     
     func registerUser(inputUser: User)
     {
-        //get user db for checking id
-        //getUsers(inputUser: inputUser)
+        print("UserDataHandler:registerUser()")
         networkHandler.PostRequest(input: inputUser)
     }
 }

@@ -32,8 +32,10 @@ struct LaunchView: View {
                 }*/
             }
         }.onAppear{
+            /*print("CHECK FOR LOGED IN STATET")
+            print("IF LOGED IN ")
+            print("NO LOGIN DATA AVAILABLE->do nothing, loginView will got it")*/
             print("LaunchView_onAppeare()")
-        
             Token.shared.tokenHandler.post(input: Token.shared)
         }
     }
@@ -43,8 +45,8 @@ class ViewLaunch: ObservableObject {
     
     init() {
         print("ViewLaunch()")
-        if UserDefaults.standard.bool(forKey: "LaunchBefore") {
-        //if 1 == 2{
+        if UserDefaults.standard.bool(forKey: "LaunchBefore")
+        {
             currentPage = "newsView"
         } else {
             currentPage = "login"
