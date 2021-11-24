@@ -11,10 +11,24 @@ import Alamofire
 
 class APICommunicator
 {
+    
+    func downloadTags(input: Transferable, completion: @escaping ([String]?) -> Void) {
+      AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil)
+        .responseJSON { response in
+        
+            debugPrint(response)
+          
+          let tags = ["ZSIDO"]
+          
+          
+          completion(tags)
+      }
+    }
+    
     func PostRequest(input: Transferable)
     {
         
-       
+        
         
         AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil).response{response in
             
@@ -26,24 +40,29 @@ class APICommunicator
             //https://stackoverflow.com/questions/35088237/any-way-to-get-the-response-body-during-http-errors
             switch response.result {
                    case .success:
-                        print("SIKER")
-                print("EZ A RESULT: \(response.result)")
-                
-                if let res = response.result {
-                    let json = try? JSONSerialization.jsonObject(with: res, options: [])
-//                            let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("VALASZ: \(String(describing: json))")
-                    
-                }
-                        if let data = response.data {
-                            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//                            let json = String(data: data, encoding: String.Encoding.utf8)
-                            print("Failure Response: \(String(describing: json))")
-                            if let dictionary = json as? [String: Any] {
-                                /*if let number = dictionary["id"] as? Int {
+                    print("SIKERES KOMMUNIKÁCIO EL A SZERVER")
+                    print("EZ A RESULT: \(response.result)")
+
+                    if let data = response.data {
+                        let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//                      let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(String(describing: json))")
+                        if let dictionary = json as? [String: Any]
+                        {
+                            if let status = dictionary["status"] as? Int
+                            {
+                                print("status------\(status)")
+                                if(status != 200)
+                                {
+                                    print("HIBA VAN")
+                                }
+                                else
+                                {
+                                    print("MINDEN RENDBEN")
+                                }
                                     // access individual value in dictionary
+                                    /*
                                     
-                                    print("id------\(number)")
                                     if input.enity == "SOURCE"
                                     {
                                         ResponseData.shared.szam = number
@@ -55,9 +74,9 @@ class APICommunicator
                                             Flag.shared.canGoOn.toggle()
                                             print("FLAG: \(Flag.shared.canGoOn)")
                                         }*/
-                                    }
+                                    }*/
                                     
-                                }*/
+                                }
                                 
                             }
                         }

@@ -22,4 +22,14 @@ class TokenHandler: DataHandler
         print("TokenHandler_create()")
         networkHandler.PostRequest(input: input)
     }
+    
+    //https://www.raywenderlich.com/35-alamofire-tutorial-getting-started
+    //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
+    func own(input: Transferable)
+    {
+        networkHandler.downloadTags(input: input, completion: {(valasz)->Void in
+            print(valasz)
+            print("HALO ZSIDO")
+        })
+    }
 }
