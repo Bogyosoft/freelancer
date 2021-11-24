@@ -12,16 +12,12 @@ import Alamofire
 class APICommunicator
 {
     
-    func downloadTags(input: Transferable, completion: @escaping ([String]?) -> Void) {
+    func downloadTags(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
       AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
-        
             debugPrint(response)
-          
-          let tags = ["ZSIDO"]
-          
-          
-          completion(tags)
+            print("TAG EREDMENY: \(response.result)!")
+            completion(response)
       }
     }
     
