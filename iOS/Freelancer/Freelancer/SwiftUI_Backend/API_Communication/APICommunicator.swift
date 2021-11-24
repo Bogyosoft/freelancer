@@ -11,16 +11,30 @@ import Alamofire
 
 class APICommunicator
 {
+    //https://www.raywenderlich.com/35-alamofire-tutorial-getting-started
+    //https://stackoverflow.com/questions/27390656/how-to-return-value-from-alamofire
+    //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
     
-    func downloadTags(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+    func post(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
       AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
             debugPrint(response)
-            print("TAG EREDMENY: \(response.result)!")
+            //print("POST EREDMENY: \(response.result)!")
             completion(response)
       }
     }
     
+    func get(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+      AF.request(input.link, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil)
+        .responseJSON { response in
+            //debugPrint(response)
+            //print("GET EREDMENY: \(response.result)!")
+            completion(response)
+      }
+    }
+    
+    
+    //KUKA
     func PostRequest(input: Transferable)
     {
         

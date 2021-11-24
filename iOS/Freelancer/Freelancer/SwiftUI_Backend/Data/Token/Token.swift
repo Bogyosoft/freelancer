@@ -19,12 +19,12 @@ class Token: Transferable
     
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/auth"
     
-    var userData: UserData = UserData(inUser: "nil", inPass: "nil")
+    var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani"))
     
     func createJSON() -> [String : Any] {
         print("TOKEN_createJSON aka get TOKEN")
-        return ["username": userData.username,
-                "password": userData.password]
+        return ["username": user.data.username,
+                "password": user.data.password]
     }
     
 

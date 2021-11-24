@@ -37,7 +37,7 @@ struct LaunchView: View {
             print("NO LOGIN DATA AVAILABLE->do nothing, loginView will got it")*/
             print("LaunchView_onAppeare()")
             ///Token.shared.tokenHandler.post(input: Token.shared)
-            Token.shared.tokenHandler.own(input: Token.shared)
+            Token.shared.tokenHandler.post(input: Token.shared)
         }
     }
 }
