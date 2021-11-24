@@ -58,6 +58,7 @@ class TokenHandler: DataHandler
             }
             
             print("POST FINISHED")
+            Token.shared.tokenHandlerReady = true
         })
         
         

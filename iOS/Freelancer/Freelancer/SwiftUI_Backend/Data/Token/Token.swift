@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class Token: Transferable
+class Token: Transferable, ObservableObject
 {
     
     static let shared = Token()//Singleton
@@ -19,6 +19,8 @@ class Token: Transferable
     
     var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani"))
     var token: String = "nil"
+    
+    @Published var tokenHandlerReady = false
     
     func createJSON() -> [String : Any] {
         print("TOKEN_createJSON aka get TOKEN")
