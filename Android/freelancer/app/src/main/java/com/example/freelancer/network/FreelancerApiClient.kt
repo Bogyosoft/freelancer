@@ -1,8 +1,6 @@
 package com.example.freelancer.network
 
 import android.app.Application
-import com.example.freelancer.network.interceptor.ReceivedCookiesInterceptor
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -24,12 +22,13 @@ object FreelancerApiClient {
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
                 /*
+                *
                 * .client(
                 OkHttpClient.Builder()
                     .addInterceptor(ReceivedCookiesInterceptor(application.applicationContext))
                     .build())
-                *
                 * */
+
 
     }
     fun initService(){

@@ -3,6 +3,7 @@ package com.example.freelancer.network.interceptor;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -21,11 +22,13 @@ public class   ReceivedCookiesInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Response originalResponse = chain.proceed(chain.request());
 
-        if (!originalResponse.headers("Set-Cookie").isEmpty()) {
+        if (!originalResponse.headers("token").isEmpty()) {
             HashSet<String> cookies = (HashSet<String>) PreferenceManager.getDefaultSharedPreferences(context).getStringSet("PREF_COOKIES", new HashSet<String>());
 
-            for (String header : originalResponse.headers("Set-Cookie")) {
+            for (String header : originalResponse.headers("token")) {
                 cookies.add(header);
+                Log.d("Joblist",header);
+
             }
 
             SharedPreferences.Editor memes = PreferenceManager.getDefaultSharedPreferences(context).edit();

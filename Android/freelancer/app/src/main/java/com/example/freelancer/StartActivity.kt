@@ -1,14 +1,14 @@
 package com.example.freelancer
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.example.freelancer.network.FreelancerApiClient
+import com.example.freelancer.ui.screens.colors
 import egolabsapps.basicodemine.videolayout.VideoLayout
-import kotlin.concurrent.thread
 
 class StartActivity : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
@@ -27,7 +27,7 @@ class StartActivity : AppCompatActivity() {
         FreelancerApiClient.initService()
         //findViewById<VideoLayout>(R.id.videoLayout).mediaPlayer.start()
 
-
+        colors.initColors()
     }
 
 

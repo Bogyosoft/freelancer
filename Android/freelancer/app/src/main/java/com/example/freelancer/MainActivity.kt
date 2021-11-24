@@ -1,5 +1,8 @@
 package com.example.freelancer
 
+import android.content.Context
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -14,22 +17,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.freelancer.model.UserItem
-import com.example.freelancer.repository.testRepository
 import com.example.freelancer.ui.screens.*
 import com.example.freelancer.ui.theme.FreelancerTheme
-import com.example.freelancer.ui.viewmodel.JobViewModel
-import com.example.freelancer.ui.viewmodel.LoginViewModel
-import com.example.freelancer.ui.viewmodel.RegisterViewModel
-import com.example.freelancer.ui.viewmodel.UsersViewModel
+import com.example.freelancer.ui.viewmodel.*
 import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
     companion object{
-        val repo =testRepository()
+        lateinit var screen: String
     }
-    private lateinit var screen: String
+
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,19 +39,20 @@ class MainActivity : ComponentActivity() {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer(screen = screen)
+                Freelancer(this)
             }
         }
     }
 }
 @ExperimentalFoundationApi
 @Composable
-fun Freelancer( screen: String){
+fun Freelancer( context:Context){
     val registerViewModel = RegisterViewModel()
     val navController = rememberNavController()
     val userViewModel = UsersViewModel()
     val jobViewModel = JobViewModel()
     val loginViewModel = LoginViewModel()
+    val itemViewModel = ItemViewModel()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val openDrawer = {
@@ -80,22 +79,31 @@ fun Freelancer( screen: String){
     ) {
 
 
-        NavHost(navController = navController, startDestination = screen) {
+        NavHost(navController = navController, startDestination = MainActivity.screen) {
             composable("Login") { LoginScreen(navController,loginViewModel) }
             composable("CreateJob") { CreateJobScreen(navController) }
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
 
             composable("UserList"){ MainList(navController = navController, viewModel = userViewModel)}
-            composable("userDetails"){ userViewModel.clickedItem.Details(item = userViewModel.clickedItem)}
+            composable("userDetails"){ userViewModel.clickedItem.Details(item = userViewModel.clickedItem,navController)}
 
-            composable("jobDetails"){ jobViewModel.clickedItem.Details(item = jobViewModel.clickedItem)}
+            composable("jobDetails"){ jobViewModel.clickedItem.Details(item = jobViewModel.clickedItem,navController)}
             composable("JobList"){MainList(navController = navController, viewModel = jobViewModel)}
+
+            composable("itemsDetails"){ itemViewModel.clickedItem.Details(item = itemViewModel.clickedItem,navController)}
+            composable("Items"){MainList(navController = navController, viewModel = itemViewModel)}
+
+            composable("SignOut"){
+                val i = Intent(context, StartActivity::class.java)
+                i.flags=FLAG_ACTIVITY_NEW_TASK
+                ActiveUser.token=""
+                context.startActivity(i)
+            }
         }
     }
 
 }
-
 
 
 @Preview(showBackground = true)

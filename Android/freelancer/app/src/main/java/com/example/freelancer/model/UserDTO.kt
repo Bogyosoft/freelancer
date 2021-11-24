@@ -1,3 +1,3 @@
 package com.example.freelancer.model
 
-data class UserDTO(var password: String,var username : String)
+data class UserDTO(var username : String,var password: String)

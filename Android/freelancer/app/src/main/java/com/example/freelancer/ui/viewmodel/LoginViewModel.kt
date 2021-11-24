@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.UserDTO
-import com.example.freelancer.model.UserItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
 import kotlinx.coroutines.launch
@@ -22,6 +21,7 @@ class LoginViewModel: ViewModel() {
             res= repository.login(userDTO) {
                 if (it?.equals(null) ?: (true)) {
                     Log.d("login model","failure ")
+
                 } else {
                     Log.d("login model","succes ")
                 }

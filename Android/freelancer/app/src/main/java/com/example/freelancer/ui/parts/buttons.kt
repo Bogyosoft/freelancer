@@ -1,26 +1,23 @@
 package com.example.freelancer.ui.parts
 
-import android.util.Log
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.freelancer.MainActivity
-import com.example.freelancer.ui.screens.LoginScreen
 import com.example.freelancer.ui.theme.PrimaryColor
-import java.util.logging.Logger
 
-@Composable
+/*
+*
+
+* @Composable
 fun navButton(
     passwordErrorState: MutableState<Boolean>,
     password: MutableState<TextFieldValue>,
@@ -62,6 +59,7 @@ fun navButton(
     Spacer(Modifier.size(16.dp))
 
 }
+* */
 @Composable
 fun elseButton(text: String, navController: NavHostController){
 

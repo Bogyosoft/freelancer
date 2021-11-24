@@ -16,16 +16,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
-import com.example.freelancer.SessionManager
 import com.example.freelancer.model.UserDTO
-import com.example.freelancer.network.FreelancerAPIService
-import com.example.freelancer.network.FreelancerApiClient
-import com.example.freelancer.ui.parts.*
+import com.example.freelancer.ui.parts.elseButton
+import com.example.freelancer.ui.parts.inputField
+import com.example.freelancer.ui.parts.passwordField
+import com.example.freelancer.ui.parts.title
 import com.example.freelancer.ui.theme.PrimaryColor
 import com.example.freelancer.ui.viewmodel.LoginViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 //https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
 @Composable
 fun LoginScreen(navController: NavHostController,loginViewModel: LoginViewModel) {
@@ -86,6 +83,7 @@ fun loginButton(
 
                     if(loginViewModel.loginUser(UserDTO(email.value.text,password.value.text))){
                         Log.d("navButton", "navigate")
+                        MainActivity.screen ="Main"
                         navController.navigate("Main")
                     }
                     else{

@@ -1,6 +1,7 @@
 package com.example.freelancer.repository
 
 import android.util.Log
+import com.example.freelancer.ActiveUser
 import com.example.freelancer.model.*
 import com.example.freelancer.network.FreelancerAPIService
 import retrofit2.Call
@@ -17,7 +18,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
     }
     suspend fun getAllUsers():Result{
         return try {
-            val userList = freelancerAPi.getAllUsers()
+            val userList = freelancerAPi.getAllUsers(ActiveUser.token)
             Log.d("USERLISt","success "+userList.size)
             Result.Success(list = userList)
         }catch (exception:Exception){
@@ -29,7 +30,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
     suspend fun getJobs():Result{
         return try {
-            val jobList = freelancerAPi.getJobs()
+            val jobList = freelancerAPi.getJobs(ActiveUser.token)
             Log.d("Joblist","success "+jobList.size)
             Result.Success(list = jobList)
         }catch (exception:Exception){
@@ -42,7 +43,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
     fun registerUser(userItem: UserItem, onResult: (UserItem?) -> Unit):Boolean{
         try {
-            freelancerAPi.registerUser(userItem = userItem).enqueue(
+            freelancerAPi.registerUser(userItem = userItem,ActiveUser.token).enqueue(
                 object : Callback<UserItem>{
                     override fun onFailure(call: Call<UserItem>, t: Throwable) {
                         onResult(null)
@@ -68,7 +69,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
     fun createSource(source: Source, onResult: (Source?) -> Unit): Source? {
         var result : Source? = null
         try {
-            freelancerAPi.createSource(source = source).enqueue(
+            freelancerAPi.createSource(source = source,ActiveUser.token).enqueue(
                 object : Callback<Source>{
                     override fun onFailure(call: Call<Source>, t: Throwable) {
                         onResult(null)
@@ -97,7 +98,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
     fun createItem(item: itemsItem, onResult: (itemsItem?) -> Unit): itemsItem? {
         var result : itemsItem? = null
         try {
-            freelancerAPi.createItems(item = item).enqueue(
+            freelancerAPi.createItems(item = item,ActiveUser.token).enqueue(
                 object : Callback<itemsItem>{
                     override fun onFailure(call: Call<itemsItem>, t: Throwable) {
                         onResult(null)
@@ -124,7 +125,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
     }
     fun createJob(jobItem: jobItem, onResult: (jobItem?) -> Unit): Boolean {
         try {
-            freelancerAPi.createJob(jobItem = jobItem).enqueue(
+            freelancerAPi.createJob(jobItem = jobItem,ActiveUser.token).enqueue(
                 object : Callback<jobItem>{
                     override fun onFailure(call: Call<jobItem>, t: Throwable) {
                         onResult(null)
@@ -156,7 +157,9 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                     }
                     override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
                         val user = response.body()
-                        Log.d("login",response.raw().header("token","").toString() )
+                        Log.d("login sent",userDTO.username)
+                        response.headers().get("Set-Cookie")?.let { Log.d("login token", it) }
+                        ActiveUser.token = response.headers().get("Set-Cookie").toString()
                         Log.d("login","Succesfull")
                         onResult(user)
                     }
@@ -171,5 +174,17 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
         Log.d("login","Succesfull")
 
         return true
+    }
+
+    suspend fun fetchItems():Result {
+        return try {
+            val itemsList = freelancerAPi.getItems(ActiveUser.token)
+            Log.d("items","success "+itemsList.size)
+            Result.Success(list = itemsList)
+        }catch (exception:Exception){
+            Log.d("items","failure "+exception.toString())
+
+            Result.Failure(exception)
+        }
     }
 }

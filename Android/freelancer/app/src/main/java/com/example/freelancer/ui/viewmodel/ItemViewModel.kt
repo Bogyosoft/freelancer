@@ -1,20 +1,24 @@
 package com.example.freelancer.ui.viewmodel
 
-import android.content.ClipData
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.freelancer.ActiveUser
-import com.example.freelancer.model.Source
+import com.example.freelancer.model.IItem
 import com.example.freelancer.model.itemsItem
-import com.example.freelancer.model.jobItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
 import kotlinx.coroutines.launch
 
-class ItemViewModel: ViewModel(){
+class ItemViewModel: ViewModel(),IViewModel{
     private val apiService = FreelancerApiClient.service
     private lateinit var repository: FreeLancerRepository
+    override var list: List<IItem> = emptyList()
+    override lateinit var clickedItem: IItem
+
+
+    init {
+        fetchItems()
+    }
 
     fun createItem(item: itemsItem):itemsItem?{
         var result:itemsItem? = null
@@ -25,10 +29,6 @@ class ItemViewModel: ViewModel(){
                 if (it?.id != null) {
                     Log.d("item","succes ")
 
-                    val job = jobItem(ActiveUser.getActiveUser(),0,it)
-                    val jobViewModel = JobViewModel()
-                    jobViewModel.createJobs(job)
-
                 } else {
                     Log.d("item","failure ")
                 }
@@ -36,5 +36,29 @@ class ItemViewModel: ViewModel(){
         }
         Log.d("item",result.toString())
         return result
+    }
+
+    fun fetchItems(){
+            repository = FreeLancerRepository(apiService)
+            viewModelScope.launch {
+                val response = repository.fetchItems()
+                when (response) {
+                    is FreeLancerRepository.Result.Success -> {
+                        Log.d("itemsviewmodel", "Success")
+                        list = response.list as List<IItem>
+                    }
+                    is FreeLancerRepository.Result.Failure -> {
+                        Log.d("itemsviewmodel", "FAILURE")
+                    }
+                }
+            }
+    }
+
+    override fun itemClicked(item: IItem) {
+        clickedItem = item
+    }
+
+    override fun refresh() {
+        fetchItems()
     }
 }

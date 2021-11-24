@@ -3,12 +3,9 @@ package com.example.freelancer.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide.init
 import com.example.freelancer.model.IItem
-import com.example.freelancer.model.UserItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
-import com.example.freelancer.ui.viewmodel.IViewModel
 import kotlinx.coroutines.launch
 
 class UsersViewModel() : ViewModel(), IViewModel{
@@ -39,6 +36,10 @@ class UsersViewModel() : ViewModel(), IViewModel{
 
     override fun itemClicked(item: IItem) {
         clickedItem = item
+    }
+
+    override fun refresh() {
+        fetchUsers()
     }
 
     override var list: List<IItem> = emptyList()

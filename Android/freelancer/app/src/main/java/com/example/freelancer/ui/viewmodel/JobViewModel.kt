@@ -1,9 +1,6 @@
 package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
@@ -40,26 +37,22 @@ class JobViewModel : ViewModel(),IViewModel{
     fun createJobs(job : jobItem){
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
-        repository.createJob(job){
-            if (it?.id != null) {
-                Log.d("job","succes ")
-
-
-
-
-            } else {
-                Log.d("job","failure ")
+            repository.createJob(job){
+                if (it?.id != null) {
+                    Log.d("job","succes ")
+                } else {
+                    Log.d("job","failure ")
+                }
             }
         }
-
-
-        }
-
-
-        }
+    }
 
     override fun itemClicked(item: IItem) {
         clickedItem = item as jobItem
+    }
+
+    override fun refresh() {
+        fetchJobs()
     }
 
     override var list: List<IItem> = emptyList()

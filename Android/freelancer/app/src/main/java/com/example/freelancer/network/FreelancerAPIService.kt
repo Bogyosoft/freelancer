@@ -1,12 +1,8 @@
 package com.example.freelancer.network
 
 import com.example.freelancer.model.*
-import okhttp3.Cookie
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 //private const val BASE_URL = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/"
 
@@ -29,26 +25,30 @@ interface FreelancerAPIService {
     var token: String
 
     @GET("/api/v1/user")
-    suspend fun getAllUsers(): List<UserItem>
+    suspend fun getAllUsers(@Header("token") token: String): List<UserItem>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/user")
-    fun registerUser(@Body userItem: UserItem) : Call<UserItem>
+    fun registerUser(@Body userItem: UserItem,@Header("token") token: String) : Call<UserItem>
 
     @GET("/api/v1/jobs")
-    suspend fun getJobs() : List<jobItem>
+    suspend fun getJobs(@Header("token") token: String) : List<jobItem>
+
+    @GET("/api/v1/items")
+    suspend fun getItems(@Header("token") token: String) : List<itemsItem>
+
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/jobs")
-    fun createJob(@Body jobItem: jobItem) : Call<jobItem>
+    fun createJob(@Body jobItem: jobItem,@Header("token") token: String) : Call<jobItem>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/sources")
-    fun createSource(@Body source: Source) : Call<Source>
+    fun createSource(@Body source: Source,@Header("Set-Cookie") token: String) : Call<Source>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/items")
-    fun createItems(@Body item: itemsItem) : Call<itemsItem>
+    fun createItems(@Body item: itemsItem,@Header("token") token: String) : Call<itemsItem>
 
 
     @Headers("Content-Type: application/json")

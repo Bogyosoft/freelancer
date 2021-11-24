@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
@@ -78,6 +77,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                         emailErrorState.value = false
                         if(registerViewModel.registerUser(UserItem(0,password.value.text,"????",0,firstName.value.text+lastName.value.text))){
                             Log.d("navButton", "Registration successful")
+                            MainActivity.screen ="Main"
                             navController.navigate("Main")
                         }
                         else{
