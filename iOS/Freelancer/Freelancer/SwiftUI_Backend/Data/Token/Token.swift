@@ -15,11 +15,10 @@ class Token: Transferable
     
     let tokenHandler = TokenHandler()//Handles GET/POST
     
-    var enity: String = "TOKEN"
-    
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/auth"
     
     var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani"))
+    var token: String = "nil"
     
     func createJSON() -> [String : Any] {
         print("TOKEN_createJSON aka get TOKEN")

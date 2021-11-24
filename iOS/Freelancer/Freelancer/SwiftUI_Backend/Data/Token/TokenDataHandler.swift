@@ -44,27 +44,43 @@ class TokenHandler: DataHandler
                         print("SUCCESS WITH COMMUNICaTION")
                         
                     
-                        self.headerSolver(be: valasz.response!.headers)
+                        Token.shared.token = self.headerSolver(be: valasz.response!.headers)
                     
-                        if let data = valasz.data
+                        /*if let data = valasz.data
                         {
                             let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
                             print("Failure Response: \(String(describing: jsonData))")
-                        }
+                        }*/
                         
                     case .failure:
                         print("ERROR WITH COMMUNICTION")
                 }
             }
             
-            
+            print("POST FINISHED")
         })
+        
+        
     }
     
-    func headerSolver(be: HTTPHeaders)
+    func headerSolver(be: HTTPHeaders)->String
     {
-        print("HEADER:\n\n\n \(String(describing: be)) \n\n\n:HEADER")
-        
+        //print("HEADER:\n\n\n \(String(describing: be)) \n\n\n:HEADER")
+        //print("VALUE:\n\n\n \(String(describing: be.value(for: "Set-Cookie")!)) \n\n\n:VALUE")
+        return tokenMiner(input: String(describing: be.value(for: "Set-Cookie")!))
+    }
+    
+    func tokenMiner(input: String)->String
+    {
+        let arr : [String] = input.components(separatedBy: ";")
+        //print("ARRAY: \(arr)")
+        var token = arr[0]
+        for _ in 0...5
+        {
+            token.remove(at: token.startIndex)
+        }
+        return token
+       
     }
     
     
