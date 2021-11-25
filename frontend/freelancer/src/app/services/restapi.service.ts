@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/user';
+import { UserDto } from '../entities/user-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class RestapiService {
 
   public postUser(user:User){
     return this.http.post(this.apiUrl + "/users", user, { withCredentials:true })
+  }
+
+  public login(user:UserDto){
+    return this.http.post(this.apiUrl + "/auth", user);
   }
 }

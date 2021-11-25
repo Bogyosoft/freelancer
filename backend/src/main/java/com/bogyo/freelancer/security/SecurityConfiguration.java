@@ -70,7 +70,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //String secret = environment.getProperty(SECRET_PROPERTY_NAME);
-        System.out.println("securityssss");
         http = http.cors().and().csrf().disable();
         String secret = "pasd";
         JwtCookieStore jwtCookieStore = new JwtCookieStore(secret.getBytes() , userRepository);
@@ -84,7 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //.antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET,  "/swagger-resources/**").permitAll()
                 .antMatchers(HttpMethod.GET,  "/v2/api-docs").permitAll()
