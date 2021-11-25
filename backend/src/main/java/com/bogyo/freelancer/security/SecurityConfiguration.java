@@ -34,10 +34,11 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-//@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String SECRET_PROPERTY_NAME = "security.jwt.secret";
@@ -84,12 +85,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
-                .antMatchers(HttpMethod.GET, "/swagger-ui.html**").permitAll()
+                .antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
+                .antMatchers(HttpMethod.GET,  "/swagger-resources/**").permitAll()
+                .antMatchers(HttpMethod.GET,  "/v2/api-docs").permitAll()
+                .antMatchers(HttpMethod.GET,  "/configuration/ui").permitAll()
+                .antMatchers(HttpMethod.GET,  "/webjars/**").permitAll()
+
+                .antMatchers(HttpMethod.GET,  "/swagger-ui/**").permitAll()
+
+                .antMatchers(HttpMethod.GET,  "/swagger-resources/**").permitAll()
+
                 .antMatchers(HttpMethod.GET, "/api/v1/user").permitAll()
                 /*.antMatchers("/**").hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/**").hasRole("USER")*/
-                .anyRequest().permitAll();
+                .anyRequest().authenticated();
     }
 
     @Override
@@ -103,7 +113,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        //config.setAllowedOrigins(List.of("http://localhost:4200","http://127.0.0.1:4200/"));
+        config.setAllowedOrigins(List.of("http://localhost:4200","http://127.0.0.1:4200/"));
         config.addAllowedHeader("*");
         System.out.println(config.getAllowedHeaders());
         config.addAllowedMethod(HttpMethod.GET);
