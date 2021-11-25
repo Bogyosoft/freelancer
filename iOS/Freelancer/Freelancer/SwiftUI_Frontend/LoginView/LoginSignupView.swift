@@ -84,6 +84,8 @@ struct LoginView: View{
     @EnvironmentObject var viewlaunch: ViewLaunch
     
     @Binding var index : Int
+    @State var attemptsEmail: Int = 0
+    @State var attemptsPassword: Int = 0
     
     var body: some View
     {
@@ -165,7 +167,63 @@ struct LoginView: View{
                 
                 //EZ LEHET A ZSTACKBEN KENE
             }
-            Button(action: {self.viewlaunch.currentPage = "menuView"}) {
+            Button(action: {
+                print("LOGIN STARTED")
+                self.attemptsEmail = 0
+                self.attemptsPassword = 0
+                withAnimation(.default)
+                {
+                    if self.email != ""
+                    {
+                        print("nem ures email")
+                        self.attemptsEmail = 0
+                    }
+                    else
+                    {
+                        self.attemptsEmail += 1
+                    }
+                    
+                    if self.pass != ""
+                    {
+                        print("jelszo minden ok")
+                        self.attemptsPassword = 0
+                    }
+                    else
+                    {
+                        self.attemptsPassword += 1
+                    }
+                    
+                    if self.attemptsEmail == 0 && self.attemptsPassword == 0
+                    {
+                        print("MEHET a LOGIN CHECK")
+                        Token.shared.user.data.username = self.email
+                        Token.shared.user.data.password = self.pass
+                        Token.shared.tokenHandler.post(input: Token.shared)
+                        if(Token.shared.tokenHandlerReady)
+                        {
+                            print("MENTENI KELL A LOGIN ADATOKAT!!!")
+                            self.viewlaunch.currentPage = "menuView"
+                        }
+                        else
+                        {
+                            print("NEM JO CREDENTIALS")
+                        }
+                    }
+                    else
+                    {
+                        print("HIBA nincs megadva mindne field kitoltve")
+                    }
+                    
+                }
+                
+                
+                
+                //
+                
+                
+                
+                
+            }) {
                 Text("Belépés")
                     .foregroundColor(.black)
                     .fontWeight(.bold)

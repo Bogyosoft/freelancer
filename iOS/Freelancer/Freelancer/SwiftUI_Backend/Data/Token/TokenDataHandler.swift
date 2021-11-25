@@ -32,7 +32,7 @@ class TokenHandler: DataHandler
             //print("RESPONSE\n\n\n \(valasz)")
             if(valasz.response?.statusCode != 200)
             {
-                print("ERROR: \(String(describing: valasz.response!.statusCode))")
+                print("ERROR")
                 return
             }
             else

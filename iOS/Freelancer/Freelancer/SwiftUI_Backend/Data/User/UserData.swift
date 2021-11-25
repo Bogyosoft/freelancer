@@ -10,10 +10,10 @@ import Foundation
 class UserData: Codable
 {
     var id: Int = 0
-    let password: String
+    var password: String
     var role: String = "default"
     var score: Int = 0
-    let username: String
+    var username: String
     
     init(inUser: String, inPass: String)
     {

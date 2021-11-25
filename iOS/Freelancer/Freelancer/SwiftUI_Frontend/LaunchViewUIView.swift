@@ -34,6 +34,7 @@ struct LaunchView: View {
             }
             else if viewlaunch.currentPage == "menuView"
             {
+                TabBar()
                 
                 /*if (!UserSettings.shared.loggedIn && !UserSettings.shared.guest)
                 {
@@ -42,11 +43,12 @@ struct LaunchView: View {
             }
         }.onAppear{
             /*print("CHECK FOR LOGED IN STATET")
-            print("IF LOGED IN ")
+            print("IF LOGED IN ")->DO IT by LocalSave data -> és akkor megy a login
+             
             print("NO LOGIN DATA AVAILABLE->do nothing, loginView will got it")*/
             print("LaunchView_onAppeare()")
             ///Token.shared.tokenHandler.post(input: Token.shared)
-            Token.shared.tokenHandler.post(input: Token.shared)
+            ///Token.shared.tokenHandler.post(input: Token.shared)
         }
     }
 }
