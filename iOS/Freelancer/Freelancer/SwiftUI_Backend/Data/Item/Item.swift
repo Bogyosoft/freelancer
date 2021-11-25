@@ -17,6 +17,8 @@ class Item:Transferable
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/items/"
     var source: Source = Source()
     
+    let itemHandler = ItemDataHandler()
+    
     //SHOULD BE IMPLEMENTED LATER....
     var feladoUser: User = User(inData: UserData(inUser: "proba", inPass: "proba"))
     

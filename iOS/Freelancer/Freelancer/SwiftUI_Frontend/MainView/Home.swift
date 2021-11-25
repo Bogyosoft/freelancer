@@ -64,7 +64,11 @@ struct Home: View {
           }
 
          MenuView(show: $show)
-      }
+      }.onAppear()
+       {
+           let item = Item()
+           item.itemHandler.get(input: item)
+       }
       .background(Color("background"))
       .edgesIgnoringSafeArea(.all)
       
