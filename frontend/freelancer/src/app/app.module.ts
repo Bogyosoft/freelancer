@@ -21,7 +21,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatCardModule} from '@angular/material/card';
+import { FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
 
 import {MatTableModule} from '@angular/material/table';
 import { UserTableComponent } from './components/user-table/user-table.component';
@@ -43,6 +44,7 @@ import { JobTableComponent } from './components/job-table/job-table.component';
     ItemTableComponent,
     SourceTableComponent,
     JobTableComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { JobTableComponent } from './components/job-table/job-table.component';
     MatFormFieldModule,
     MatButtonModule,
     MatTabsModule,
+    MatCardModule,
     MatSortModule,
     MatProgressSpinnerModule,
     HttpClientModule

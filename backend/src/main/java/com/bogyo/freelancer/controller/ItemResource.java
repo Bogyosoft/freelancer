@@ -5,11 +5,7 @@ import com.bogyo.freelancer.repository.ItemRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/items")
@@ -25,7 +21,11 @@ public class ItemResource {
   }
 
   @GetMapping
-  public ResponseEntity<List<Item>> getItems(){
-    return ResponseEntity.ok(itemRepository.findAll());
+  public ResponseEntity<List<Item>> getItems(@RequestParam(required = false) String property,
+                                             @RequestParam(required = false) String destination,
+                                             @RequestParam(required = false) String status){
+    if(property == null)
+      return ResponseEntity.ok(itemRepository.findAll());
+    return ResponseEntity.ok(itemRepository.findByproperties(property));
   }
 }

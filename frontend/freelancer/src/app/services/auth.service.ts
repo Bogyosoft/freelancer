@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { UserDto } from '../entities/user-dto';
+import { RestapiService } from './restapi.service';
 
 @Injectable({
   providedIn: 'root',
@@ -6,12 +8,12 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   loggedIn: boolean;
 
-  constructor() {
+  constructor(private service:RestapiService) {
     this.loggedIn = false;
   }
 
-  login() {
-    this.loggedIn = true;
+  login(user:UserDto) {
+    this.service.login(user)
   }
 
   logout() {

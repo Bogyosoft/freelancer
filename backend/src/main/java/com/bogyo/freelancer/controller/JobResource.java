@@ -1,15 +1,15 @@
 package com.bogyo.freelancer.controller;
 
 import com.bogyo.freelancer.model.Job;
+import com.bogyo.freelancer.model.User;
 import com.bogyo.freelancer.repository.JobRepository;
 import java.util.List;
+import java.util.Optional;
+
+import com.bogyo.freelancer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/jobs")
@@ -18,9 +18,18 @@ public class JobResource {
   @Autowired
   private JobRepository jobRepository;
 
+  @Autowired
+  private UserRepository userRepository;
+
   @GetMapping
-  public ResponseEntity<List<Job>> getJobs(){
-    return ResponseEntity.ok(jobRepository.findAll());
+  public ResponseEntity<List<Job>> getJobs(@RequestParam(required = false) Long userId){
+    if(userId == null)
+      return ResponseEntity.ok(jobRepository.findAll());
+    Optional<User> user = userRepository.findById(userId);
+    if(user.isPresent()){
+      return ResponseEntity.ok(jobRepository.findByfreelancer(user.get()));
+    }
+    return ResponseEntity.badRequest().build();
   }
 
   @PostMapping
