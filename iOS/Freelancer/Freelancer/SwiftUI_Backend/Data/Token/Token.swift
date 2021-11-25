@@ -20,7 +20,7 @@ class Token: Transferable, ObservableObject
     var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani"))
     var token: String = "nil"
     
-    @Published var tokenHandlerReady = false
+    @Published var tokenReceived = false
     
     func createJSON() -> [String : Any] {
         print("TOKEN_createJSON aka get TOKEN")

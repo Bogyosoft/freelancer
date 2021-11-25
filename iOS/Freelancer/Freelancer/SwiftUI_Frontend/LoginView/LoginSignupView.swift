@@ -18,6 +18,7 @@ extension Color {
 
 struct LoginSignupView: View {
     
+    @ObservedObject var settings = Token.shared
     @State var index = 0
     
     var body: some View {
@@ -78,6 +79,9 @@ struct Shake: GeometryEffect {
 }
 
 struct LoginView: View{
+    
+    @ObservedObject var settings = Token.shared
+    
     @State var email = ""
     @State var loginSuccess = false
     @State var pass = ""
@@ -171,8 +175,8 @@ struct LoginView: View{
                 print("LOGIN STARTED")
                 self.attemptsEmail = 0
                 self.attemptsPassword = 0
-                withAnimation(.default)
-                {
+                //withAnimation(.default)
+                //{
                     if self.email != ""
                     {
                         print("nem ures email")
@@ -198,23 +202,32 @@ struct LoginView: View{
                         print("MEHET a LOGIN CHECK")
                         Token.shared.user.data.username = self.email
                         Token.shared.user.data.password = self.pass
-                        Token.shared.tokenHandler.post(input: Token.shared)
-                        if(Token.shared.tokenHandlerReady)
-                        {
-                            print("MENTENI KELL A LOGIN ADATOKAT!!!")
-                            self.viewlaunch.currentPage = "menuView"
-                        }
-                        else
-                        {
-                            print("NEM JO CREDENTIALS")
-                        }
+                        Token.shared.tokenHandler.post(input: Token.shared, completion: {(valasz: Bool)->Void in
+                            
+                            print("RESPONSE FROM CONPLETION: \(valasz)")
+                            print("tokenReceived: \(Token.shared.tokenReceived) ")
+                            if(Token.shared.tokenReceived)
+                            {
+                                print("MENTENI KELL A LOGIN ADATOKAT!!!")
+                                UserSettingsWorker.shared.values["loggedIn"] = true
+                                UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["loggedIn"]!, key: "loggedIn")
+                                self.viewlaunch.currentPage = "menuView"
+                            }
+                            else
+                            {
+                                print("NEM JO CREDENTIALS")
+                            }
+                            
+                            
+                        })
+                        
                     }
                     else
                     {
                         print("HIBA nincs megadva mindne field kitoltve")
                     }
                     
-                }
+               // }
                 
                 
                 

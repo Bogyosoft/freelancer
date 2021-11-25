@@ -7,11 +7,12 @@
 
 import Foundation
 
-class UserSettings : ObservableObject {
+class UserSettingsWorker : ObservableObject {
     var versionNumber = "1.0"
-    static let shared = UserSettings() //SINGELTON
+    static let shared = UserSettingsWorker() //SINGELTON
     
-    @Published var loggedIn : Bool = false
+    //DICTIONARY FOR ALL UD - VALUE:KEY
+    @Published var values : [String:Any] = ["loggedIn":false]
     
     
     
@@ -23,6 +24,8 @@ class UserSettings : ObservableObject {
     func loadUserSettings(key: String) -> Any
     {
         print("UserSettings_loadUserSettings: key: [\(key)]")
-        return UserDefaults.standard.value(forKey: key) as Any
+        let result = UserDefaults.standard.value(forKey: key) as Any
+        print("UserSettings_loadUserSettings: result: [\(result)]")
+        return result
     }
 }

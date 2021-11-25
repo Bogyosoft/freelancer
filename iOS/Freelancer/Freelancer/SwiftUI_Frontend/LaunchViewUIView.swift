@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LaunchView: View {
     @EnvironmentObject var viewlaunch: ViewLaunch
-    @ObservedObject var settings = Token.shared
+    //@ObservedObject var settings = Token.shared
     
     var body: some View
     {
@@ -21,7 +21,7 @@ struct LaunchView: View {
                 //NewsView()
             } else if viewlaunch.currentPage == "login"
             {
-                if(Token.shared.tokenHandlerReady)
+                /*if(Token.shared.tokenHandlerReady)
                 {
                     TabBar()
                 }
@@ -29,7 +29,9 @@ struct LaunchView: View {
                 {
                     
                     LoginSignupView()
-                }
+                }*/
+                
+                LoginSignupView()
                 
             }
             else if viewlaunch.currentPage == "menuView"

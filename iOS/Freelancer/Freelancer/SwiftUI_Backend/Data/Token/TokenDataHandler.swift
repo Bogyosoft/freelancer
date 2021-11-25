@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class TokenHandler: DataHandler
+class TokenHandler//: DataHandler
 {
     internal var networkHandler: APICommunicator = APICommunicator()
     
@@ -26,14 +26,15 @@ class TokenHandler: DataHandler
     
     //https://www.raywenderlich.com/35-alamofire-tutorial-getting-started
     //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
-    func post(input: Transferable)
+    func post(input: Transferable, completion: @escaping (Bool) -> Void)
     {
+        Token.shared.tokenReceived = false
         networkHandler.post(input: input, completion: {(valasz: DataResponse<Any, AFError>)->Void in
             //print("RESPONSE\n\n\n \(valasz)")
             if(valasz.response?.statusCode != 200)
             {
                 print("ERROR")
-                return
+                completion(false)
             }
             else
             {
@@ -46,6 +47,7 @@ class TokenHandler: DataHandler
                     
                         Token.shared.token = self.headerSolver(be: valasz.response!.headers)
                     
+                        Token.shared.tokenReceived = true
                         /*if let data = valasz.data
                         {
                             let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
@@ -54,11 +56,13 @@ class TokenHandler: DataHandler
                         
                     case .failure:
                         print("ERROR WITH COMMUNICTION")
+                        completion(false)
                 }
             }
             
             print("POST FINISHED")
-            Token.shared.tokenHandlerReady = true
+            
+            completion(true)
         })
         
         
