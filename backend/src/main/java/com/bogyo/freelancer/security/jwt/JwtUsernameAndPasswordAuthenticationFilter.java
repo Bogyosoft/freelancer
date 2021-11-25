@@ -31,9 +31,10 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)  {
         UserCredentials credentials = readUserCredentials(request);
+        System.out.println("asd"+credentials.getUsername());
+
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 credentials.getUsername(), credentials.getPassword(), Collections.emptyList());
-
         return authenticationManager.authenticate(authToken);
 
     }

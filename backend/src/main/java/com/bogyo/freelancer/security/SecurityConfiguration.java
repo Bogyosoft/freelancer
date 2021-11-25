@@ -37,7 +37,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+//@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String SECRET_PROPERTY_NAME = "security.jwt.secret";
@@ -69,10 +69,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //String secret = environment.getProperty(SECRET_PROPERTY_NAME);
+        System.out.println("securityssss");
         http = http.cors().and().csrf().disable();
-
-
-
         String secret = "pasd";
         JwtCookieStore jwtCookieStore = new JwtCookieStore(secret.getBytes() , userRepository);
         http.csrf().disable()
@@ -83,13 +81,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(jwtCookieStore, authenticationManager()))
                 .addFilterAfter(new JwtTokenAuthenticationFilter(jwtCookieStore ,userRepository), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                //.antMatchers(HttpMethod.GET, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/**").permitAll()
-                //.antMatchers(HttpMethod.GET, "/api/user").permitAll()
-                //.antMatchers("/**").hasRole("USER")
-                //.antMatchers("/**").hasRole("ADMIN")
-                //.antMatchers(HttpMethod.POST,"/**").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/swagger-ui.html**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/user").permitAll()
+                /*.antMatchers("/**").hasRole("USER")
+                .antMatchers("/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/**").hasRole("USER")*/
                 .anyRequest().permitAll();
     }
 
