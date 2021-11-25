@@ -98,7 +98,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /*.antMatchers("/**").hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/**").hasRole("USER")*/
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.bogyo.freelancer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties("password")
 public class User {
 
     @Id

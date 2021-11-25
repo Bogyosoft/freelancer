@@ -25,7 +25,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     public JwtUsernameAndPasswordAuthenticationFilter(JwtCookieStore jwtCookieStore, AuthenticationManager authenticationManager) {
         this.jwtCookieStore = jwtCookieStore;
         this.authenticationManager = authenticationManager;
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth", "POST"));
+        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/v1/auth", "POST"));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.bogyo.freelancer.repository.UserRepository;
 
 import java.util.List;
 
+import com.bogyo.freelancer.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class UserResource {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    SecurityUtils securityUtils;
 
     private static final Logger logger = LoggerFactory.getLogger(UserResource.class);
 
@@ -50,8 +54,7 @@ public class UserResource {
     }
 
     @GetMapping("/loggedin")
-    public ResponseEntity<User> getLoggedInUser(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-        return null;
+    public ResponseEntity<String> getLoggedInUsername(){
+        return ResponseEntity.ok(securityUtils.getLoggedInUsername());
     }
 }
