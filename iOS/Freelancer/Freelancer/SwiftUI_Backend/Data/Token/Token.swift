@@ -21,6 +21,7 @@ class Token: Transferable, ObservableObject
     var token: String = "nil"
     
     @Published var tokenReceived = false
+    @Published var alreadyLogedIn = false
     
     func createJSON() -> [String : Any] {
         print("TOKEN_createJSON aka get TOKEN")

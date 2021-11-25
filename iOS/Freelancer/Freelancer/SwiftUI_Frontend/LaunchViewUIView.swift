@@ -21,7 +21,7 @@ struct LaunchView: View {
                 //NewsView()
             } else if viewlaunch.currentPage == "login"
             {
-                /*if(Token.shared.tokenHandlerReady)
+                /*if(Token.shared.alreadyLogedIn)
                 {
                     TabBar()
                 }
@@ -44,11 +44,31 @@ struct LaunchView: View {
                 }*/
             }
         }.onAppear{
+            
+            print("LaunchView_onAppeare()")
+            let eredmeny = UserSettingsWorker.shared.loadUserSettings(key: "loggedIn")
+            
             /*print("CHECK FOR LOGED IN STATET")
             print("IF LOGED IN ")->DO IT by LocalSave data -> és akkor megy a login
              
             print("NO LOGIN DATA AVAILABLE->do nothing, loginView will got it")*/
-            print("LaunchView_onAppeare()")
+            
+            print("LOGED IN: \((eredmeny) as? Bool)")
+            
+            if eredmeny as? Bool == true
+            {
+                print("BE VAN JELENTKEZVE MAR")
+                //Token.shared.alreadyLogedIn = true
+                viewlaunch.currentPage = "menuView"
+            }
+            else
+            {
+                print("NINCS BEJELENTKEZVE SENKI")
+            }
+            
+            
+            
+           
             ///Token.shared.tokenHandler.post(input: Token.shared)
             ///Token.shared.tokenHandler.post(input: Token.shared)
         }

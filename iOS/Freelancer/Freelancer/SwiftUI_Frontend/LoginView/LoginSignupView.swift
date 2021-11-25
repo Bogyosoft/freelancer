@@ -202,6 +202,8 @@ struct LoginView: View{
                         print("MEHET a LOGIN CHECK")
                         Token.shared.user.data.username = self.email
                         Token.shared.user.data.password = self.pass
+                        
+                        //https://medium.com/@dhavalkansara51/completion-handler-in-swift-with-escaping-and-nonescaping-closures-1ea717dc93a4
                         Token.shared.tokenHandler.post(input: Token.shared, completion: {(valasz: Bool)->Void in
                             
                             print("RESPONSE FROM CONPLETION: \(valasz)")
