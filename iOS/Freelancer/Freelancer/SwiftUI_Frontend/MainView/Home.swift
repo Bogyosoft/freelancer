@@ -141,7 +141,13 @@ struct MenuView: View {
                }
                 else if item.title == "Kijelentkezés"
                 {
-                    Button(action: { self.viewlaunch.currentPage = "login" })
+                    Button(action: {
+                        
+                        UserSettingsWorker.shared.resetUserSetting()
+                        self.viewlaunch.currentPage = "login"
+                        
+                        
+                    })
                      {
                        MenuRow(image: item.icon, text: item.title)
                           .sheet(isPresented: self.$showSettings) { /*Settings()*/ }
