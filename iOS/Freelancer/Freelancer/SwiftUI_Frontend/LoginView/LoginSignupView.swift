@@ -212,7 +212,14 @@ struct LoginView: View{
                             {
                                 print("MENTENI KELL A LOGIN ADATOKAT!!!")
                                 UserSettingsWorker.shared.values["loggedIn"] = true
+                                UserSettingsWorker.shared.values["userName"] = Token.shared.user.data.username
+                                UserSettingsWorker.shared.values["userToken"] = Token.shared.token
+                                UserSettingsWorker.shared.values["userPassword"] = Token.shared.user.data.password
                                 UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["loggedIn"]!, key: "loggedIn")
+                                UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["userName"]!, key: "userName")
+                                UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["userToken"]!, key: "userToken")
+                                UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["userPassword"]!, key: "userPassword")
+                                
                                 self.viewlaunch.currentPage = "menuView"
                             }
                             else
