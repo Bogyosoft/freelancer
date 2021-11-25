@@ -24,6 +24,7 @@ export class TableTemplateComponent implements OnInit, OnChanges {
   @Input() tableData!:MatTableDataSource<any>;
   @Input() displayedColumns!:string[];
   @Input() columnsToDisplay!:string[];
+  @Input() deletable:boolean = false;
   expandedElement!: any | null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort!: MatSort;

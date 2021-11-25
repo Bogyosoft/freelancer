@@ -29,23 +29,27 @@
              {{column}}
             </th>
 
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+          <td mat-cell *matCellDef="let element"> {{element[column]}} 
+               </td>
+               
         </ng-container>
-
+        
         <ng-container matColumnDef="expandedDetail" >
             <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
-              <div class="example-element-detail"
-                   [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
-                   *ngFor="let column of this.columnsToDisplay">
-                   <div style="position:relative; width: 400px;">
+              <div class="details" class="example-element-detail"
+                [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
+                *ngFor="let column of this.columnsToDisplay">
+                    <div style="position:relative; width: 400px;">
 
-                    <div style="float: right; text-align: left; width:200px;"><span class="bold">{{row[column]}}</span></div>
+                        <div style="float: right; text-align: left; width:200px;"><span class="bold">{{row[column]}}</span></div>
 
-                    <div style="float: left; text-align: left; width:200px;">  {{column}}:</div>
+                        <div style="float: left; text-align: left; width:200px;">  {{column}}:</div>
 
                     </div>
-
               </div>
+              <button class="deletebutton" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" *ngIf="this.deletable" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+              </button> 
             </td>
         </ng-container>
 

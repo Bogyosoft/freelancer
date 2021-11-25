@@ -70,3 +70,11 @@ table {
   .searchbar{
     float:left;
   }
+
+  .deletebutton{
+      float: right;
+  }
+
+  .details{
+    float: left;
+}

@@ -23,6 +23,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 import {MatTableModule} from '@angular/material/table';
 import { UserTableComponent } from './components/user-table/user-table.component';
@@ -52,6 +53,7 @@ import { JobTableComponent } from './components/job-table/job-table.component';
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,
+    MatIconModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     DragDropModule,
