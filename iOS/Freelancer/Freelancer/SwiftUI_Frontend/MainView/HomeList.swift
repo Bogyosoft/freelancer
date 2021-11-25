@@ -17,7 +17,7 @@ struct HomeList: View {
          VStack {
             HStack {
                VStack(alignment: .leading) {
-                  Text("Név")
+                   Text(String(describing: UserSettingsWorker.shared.loadUserSettings(key: "userName") as! String))
                      .font(.largeTitle)
                      .fontWeight(.heavy)
 
