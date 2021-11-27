@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserSettingsWorker : ObservableObject {
     var versionNumber = "1.0"
@@ -25,6 +26,11 @@ class UserSettingsWorker : ObservableObject {
                                             "userName":"nilUserName",
                                             "userToken":"nilToken",
                                             "userPassword":"nilPassword"]
+    
+    var zoom: Double = 1
+    @Published var loggedIn : Bool = false
+    @Published var loginError = false
+    @Published var loginSuccess = false
     
     
     

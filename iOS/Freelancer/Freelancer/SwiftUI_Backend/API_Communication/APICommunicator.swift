@@ -18,7 +18,7 @@ class APICommunicator
     func post(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
       AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
-            //debugPrint(response)
+            debugPrint(response)
             //print("POST EREDMENY: \(response.result)!")
             completion(response)
       }

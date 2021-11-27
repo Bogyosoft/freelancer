@@ -18,8 +18,10 @@ extension Color {
 
 struct LoginSignupView: View {
     
-    @ObservedObject var settings = Token.shared
+    @ObservedObject var settings = UserSettingsWorker.shared
+    @ObservedObject var token = Token.shared
     @State var index = 0
+    @EnvironmentObject var viewlaunch: ViewLaunch
     
     var body: some View {
         ZStack
@@ -47,6 +49,45 @@ struct LoginSignupView: View {
                 }
                 
             }.background(Color.offWhite).edgesIgnoringSafeArea(.all)
+            
+            
+            if settings.loginSuccess
+            {
+                
+                SuccessCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.success)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.loginSuccess.toggle()
+                            //idáig ezt lent volt a Button click actionnel
+                            //viszont ha ott van, az előbb fut le mint ez a delay(2mp)
+                            // így viszont a LaunchScreen logikája előbb életbe lép
+                            //ne kérezd hogy találtam ki hogy ez a baja... :DDDD
+                            UserSettingsWorker.shared.loggedIn = true
+                            self.viewlaunch.currentPage = "menuView"
+                            //self.viewlaunch.currentPage = "menuView"
+                        }
+                    })
+                    
+                }).opacity(0.9).transition(.opacity)
+            }
+            
+            if settings.loginError
+            {
+                
+                ErrorCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.error)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.loginError.toggle()
+                        }
+                    })
+                }).opacity(0.9).transition(.opacity)
+            }
+            
+            
         }.edgesIgnoringSafeArea(.all)
             .onAppear(perform: {
                 
@@ -220,11 +261,24 @@ struct LoginView: View{
                                 UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["userToken"]!, key: "userToken")
                                 UserSettingsWorker.shared.saveUserSettings(value: UserSettingsWorker.shared.values["userPassword"]!, key: "userPassword")
                                 
-                                self.viewlaunch.currentPage = "menuView"
+                                
+                                
+                                withAnimation()
+                                {
+                                    UserSettingsWorker.shared.loginSuccess.toggle()
+                                }
                             }
                             else
                             {
                                 print("NEM JO CREDENTIALS")
+                                
+                                withAnimation()
+                                {
+                                    UserSettingsWorker.shared.loginError = true
+                                }
+                                
+                                print("HALO \(UserSettingsWorker.shared.loginError)")
+                                
                             }
                             
                             
@@ -234,6 +288,10 @@ struct LoginView: View{
                     else
                     {
                         print("HIBA nincs megadva mindne field kitoltve")
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.loginError.toggle()
+                        }
                     }
                     
                // }
