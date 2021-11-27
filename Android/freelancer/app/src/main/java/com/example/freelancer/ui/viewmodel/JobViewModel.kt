@@ -1,6 +1,7 @@
 package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
@@ -26,7 +27,7 @@ class JobViewModel : ViewModel(),IViewModel{
                 is FreeLancerRepository.Result.Success -> {
 
                     Log.d("JobViewModel", "Success")
-                    list = response.list as List<IItem>
+                    list.value = response.list as List<IItem>
                 }
                 is FreeLancerRepository.Result.Failure -> {
                     Log.d("JobViewModel", "FAILURE")
@@ -55,6 +56,9 @@ class JobViewModel : ViewModel(),IViewModel{
         fetchJobs()
     }
 
-    override var list: List<IItem> = emptyList()
-
+    override val list: MutableLiveData<List<IItem>> by lazy {
+        MutableLiveData<List<IItem>>().also {
+            fetchJobs()
+        }
+    }
 }

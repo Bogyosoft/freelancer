@@ -147,12 +147,12 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
         return true
     }
-    fun login(userDTO: UserDTO, onResult: (UserDTO?) -> Unit): Boolean {
+    fun login(userDTO: UserDTO, onResult:  (UserDTO?) -> Boolean): Boolean {
         try {
             freelancerAPi.login(userDTO = userDTO).enqueue(
                 object : Callback<UserDTO>{
                     override fun onFailure(call: Call<UserDTO>, t: Throwable) {
-                        onResult(null)
+                            onResult(null)
                         throw t
                     }
                     override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
@@ -161,7 +161,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                         response.headers().get("Set-Cookie")?.let { Log.d("login token", it) }
                         ActiveUser.token = response.headers().get("Set-Cookie").toString()
                         Log.d("login","Succesfull")
-                        onResult(user)
+                            onResult(user)
                     }
                 }
             )
@@ -171,7 +171,6 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
             return false
         }
-        Log.d("login","Succesfull")
 
         return true
     }

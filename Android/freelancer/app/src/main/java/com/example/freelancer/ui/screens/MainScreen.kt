@@ -63,8 +63,12 @@ fun MainScreen(navController: NavController, openDrawer: () -> Job){
 
 }
 
+
+
+
 @Composable
 fun gridItem(navController:NavController,navTo:String,title:String,color:Color){
+
     val infiniteTransition = rememberInfiniteTransition()
     val size by infiniteTransition.animateFloat(
         initialValue = 180f,

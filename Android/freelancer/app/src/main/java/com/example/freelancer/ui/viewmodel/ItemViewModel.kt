@@ -1,6 +1,7 @@
 package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
@@ -12,7 +13,11 @@ import kotlinx.coroutines.launch
 class ItemViewModel: ViewModel(),IViewModel{
     private val apiService = FreelancerApiClient.service
     private lateinit var repository: FreeLancerRepository
-    override var list: List<IItem> = emptyList()
+    override val list: MutableLiveData<List<IItem>> by lazy {
+        MutableLiveData<List<IItem>>().also {
+            fetchItems()
+        }
+    }
     override lateinit var clickedItem: IItem
 
 
@@ -45,7 +50,7 @@ class ItemViewModel: ViewModel(),IViewModel{
                 when (response) {
                     is FreeLancerRepository.Result.Success -> {
                         Log.d("itemsviewmodel", "Success")
-                        list = response.list as List<IItem>
+                        list.value = response.list as List<IItem>
                     }
                     is FreeLancerRepository.Result.Failure -> {
                         Log.d("itemsviewmodel", "FAILURE")

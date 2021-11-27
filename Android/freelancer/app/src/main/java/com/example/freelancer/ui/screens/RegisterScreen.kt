@@ -16,13 +16,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
 import com.example.freelancer.model.UserItem
+import com.example.freelancer.network.FreelancerApiClient
+import com.example.freelancer.repository.FreeLancerRepository
 import com.example.freelancer.ui.parts.elseButton
 import com.example.freelancer.ui.parts.inputField
 import com.example.freelancer.ui.parts.passwordField
 import com.example.freelancer.ui.parts.title
 import com.example.freelancer.ui.theme.PrimaryColor
 import com.example.freelancer.ui.viewmodel.RegisterViewModel
-
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
@@ -62,7 +65,6 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
         inputField(firstName,firstNameErrorState,"First name")
         inputField(lastName,lastNameErrorState,"Last name")
 
-
         Button(
             onClick = {
                 when {
@@ -76,7 +78,8 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                         passwordErrorState.value = false
                         emailErrorState.value = false
                         if(registerViewModel.registerUser(UserItem(0,password.value.text,"????",0,firstName.value.text+lastName.value.text))){
-                            Log.d("navButton", "Registration successful")
+
+                        Log.d("navButton", "Registration successful")
                             MainActivity.screen ="Main"
                             navController.navigate("Main")
                         }

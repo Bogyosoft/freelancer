@@ -14,6 +14,7 @@ import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -39,14 +40,17 @@ class MainActivity : ComponentActivity() {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer(this)
+                Freelancer(this,this)
             }
         }
+
     }
+
+
 }
 @ExperimentalFoundationApi
 @Composable
-fun Freelancer( context:Context){
+fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner){
     val registerViewModel = RegisterViewModel()
     val navController = rememberNavController()
     val userViewModel = UsersViewModel()
@@ -60,6 +64,9 @@ fun Freelancer( context:Context){
             drawerState.open()
         }
     }
+
+
+
     ModalDrawer(
         drawerState = drawerState,
         gesturesEnabled = drawerState.isOpen,
@@ -85,14 +92,14 @@ fun Freelancer( context:Context){
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
 
-            composable("UserList"){ MainList(navController = navController, viewModel = userViewModel)}
+            composable("UserList"){ MainList(navController = navController, viewModel = userViewModel,lifecycleOwner,"Users")}
             composable("userDetails"){ userViewModel.clickedItem.Details(item = userViewModel.clickedItem,navController)}
 
             composable("jobDetails"){ jobViewModel.clickedItem.Details(item = jobViewModel.clickedItem,navController)}
-            composable("JobList"){MainList(navController = navController, viewModel = jobViewModel)}
+            composable("JobList"){MainList(navController = navController, viewModel = jobViewModel,lifecycleOwner,"Your Jobs")}
 
             composable("itemsDetails"){ itemViewModel.clickedItem.Details(item = itemViewModel.clickedItem,navController)}
-            composable("Items"){MainList(navController = navController, viewModel = itemViewModel)}
+            composable("Items"){MainList(navController = navController, viewModel = itemViewModel,lifecycleOwner,"Available Jobs")}
 
             composable("SignOut"){
                 val i = Intent(context, StartActivity::class.java)
