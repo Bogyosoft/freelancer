@@ -11,11 +11,12 @@ class SourceData: Codable
 {
     let id: Int
     let location: String
-    //let owner: UserData
+    let ownerName: String
     
-    init()
+    init(inputName: String, inputLocation: String)
     {
         id = 0
-        location = "ANYAD"
+        location = inputLocation
+        ownerName = inputName
     }
 }

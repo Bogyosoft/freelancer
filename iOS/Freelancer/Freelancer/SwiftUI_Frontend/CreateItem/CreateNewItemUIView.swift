@@ -41,7 +41,7 @@ struct CreateNewItemUIView: View {
             
             Button(action: {
                 
-                let sourceData = SourceData()
+                let sourceData = SourceData(inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "locationBe")
                 let source = Source(inData: sourceData)
                 //let handSource = SourceHandler()
                 source.dataHandler.post(input: source, completion: {(valasz: Bool)->Void in
