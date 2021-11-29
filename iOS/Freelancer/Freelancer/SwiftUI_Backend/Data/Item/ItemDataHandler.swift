@@ -60,7 +60,7 @@ class ItemDataHandler
         })
     }
     
-    func post(input: Item)
+    func post(input: Item, completion: @escaping (Bool) -> Void)
     {
         print("ItemDataHandler_create()")
         /*input.source.id = ResponseData.shared.szam
@@ -71,5 +71,55 @@ class ItemDataHandler
             return
         }
         networkHandler.PostRequest(input: input)*/
+        
+        networkHandler.post(input: input, completion: {(valasz: DataResponse<Any, AFError>) -> Void in
+            
+            
+            if(valasz.response?.statusCode == 400)
+            {
+                print("ERROR same user")
+                completion(false)
+            }
+            else if(valasz.response?.statusCode == 200)
+            {
+                print("OK: \(String(describing: valasz.response!.statusCode))")
+                switch valasz.result
+                {
+                    case .success:
+                        print("SUCCESS WITH COMMUNICaTION")
+                        
+                        
+                        /*Token.shared.token = self.headerSolver(be: valasz.response!.headers)
+                    
+                        Token.shared.tokenReceived = true*/
+                        if let data = valasz.data
+                        {
+                            let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
+                            
+                            print("Response: \(String(describing: jsonData))")
+                            
+                            if jsonData != nil
+                            {
+                                completion(true)
+                            }
+                            
+                        }
+                    
+                    case .failure:
+                        print("ERROR WITH COMMUNICTION")
+                        completion(false)
+                }
+            }
+            else
+            {
+                print("ERROR")
+                completion(false)
+            }
+            
+            print("FINISH")
+            
+            
+        })
+    
     }
 }

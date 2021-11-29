@@ -9,42 +9,31 @@ import Foundation
 
 class Item:Transferable
 {
-    var enity: String = "ITEM"
-    var id: String = ""
-    var properties: String = ""
-    var destination: Location = Location(_ln: 0.0, _lt: 0.0)
-    var status: Status = Status.NotTaken
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/items/"
-    //var source: Source = Source()
-    
     let itemHandler = ItemDataHandler()
+    var data: ItemData
     
     //SHOULD BE IMPLEMENTED LATER....
     var feladoUser: User = User(inData: UserData(inUser: "proba", inPass: "proba"))
     
-    init()
+    init(inData: ItemData)
     {
         print("Item init...")
+        data = inData
     }
 
     func createJSON() -> [String : Any] {
-        //let id = 0//ID
-        
         let parameters: [String: Any] = [
-            "destination": "cel",
-            "id" : 10,
-            "properties": "tulajdonsag",
+            "destination": data.destination,
+            "id" : 0,
+            "properties": data.propertis,
             "source":[
-                "id": "source.id",
-                "location": "source.location",
+                "id": data.source.id,
+                "location": data.source.location,
                 "owner":[
-                    "id": 1,
-                    "password":"ios",
-                    "role": "king",
-                    "score":0,
-                    "username":"iOS"]
+                    "username":data.source.ownerName]
             ],
-            "status":"statusz"
+            "status":data.status
         ]
         
         return parameters

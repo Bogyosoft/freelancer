@@ -9,10 +9,22 @@ import Foundation
 
 class ItemData: Codable
 {
-    let id: Int
-    let destination: String
-    let propertis: String
-    let source: SourceData
-    let status: String
+    var id: Int
+    var destination: String
+    var propertis: String
+    var status: String
+    var source: SourceData
+    
+    init(inDestination: String, inProperties: String, inStatus: String, inSource: SourceData)
+    {
+        id = 0
+        destination = inDestination
+        propertis = inProperties
+        status = inStatus
+        
+        source = inSource
+        
+        print("SOURCE ID IN ITEMDATA: \(source.id)")
+    }
     
 }

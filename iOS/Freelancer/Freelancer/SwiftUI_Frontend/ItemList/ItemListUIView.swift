@@ -14,10 +14,10 @@ struct ItemListUIView: View {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         }.onAppear{
             print("LEKEREEEES")
-            let lekertAdatok = Item()
-            let itemHandler = ItemDataHandler()
+            //let lekertAdatok = Item()
+            //let itemHandler = ItemDataHandler()
             
-            itemHandler.get(input: lekertAdatok)
+            //itemHandler.get(input: lekertAdatok)
         }
         
     }
