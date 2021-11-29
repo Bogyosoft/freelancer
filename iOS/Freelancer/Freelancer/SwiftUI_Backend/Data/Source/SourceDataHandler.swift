@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Alamofire
 
-class SourceHandler: DataHandler
+class SourceDataHandler//: DataHandler
 {
     internal var networkHandler: APICommunicator = APICommunicator()
     
-    func get(input: Transferable)
+    /*func get(input: Transferable)
     {
         print("SourceHandler_get()")
         networkHandler.GetRequest(input: input)
@@ -21,5 +22,24 @@ class SourceHandler: DataHandler
     {
         print("SourceHandler_create()")
         networkHandler.PostRequest(input: input)
+    }*/
+    
+    func post(input: Source, completion: @escaping (Bool) -> Void)
+    {
+        
+        networkHandler.post(input: input, completion: {(valasz: DataResponse<Any, AFError>) -> Void in
+            
+            if(valasz.response?.statusCode != 200)
+            {
+                print("ERROR")
+                completion(false)
+            }
+            else
+            {
+                print("VAMOS")
+                completion(true)
+            }
+            print("FINISH")
+        })
     }
 }

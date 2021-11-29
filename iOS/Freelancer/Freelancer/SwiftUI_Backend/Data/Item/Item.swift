@@ -15,7 +15,7 @@ class Item:Transferable
     var destination: Location = Location(_ln: 0.0, _lt: 0.0)
     var status: Status = Status.NotTaken
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/items/"
-    var source: Source = Source()
+    //var source: Source = Source()
     
     let itemHandler = ItemDataHandler()
     
@@ -35,8 +35,8 @@ class Item:Transferable
             "id" : 10,
             "properties": "tulajdonsag",
             "source":[
-                "id": source.id,
-                "location": source.location,
+                "id": "source.id",
+                "location": "source.location",
                 "owner":[
                     "id": 1,
                     "password":"ios",

@@ -16,13 +16,17 @@ class APICommunicator
     //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
     
     func post(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
-      AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: nil)
+        
+        let header = HTTPHeaders(["token" : String(describing: UserSettingsWorker.shared.values["userToken"])])
+        
+        AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: header)
         .responseJSON { response in
-            //debugPrint(response)
+            debugPrint(response)
             //print("POST EREDMENY: \(response.result)!")
             completion(response)
       }
     }
+    
     
     func get(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
       AF.request(input.link, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil)

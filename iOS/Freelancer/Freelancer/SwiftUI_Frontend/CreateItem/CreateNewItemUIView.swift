@@ -41,11 +41,17 @@ struct CreateNewItemUIView: View {
             
             Button(action: {
                 
-                let source = Source()
-                let handSource = SourceHandler()
+                let sourceData = SourceData()
+                let source = Source(inData: sourceData)
+                //let handSource = SourceHandler()
+                source.dataHandler.post(input: source, completion: {(valasz: Bool)->Void in
+                    
+                    print("SOURCE POST ON CREATENEWITEM: \(valasz)")
+                    
+                })
                 
-                let item = Item()
-                let handItem = ItemDataHandler()
+//                let item = Item()
+//                let handItem = ItemDataHandler()
                 
                 
                 
@@ -74,6 +80,7 @@ struct CreateNewItemUIView: View {
                         lock.unlock()
                     }*/
                 
+                /*
                 let globalQueue = DispatchQueue.global()
                 let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
                 let semaphore = DispatchSemaphore(value: 0)
@@ -96,7 +103,7 @@ struct CreateNewItemUIView: View {
                     }
                     semaphore.wait()
                     
-                }
+                }*/
                 
                
                 
