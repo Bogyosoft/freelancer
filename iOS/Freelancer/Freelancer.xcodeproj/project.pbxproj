@@ -17,6 +17,8 @@
 		2990082D2752BF0200F43C8D /* SuccessCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */; };
 		299008302752C18400F43C8D /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082F2752C18400F43C8D /* Haptics.swift */; };
 		299008332752C23900F43C8D /* ErrorCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299008322752C23900F43C8D /* ErrorCardUIView.swift */; };
+		2991F2A82755366500AD3BB1 /* JobDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991F2A72755366500AD3BB1 /* JobDataHandler.swift */; };
+		2991F2AA2755367600AD3BB1 /* JobData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991F2A92755367600AD3BB1 /* JobData.swift */; };
 		2992D975274F900700711A8D /* UserSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992D974274F900600711A8D /* UserSettingsWorker.swift */; };
 		29A863C727207B170071C54F /* APICommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C627207B170071C54F /* APICommunicator.swift */; };
 		29A863C9272082F40071C54F /* CreateAdvertisementUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */; };
@@ -70,6 +72,8 @@
 		2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCardUIView.swift; sourceTree = "<group>"; };
 		2990082F2752C18400F43C8D /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		299008322752C23900F43C8D /* ErrorCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCardUIView.swift; sourceTree = "<group>"; };
+		2991F2A72755366500AD3BB1 /* JobDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDataHandler.swift; sourceTree = "<group>"; };
+		2991F2A92755367600AD3BB1 /* JobData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobData.swift; sourceTree = "<group>"; };
 		2992D974274F900600711A8D /* UserSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsWorker.swift; sourceTree = "<group>"; };
 		29A863C627207B170071C54F /* APICommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicator.swift; sourceTree = "<group>"; };
 		29A863C8272082F40071C54F /* CreateAdvertisementUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdvertisementUIView.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				29B5FB22273A71EA00327744 /* Job.swift */,
+				2991F2A72755366500AD3BB1 /* JobDataHandler.swift */,
+				2991F2A92755367600AD3BB1 /* JobData.swift */,
 			);
 			path = Job;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2991F2A82755366500AD3BB1 /* JobDataHandler.swift in Sources */,
 				2990082D2752BF0200F43C8D /* SuccessCardUIView.swift in Sources */,
 				29F2870127415CD700578D8E /* UserData.swift in Sources */,
 				29B5FB27273A819600327744 /* ItemDataHandler.swift in Sources */,
@@ -551,6 +558,7 @@
 				29CB206E272882F4006EFF33 /* User.swift in Sources */,
 				29F286FB2741579E00578D8E /* ItemListUIView.swift in Sources */,
 				29F281D5273F021500E63E63 /* SourceDataHandler.swift in Sources */,
+				2991F2AA2755367600AD3BB1 /* JobData.swift in Sources */,
 				29EA5FA4274656260080A250 /* JobListUIView.swift in Sources */,
 				29DE5DC22724A3E900431A75 /* Settings.swift in Sources */,
 				29EA5FA6274657CD0080A250 /* CreateNewJobUIView.swift in Sources */,
