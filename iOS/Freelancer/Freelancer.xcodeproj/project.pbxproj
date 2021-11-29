@@ -207,14 +207,14 @@
 		29B5FB20273A719D00327744 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2992D973274F8EBE00711A8D /* UserDefaultsWorker */,
-				29F8790F274570DC00BD38F3 /* Token */,
-				29F281D1273EF83B00E63E63 /* Source */,
 				2957E7FF273028700039429D /* Transferable.swift */,
 				29F281D8273F0AD600E63E63 /* DataHandler.swift */,
 				29F281DC274060BB00E63E63 /* ResponseData.swift */,
-				29B5FB21273A71D100327744 /* Job */,
+				2992D973274F8EBE00711A8D /* UserDefaultsWorker */,
+				29F8790F274570DC00BD38F3 /* Token */,
 				29CB206C272882D9006EFF33 /* User */,
+				29F281D1273EF83B00E63E63 /* Source */,
+				29B5FB21273A71D100327744 /* Job */,
 				293C69992733E78B001BC990 /* JSONSerializer */,
 				29B5FB1F273A718C00327744 /* Item */,
 			);
@@ -256,9 +256,9 @@
 		29E548D727159A5A00033FD6 /* SwiftUI_Backend */ = {
 			isa = PBXGroup;
 			children = (
-				2990082E2752C17100F43C8D /* Haptics */,
-				29B5FB20273A719D00327744 /* Data */,
 				29A863C527207ADE0071C54F /* API_Communication */,
+				29B5FB20273A719D00327744 /* Data */,
+				2990082E2752C17100F43C8D /* Haptics */,
 			);
 			path = SwiftUI_Backend;
 			sourceTree = "<group>";

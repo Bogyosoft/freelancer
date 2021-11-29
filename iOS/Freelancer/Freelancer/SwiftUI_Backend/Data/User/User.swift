@@ -9,19 +9,17 @@ import Foundation
 
 class User: Transferable
 {
-    var enity: String = "USER"
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/user"
     let dataHandler = UserDataHandler()//OWN HANDLER FOR COMMUNICATION
     var data: UserData//OWN DATA 
     
-    init(inData: UserData)
-    {
+    init(inData: UserData){
         print("Createing USER credentials....")
         data = inData
     }
     
-    func createJSON() ->[String:Any]
-    {
+//  MARK: creates JSON format from data
+    func createJSON() ->[String:Any]{
         print("USER CREATE JSON")
         
         let parameters: [String: Any] = [

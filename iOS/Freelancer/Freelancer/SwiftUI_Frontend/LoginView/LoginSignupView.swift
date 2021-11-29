@@ -64,8 +64,14 @@ struct LoginSignupView: View {
                             //viszont ha ott van, az előbb fut le mint ez a delay(2mp)
                             // így viszont a LaunchScreen logikája előbb életbe lép
                             //ne kérezd hogy találtam ki hogy ez a baja... :DDDD
-                            UserSettingsWorker.shared.loggedIn = true
-                            self.viewlaunch.currentPage = "menuView"
+                            
+                            if(Token.shared.tokenReceived)
+                            {
+                                UserSettingsWorker.shared.loggedIn = true
+                                self.viewlaunch.currentPage = "menuView"
+                            }
+                            
+                            
                             //self.viewlaunch.currentPage = "menuView"
                         }
                     })
@@ -89,12 +95,7 @@ struct LoginSignupView: View {
             
             
         }.edgesIgnoringSafeArea(.all)
-            .onAppear(perform: {
-                
-                /*let com:APICommunicator = APICommunicator()
-                
-                com.GetRequest()*/
-            })
+            .onAppear(perform: {})
             
     }
 }
@@ -445,7 +446,31 @@ struct RegistrationView: View{
                     {
                         print("LoginSigUpView_registration()")
                         let user = User(inData: UserData(inUser: self.email, inPass: self.pass))
-                        user.dataHandler.registerUser(inputUser: user)
+                        user.dataHandler.post(input: user, completion: {(valasz: Bool)->Void in
+                            
+                            print("NA MI LETT: \(valasz)")
+                            
+                            if(valasz)
+                            {
+                                withAnimation()
+                                {
+                                    UserSettingsWorker.shared.loginSuccess.toggle()
+                                }
+                            }
+                            else
+                            {
+                                withAnimation()
+                                {
+                                    UserSettingsWorker.shared.loginError = true
+                                }
+                            }
+                            
+                        })
+                    }
+                    else
+                    {
+                        print("HIBA nincs minden kitoltve")
+                        
                     }
                     
                 }

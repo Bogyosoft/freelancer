@@ -14,7 +14,6 @@ class UserSettingsWorker : ObservableObject {
     
     //https://developer.apple.com/documentation/swift/dictionary
     //DICTIONARY FOR ALL UD - VALUE:KEY
-    
     private let keyValues = ["loggedIn", "userName", "userToken", "userPassword"]
     
     private let defaultValues : [String:Any] = ["loggedIn":false,

@@ -17,20 +17,12 @@ class TokenHandler//: DataHandler
         print("TokenHandler_get()")
         networkHandler.GetRequest(input: input)
     }
-    
-    /*func post(input: Transferable)
-    {
-        print("TokenHandler_create()")
-        networkHandler.PostRequest(input: input)
-    }*/
-    
     //https://www.raywenderlich.com/35-alamofire-tutorial-getting-started
     //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
-    func post(input: Transferable, completion: @escaping (Bool) -> Void)
-    {
+//  MARK: post Token with completionHandler
+    func post(input: Transferable, completion: @escaping (Bool) -> Void){
         Token.shared.tokenReceived = false
         networkHandler.post(input: input, completion: {(valasz: DataResponse<Any, AFError>)->Void in
-            //print("RESPONSE\n\n\n \(valasz)")
             if(valasz.response?.statusCode != 200)
             {
                 print("ERROR")
@@ -67,16 +59,14 @@ class TokenHandler//: DataHandler
         
         
     }
-    
-    func headerSolver(be: HTTPHeaders)->String
-    {
+//  MARK: header solver
+    func headerSolver(be: HTTPHeaders)->String{
         //print("HEADER:\n\n\n \(String(describing: be)) \n\n\n:HEADER")
         //print("VALUE:\n\n\n \(String(describing: be.value(for: "Set-Cookie")!)) \n\n\n:VALUE")
         return tokenMiner(input: String(describing: be.value(for: "Set-Cookie")!))
     }
-    
-    func tokenMiner(input: String)->String
-    {
+//  MARK: returns token
+    func tokenMiner(input: String)->String{
         let arr : [String] = input.components(separatedBy: ";")
         //print("ARRAY: \(arr)")
         var token = arr[0]
@@ -87,6 +77,4 @@ class TokenHandler//: DataHandler
         return token
        
     }
-    
-    
 }
