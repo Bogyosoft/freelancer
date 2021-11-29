@@ -9,181 +9,122 @@ import SwiftUI
 
 struct CreateNewItemUIView: View {
     
+    @ObservedObject var settings = UserSettingsWorker.shared
+    
     @State var destination: String = ""
+    @State var kiindulas: String = ""
+    @State var tulajdonsag: String = ""
+    @State var statusz: String = ""
     
     var body: some View {
-        VStack
+        ZStack
         {
-            Text("Új küldemény feladása")
-            HStack
+            VStack
             {
-                Text("Cél: ")
-                TextField("Placeholder", text: $destination)
-            }
-            
-            HStack
-            {
-                Text("Kiindulás: ")
-                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            }
-            
-            HStack
-            {
-                Text("Tulajdonságok: ")
-                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            }
-            
-            HStack
-            {
-                Text("Státusz: ")
-                TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            }
-            
-            Button(action: {
+                Text("Új küldemény feladása")
+                HStack
+                {
+                    Text("Cél: ")
+                    TextField("Placeholder", text: $destination)
+                }
                 
-                let sourceData = SourceData(inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "locationBe")
-                let source = Source(inData: sourceData)
-                //let handSource = SourceHandler()
-                source.dataHandler.post(input: source, completion: {(valaszBefejezettseg: Bool, valaszID: Int)->Void in
+                HStack
+                {
+                    Text("Kiindulás: ")
+                    TextField("Placeholder", text: $kiindulas)
+                }
+                
+                HStack
+                {
+                    Text("Tulajdonságok: ")
+                    TextField("Placeholder", text: $tulajdonsag)
+                }
+                
+                HStack
+                {
+                    Text("Státusz: ")
+                    TextField("Placeholder", text: $statusz)
+                }
+                
+                Button(action: {
                     
-                    print("SOURCE POST ON CREATENEWITEM: \(valaszBefejezettseg), ID: \(valaszID)")
-                    
-                    if(valaszID == -1)
-                    {
-                        print("valami hiba volt a lekeresnel")
-                    }
-                    else
-                    {
-                        print("Source ID beallitva!Mehet az ITEM creation")
-                        source.data.id = valaszID
+                    let sourceData = SourceData(inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "locationBe")
+                    let source = Source(inData: sourceData)
+                    //let handSource = SourceHandler()
+                    source.dataHandler.post(input: source, completion: {(valaszBefejezettseg: Bool, valaszID: Int)->Void in
                         
-                        let itemData = ItemData(inDestination: "desztinacio", inProperties: "tulajdonsag", inStatus: "statusz", inSource: source.data)
-                        let item = Item(inData: itemData)
-                        item.itemHandler.post(input: item, completion: {(valaszBefejezettseg: Bool)->Void in
-                            
-                            print("ITEM CREATION IS FINISHED? \(valaszBefejezettseg)")
-                            
-                            
-                        })
+                        print("SOURCE POST ON CREATENEWITEM: \(valaszBefejezettseg), ID: \(valaszID)")
                         
-                    }
+                        if(valaszID == -1)
+                        {
+                            print("valami hiba volt a lekeresnel")
+                        }
+                        else
+                        {
+                            print("Source ID beallitva!Mehet az ITEM creation")
+                            source.data.id = valaszID
+                            
+                            let itemData = ItemData(inDestination: destination, inProperties: tulajdonsag, inStatus: statusz, inSource: source.data)
+                            let item = Item(inData: itemData)
+                            item.itemHandler.post(input: item, completion: {(valaszBefejezettseg: Bool)->Void in
+                                
+                                print("ITEM CREATION IS FINISHED? \(valaszBefejezettseg)")
+                                
+                                if valaszBefejezettseg
+                                {
+                                    withAnimation()
+                                    {
+                                        UserSettingsWorker.shared.itemCreationSuccess.toggle()
+                                    }
+                                }
+                                else
+                                {
+                                    withAnimation()
+                                    {
+                                        UserSettingsWorker.shared.itemCreationFail.toggle()
+                                    }
+                                }
+                                
+                            })
+                        }
+                    })
                     
                 })
-                
-                
-                
-                
-                
-                
-                
-                
-                /*print("SOURCE ASYNC")
-                handSource.post(input: source)
-                
-                sleep(1)
-                
-                print("ITEM ASYNC - \(ResponseData.shared.szam)")
-                handItem.post(input: item)*/
-                
-                //let lock = NSLock()
-                /*let queueLock = DispatchQueue(label: "communicatorLock", attributes: .concurrent)
-
-                queueLock.async{
-                        lock.lock()
-                        print("SOURCE ASYNC")
-                        handSource.post(input: source)
-                        lock.unlock()
-                    }
-                    
-                queueLock.async{
-                        lock.lock()
-                        print("ITEM ASYNC - \(ResponseData.shared.szam)")
-                    handItem.post(input: item)
-                        lock.unlock()
-                    }*/
-                
-                /*
-                let globalQueue = DispatchQueue.global()
-                let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
-                let semaphore = DispatchSemaphore(value: 0)
-                //https://medium.com/cubo-ai/concurrency-thread-safety-in-swift-5281535f7d3a
-                
-                globalQueue.async {
-                    queue.async{
-                           
-                            print("SOURCE ASYNC")
-                            handSource.post(input: source)
-                            semaphore.signal()
-                            print(semaphore)
-                    }
-                    semaphore.wait()
-
-                    queue.async{
-                            print("ITEM ASYNC - \(ResponseData.shared.szam)")
-                            handItem.post(input: item)
-                            semaphore.signal()
-                    }
-                    semaphore.wait()
-                    
-                }*/
-                
-               
-                
-                /*let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
-                    
-                    queue.async(flags: .barrier) {
-                        print("SOURCE ASYNC")
-                        handSource.post(input: source)
-                    }
-                
-                queue.async(flags: .barrier) {
-                    print("ITEM ASYNC - \(ResponseData.shared.szam)")
-                    handItem.post(input: item)
-                }*/
-                
-                
-                
-                
-                
-                
-                
-                /*let queue = DispatchQueue(label: "sellQueue", attributes: .concurrent)
-                    
-                queue.sync(flags: .barrier) {
-                    print("SOURCE ASYNC")
-                    handSource.create(input: source)
-                
+                {
+                    Text("Küldemény feladása")
                 }
-                //sleep(1)
-                queue.sync(flags: .barrier) {
-                    print("ITEM ASYNC")
-                    hand.createItem(inputItem: item)
-                }*/
-                
-                
-                
-                // read
-                /*Flag.shared.queue.sync {
-                    // perform read and assign value
-                    print("FLAG OLVASAS: \(Flag.shared.canGoOn)")
-                    if Flag.shared.canGoOn
-                    {
-                        
-                    }
-                }*/
-                
-                
-                
-                
-                
-            }) {
-                Text("Küldemény feladása")
             }
             
+            if settings.itemCreationSuccess
+            {
+                
+                SuccessCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.success)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.itemCreationSuccess.toggle()
+                        }
+                    })
+                    
+                }).opacity(0.9).transition(.opacity)
+            }
             
-            
-            
+            if settings.itemCreationFail
+            {
+                
+                ErrorCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.error)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.itemCreationFail.toggle()
+                        }
+                    })
+                }).opacity(0.9).transition(.opacity)
+            }
         }
+        
         
     }
 }

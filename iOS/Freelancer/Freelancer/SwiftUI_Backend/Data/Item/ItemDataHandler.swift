@@ -63,15 +63,6 @@ class ItemDataHandler
     func post(input: Item, completion: @escaping (Bool) -> Void)
     {
         print("ItemDataHandler_create()")
-        /*input.source.id = ResponseData.shared.szam
-        print("input.source.id = \(input.source.id)")
-        if input.source.id == -1
-        {
-            print("\n\n\nHIBA LÉPETT FEL AZ ITEM REGISZTRÁLÁSAKOR(ROSSZ SOURCE ID)\n\n\n")
-            return
-        }
-        networkHandler.PostRequest(input: input)*/
-        
         networkHandler.post(input: input, completion: {(valasz: DataResponse<Any, AFError>) -> Void in
             
             
@@ -87,11 +78,6 @@ class ItemDataHandler
                 {
                     case .success:
                         print("SUCCESS WITH COMMUNICaTION")
-                        
-                        
-                        /*Token.shared.token = self.headerSolver(be: valasz.response!.headers)
-                    
-                        Token.shared.tokenReceived = true*/
                         if let data = valasz.data
                         {
                             let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])

@@ -13,9 +13,6 @@ class Item:Transferable
     let itemHandler = ItemDataHandler()
     var data: ItemData
     
-    //SHOULD BE IMPLEMENTED LATER....
-    var feladoUser: User = User(inData: UserData(inUser: "proba", inPass: "proba"))
-    
     init(inData: ItemData)
     {
         print("Item init...")

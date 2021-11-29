@@ -31,6 +31,10 @@ class UserSettingsWorker : ObservableObject {
     @Published var loginError = false
     @Published var loginSuccess = false
     
+    @Published var itemCreationSuccess = false
+    @Published var itemCreationFail = false
+    
+    
     func loadEverySettings()
     {
         for i in keyValues
