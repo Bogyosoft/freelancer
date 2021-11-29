@@ -39,6 +39,4 @@ export class RestapiService {
   public login(user:UserDto){
     return this.http.post(this.apiUrl + "/auth", user);
   }
-
-  
 }

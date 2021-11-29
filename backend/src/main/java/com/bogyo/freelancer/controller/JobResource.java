@@ -27,14 +27,14 @@ public class JobResource {
   private SecurityUtils securityUtils;
 
   @GetMapping
-  public ResponseEntity<List<Job>> getJobs(@RequestParam(required = false) Long userId){
-    if(userId == null)
-      return ResponseEntity.ok(jobRepository.findAll());
-    Optional<User> user = userRepository.findById(userId);
-    if(user.isPresent()){
-      return ResponseEntity.ok(jobRepository.findByfreelancer(user.get()));
+  public ResponseEntity<List<Job>> getJobs(){
+    if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN")){
+      ResponseEntity.ok(jobRepository.findAll());
     }
-    return ResponseEntity.badRequest().build();
+    return ResponseEntity.ok(
+            jobRepository
+                    .findByfreelancer(userRepository.findByUsername(securityUtils.getLoggedInUsername()))
+    );
   }
 
   @PostMapping

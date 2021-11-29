@@ -38,6 +38,7 @@ public class UserResource {
         logger.info("User {} {} {}",user.getUsername(),user.getPassword(),user.getRole());
         if(userRepository.findByUsername(user.getUsername()) != null)
                 return ResponseEntity.badRequest().build();
+        user.setRole("ROLE_USER");
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }
@@ -55,6 +56,7 @@ public class UserResource {
 
     @GetMapping("/loggedin")
     public ResponseEntity<String> getLoggedInUsername(){
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().iterator().next().toString());
         return ResponseEntity.ok(securityUtils.getLoggedInUsername());
     }
 }
