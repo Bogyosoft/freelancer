@@ -31,7 +31,16 @@ class UserSettingsWorker : ObservableObject {
     @Published var loginError = false
     @Published var loginSuccess = false
     
-    
+    func loadEverySettings()
+    {
+        for i in keyValues
+        {
+            print("EZ AZ \(i)")
+            values[i] = loadUserSettings(key: i) as? String
+        }
+        
+        print(values)
+    }
     
     func saveUserSettings(value: Any, key: String){
         print("UserSettings_saveUserSettings: value: [\(value)], key: [\(key)]")

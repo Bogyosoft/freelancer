@@ -30,13 +30,13 @@ class Source: Transferable
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
                 "id": self.id,
-                "location": "valamiLocation",
+                "location": "TEHULYEEZENVAGYOK",
                 "owner":[
-                    "id": 1,
-                    "password":"ios",
-                    "role": "king",
+                    "id": 5,
+                    "password":"dani",
+                    "role": "ROLE_USER",
                     "score":0,
-                    "username":"iOS"]
+                    "username":"Dani"]
         ]
         
         return parameters

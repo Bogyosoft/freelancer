@@ -60,6 +60,7 @@ struct LaunchView: View {
                 print("BE VAN JELENTKEZVE MAR")
                 //Token.shared.alreadyLogedIn = true
                 viewlaunch.currentPage = "menuView"
+                UserSettingsWorker.shared.loadEverySettings()
             }
             else
             {

@@ -17,7 +17,7 @@ class APICommunicator
     
     func post(input: Transferable, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
         
-        let header = HTTPHeaders(["token" : String(describing: UserSettingsWorker.shared.values["userToken"])])
+        let header = HTTPHeaders(["token" : String(describing: UserSettingsWorker.shared.values["userToken"]!)])
         
         AF.request(input.link, method: .post, parameters: input.createJSON(), encoding: JSONEncoding.default, headers: header)
         .responseJSON { response in
