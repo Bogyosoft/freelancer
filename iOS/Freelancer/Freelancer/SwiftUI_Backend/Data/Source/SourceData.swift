@@ -9,13 +9,13 @@ import Foundation
 
 class SourceData: Codable
 {
-    let id: Int
+    var id: Int
     let location: String
     let ownerName: String
     
     init(inputName: String, inputLocation: String)
     {
-        id = 0
+        id = -1
         location = inputLocation
         ownerName = inputName
     }

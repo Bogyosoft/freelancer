@@ -44,11 +44,23 @@ struct CreateNewItemUIView: View {
                 let sourceData = SourceData(inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "locationBe")
                 let source = Source(inData: sourceData)
                 //let handSource = SourceHandler()
-                source.dataHandler.post(input: source, completion: {(valasz: Bool)->Void in
+                source.dataHandler.post(input: source, completion: {(valaszBefejezettseg: Bool, valaszID: Int)->Void in
                     
-                    print("SOURCE POST ON CREATENEWITEM: \(valasz)")
+                    print("SOURCE POST ON CREATENEWITEM: \(valaszBefejezettseg), ID: \(valaszID)")
+                    
+                    if(valaszID == -1)
+                    {
+                        print("valami hiba volt a lekeresnel")
+                    }
+                    else
+                    {
+                        print("Source ID beallitva!Mehet az ITEM creation")
+                        source.data.id = valaszID
+                    }
                     
                 })
+                
+                
                 
 //                let item = Item()
 //                let handItem = ItemDataHandler()
