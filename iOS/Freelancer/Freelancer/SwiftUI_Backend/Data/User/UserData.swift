@@ -21,3 +21,11 @@ class UserData: Codable
         password = inPass
     }
 }
+
+class receivedUserData: Codable
+{
+    let id: Int
+    let role: String
+    let score: Int
+    let username: String
+}

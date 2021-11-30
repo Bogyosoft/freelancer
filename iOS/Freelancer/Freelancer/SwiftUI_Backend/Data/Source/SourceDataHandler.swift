@@ -43,19 +43,15 @@ class SourceDataHandler//: DataHandler
                 {
                     case .success:
                         print("SUCCESS WITH COMMUNICaTION")
-                        
-                        
-                        /*Token.shared.token = self.headerSolver(be: valasz.response!.headers)
-                    
-                        Token.shared.tokenReceived = true*/
                         if let data = valasz.data
                         {
                             let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
                             
-                            print("Response: \(String(describing: jsonData))")
+                            print("Response FOR SOURCEPOST: \(String(describing: jsonData))")
                             
                             if let dictionary = jsonData as? [String: Any]
                             {
+                                print("DICTIONARY\(dictionary)")
                                 if let resoonseID = dictionary["id"] as? Int
                                 {
                                     print("ResponseID: \(resoonseID)")

@@ -28,3 +28,12 @@ class ItemData: Codable
     }
     
 }
+
+class receivedItemData: Codable
+{
+    let destination: String
+    let id: Int
+    let properties: String
+    let source: receivedSourceData
+    let status: String
+}

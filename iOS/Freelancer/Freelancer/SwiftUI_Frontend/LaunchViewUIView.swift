@@ -58,6 +58,8 @@ struct LaunchView: View {
             if eredmeny as? Bool == true
             {
                 print("BE VAN JELENTKEZVE MAR")
+
+                
                 //Token.shared.alreadyLogedIn = true
                 viewlaunch.currentPage = "menuView"
                 UserSettingsWorker.shared.loadEverySettings()

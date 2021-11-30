@@ -14,7 +14,8 @@ struct ItemListUIView: View {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         }.onAppear{
             print("LEKEREEEES")
-            //let lekertAdatok = Item()
+            let lekertAdatok = Item(inData: ItemData(inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputName: "nil", inputLocation: "nil")))
+            lekertAdatok.itemHandler.get(input: lekertAdatok)
             //let itemHandler = ItemDataHandler()
             
             //itemHandler.get(input: lekertAdatok)

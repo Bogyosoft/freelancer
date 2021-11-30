@@ -37,6 +37,39 @@ class UserSettingsWorker : ObservableObject {
     
     func loadEverySettings()
     {
+        /*
+        let json = """
+        {
+        
+                "id": 5,
+                "location": "hh",
+                "owner" :         {
+                                "id": 3,
+                                "role": "ROLE_USER",
+                                "score": 0,
+                                "username": "qq"
+                },
+            
+            
+        }
+        """.data(using: .utf8)!
+
+        let decoder = JSONDecoder()
+        do {
+            print("PRÓBAAAAA")
+            let product = try decoder.decode(receivedSourceData.self, from: json)
+            print(product) // Prints "Durian"
+        } catch {
+            print("HIBAAAAAAAA")
+            print(error.localizedDescription)
+        }
+        
+        
+        
+         */
+        
+        
+        
         for i in keyValues
         {
             print("EZ AZ \(i)")
