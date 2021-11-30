@@ -1,13 +1,14 @@
 package com.bogyo.freelancer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties("password")
+//@JsonIgnoreProperties("password")
 public class User {
 
     @Id
@@ -17,6 +18,8 @@ public class User {
     @Column(name = "username")
     private String username;
     @Column(name = "password")
+    @JsonIgnoreProperties
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column(name = "role")
     private String role;

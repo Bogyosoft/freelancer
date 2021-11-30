@@ -30,7 +30,6 @@ public class SourceResource {
 
   @GetMapping
   public ResponseEntity<List<Source>> getSources(){
-    sourceRepository.findAll().forEach(w -> System.out.println("source owener: " + w.getOwner().getUsername()));
     return ResponseEntity.ok(sourceRepository.findAll());
   }
 
