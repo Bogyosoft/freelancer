@@ -40,6 +40,8 @@ public class JobResource {
   @PostMapping
   public ResponseEntity<Job> createJob(@RequestBody Item item){
     User user = userRepository.findByUsername(securityUtils.getLoggedInUsername());
+    if (item.getSource().getOwner().getUsername() == user.getUsername())
+      return ResponseEntity.badRequest().build();
     Job job = new Job();
     job.setFreelancer(user);
     job.setItem(item);
