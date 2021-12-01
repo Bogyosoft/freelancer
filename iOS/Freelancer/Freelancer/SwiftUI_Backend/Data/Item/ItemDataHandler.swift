@@ -22,13 +22,20 @@ class ItemDataHandler
                         print("SIKERES KOMMUNIKÁCIO SZERVER")
                         if let data = valasz.data
                     {
-                            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                            let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
+                            
+                            print("JSON[0]: \(json[0])")
+                            
+                            /*let blogPost = try! JSONDecoder().decode([receivedItemData].self, from: json[0] as! Data)*/
+                            
+                            
                             print("Response: \(String(describing: json))")
+
                             print("BDOY::::\(valasz.data)")
                             let decoder = JSONDecoder()
                         do {
                             print("PRÓBAAAAA")
-                            let item = try decoder.decode([ItemData].self, from: data)
+                            let item = try decoder.decode([receivedItemData].self, from: data)
                             print(item)
                         } catch {
                             print("HIBAAAAAAAA")
@@ -37,10 +44,10 @@ class ItemDataHandler
                         
                         
                         
-                            if let dictionary = json as? [String: Any]
+                            if let dictionary = json[0] as? [String: Any]
                             {
                                 print("KONYVTAR: \(dictionary)")
-                                if let destination = dictionary["destination"] as? Int
+                                if let destination = dictionary["destination"] as? String
                                 {
                                     print("destination: \(destination)\n\n\n")
                                         
