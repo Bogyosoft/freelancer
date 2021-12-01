@@ -24,6 +24,11 @@ class JobDataHandler
                 print("ERROR VALAMI BAJ VAN")
                 completion(false)
             }
+            else if(valasz.response?.statusCode == 500)
+            {
+                print("FRANC TUDJA")
+                completion(false)
+            }
             else if(valasz.response?.statusCode == 200)
             {
                 print("OK: \(String(describing: valasz.response!.statusCode))")
