@@ -31,17 +31,21 @@ public class JobResource {
     if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN")){
       ResponseEntity.ok(jobRepository.findAll());
     }
-    return ResponseEntity.ok(
-            jobRepository
-                    .findByfreelancer(userRepository.findByUsername(securityUtils.getLoggedInUsername()))
-    );
+    List<Job> list = jobRepository.findByfreelancer(userRepository.findByUsername(securityUtils.getLoggedInUsername()));
+    list.removeIf(job -> job.getItem().getSource().getOwner().getUsername().equals(securityUtils.getLoggedInUsername()));
+    return ResponseEntity.ok(list);
   }
 
   @PostMapping
   public ResponseEntity<Job> createJob(@RequestBody Item item){
     User user = userRepository.findByUsername(securityUtils.getLoggedInUsername());
-    if (item.getSource().getOwner().getUsername() == user.getUsername())
+    if (item.getSource().getOwner().getUsername().equals(user.getUsername()))
       return ResponseEntity.badRequest().build();
+    List<Job> loggedInsJobs = jobRepository.findByfreelancer(user);
+    for (int i = 0; i < loggedInsJobs.size(); ++i) {
+      if(loggedInsJobs.get(i).getItem().equals(item))
+        return ResponseEntity.badRequest().build();
+    }
     Job job = new Job();
     job.setFreelancer(user);
     job.setItem(item);
