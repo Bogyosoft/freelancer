@@ -19,41 +19,29 @@ class ItemDataHandler
         networkHandler.get(input: input, completion: {(valasz: DataResponse<Any, AFError>)->Void in
             switch valasz.result {
                    case .success:
-                        print("SIKERES KOMMUNIKÁCIO SZERVER")
-                        if let data = valasz.data
+                    print("SIKERES KOMMUNIKÁCIO SZERVER")
+                    if let data = valasz.data
                     {
-                            let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
+                        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
                             
-                            print("JSON[0]: \(json[0])")
-                            
-                            /*let blogPost = try! JSONDecoder().decode([receivedItemData].self, from: json[0] as! Data)*/
-                            
-                            
-                            print("Response: \(String(describing: json))")
+                        print("JSON[0]: \(json[0])")
 
-                            print("BDOY::::\(valasz.data)")
-                            let decoder = JSONDecoder()
-                        do {
-                            print("PRÓBAAAAA")
-                            let item = try decoder.decode([receivedItemData].self, from: data)
-                            print(item)
-                        } catch {
-                            print("HIBAAAAAAAA")
-                            print(error.localizedDescription)
-                        }
+                        print("Response: \(String(describing: json))")
                         
-                        
-                        
-                            if let dictionary = json[0] as? [String: Any]
+                        for elem in json
+                        {
+                            if let dictionary = elem as? [String: Any]
                             {
                                 print("KONYVTAR: \(dictionary)")
                                 if let destination = dictionary["destination"] as? String
                                 {
                                     print("destination: \(destination)\n\n\n")
-                                        
+                                            
                                 }
-                                    
+                                        
                             }
+                        }
+                            
                     }
                     
                    case .failure:
