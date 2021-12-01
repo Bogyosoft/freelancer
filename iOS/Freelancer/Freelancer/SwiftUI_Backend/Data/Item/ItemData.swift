@@ -21,19 +21,7 @@ class ItemData: Codable, Identifiable
         destination = inDestination
         propertis = inProperties
         status = inStatus
-        
         source = inSource
-        
-        //print("SOURCE ID IN ITEMDATA: \(source.id)")
     }
     
 }
-
-/*class receivedItemData: Codable
-{
-    let destination: String
-    let id: Int
-    let properties: String
-    let source: receivedSourceData
-    let status: String
-}*/

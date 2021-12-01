@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class JobData: Codable, Identifiable
+{
+    var freelance: String//user aki felveszi a munkat
+    var id: Int
+    var item: ItemData
+    
+    init(inID: Int, inFreelancer: String, inItem: ItemData)
+    {
+        id = inID
+        freelance = inFreelancer
+        item = inItem
+    }
+}
