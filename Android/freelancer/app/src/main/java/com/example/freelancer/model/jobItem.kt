@@ -23,7 +23,8 @@ import com.example.freelancer.ui.screens.rndColor
 data class jobItem(
     val freelancer: UserItem,
     val id: Int,
-    val item: itemsItem
+    val item: itemsItem,
+    val status :String
 ):IItem {
     @Composable
     override fun ListViewItem(
@@ -94,7 +95,7 @@ data class jobItem(
                 CustomText(title = "username:", text =item.freelancer.username , mod = mod )
                 CustomText(title = "password:", text =item.item.properties , mod = mod )
                 CustomText(title = "role:", text =item.item.destination , mod = mod )
-                CustomText(title = "score:", text =item.item.status, mod = mod )
+                //CustomText(title = "score:", text =item.item.status, mod = mod )
 
                 Spacer(modifier = Modifier.height(150.dp))
 

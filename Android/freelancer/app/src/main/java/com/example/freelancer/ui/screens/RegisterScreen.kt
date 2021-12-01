@@ -77,7 +77,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     else -> {
                         passwordErrorState.value = false
                         emailErrorState.value = false
-                        if(registerViewModel.registerUser(UserItem(0,password.value.text,"????",0,firstName.value.text+lastName.value.text))){
+                        if(registerViewModel.registerUser(UserItem(0,password.value.text,"tmp" ,0,firstName.value.text+lastName.value.text))){
 
                         Log.d("navButton", "Registration successful")
                             MainActivity.screen ="Main"

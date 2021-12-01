@@ -15,8 +15,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.freelancer.ActiveUser
 import com.example.freelancer.MainActivity
 import com.example.freelancer.model.UserDTO
+import com.example.freelancer.model.UserItem
+import com.example.freelancer.network.FreelancerAPIService
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
 import com.example.freelancer.ui.parts.elseButton
@@ -29,6 +32,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 //https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
 @Composable
@@ -59,6 +65,8 @@ fun LoginScreen(navController: NavHostController,loginViewModel: LoginViewModel)
         
     }
 }
+/*
+*
 suspend fun login(userDTO: UserDTO):Boolean{
     val apiService = FreelancerApiClient.service
     var repository = FreeLancerRepository(apiService)
@@ -79,6 +87,7 @@ suspend fun login(userDTO: UserDTO):Boolean{
 
     return res.await()
 }
+* */
 
 @Composable
 fun loginButton(
@@ -105,10 +114,33 @@ fun loginButton(
                     passwordErrorState.value = false
                     emailErrorState.value = false
 
+                   FreelancerApiClient.service.login(UserDTO(email.value.text,password.value.text))
+                        .enqueue(object : Callback<UserDTO> {
+                            override fun onFailure(call: Call<UserDTO>, t: Throwable) {
+                                setShowDialog(true)
+                            }
+                            override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
+                                val user = response.body()
+
+                                response.headers().get("Set-Cookie")?.let { Log.d("login token", it) }
+                                ActiveUser.token =response.headers().get("Set-Cookie").toString()
+                                Log.d("login", ActiveUser.token)
+                                if(!ActiveUser.token.equals("null")){
+                                    ActiveUser.user = UserItem(0,password.value.text,"",0,email.value.text)
+
+                                    MainActivity.screen ="Main"
+                                    navController.navigate("Main")
+                                }
+                                else setShowDialog(true)
 
 
-                GlobalScope.launch(Dispatchers.Main){
-                    if(login(UserDTO(email.value.text,password.value.text))){
+                            }
+                        })
+
+
+                    /*
+                    *
+                    if(loginViewModel.loginUser(UserDTO(email.value.text,password.value.text))){
                         Log.d("navButton", "navigate")
                         MainActivity.screen ="Main"
                         navController.navigate("Main")
@@ -116,7 +148,8 @@ fun loginButton(
                     else{
                         setShowDialog(true)
                     }
-                }
+                    * */
+
                 }
             }
         },

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
+import com.example.freelancer.model.itemsItem
 import com.example.freelancer.model.jobItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
@@ -35,12 +36,13 @@ class JobViewModel : ViewModel(),IViewModel{
             }
         }
     }
-    fun createJobs(job : jobItem){
+    fun createJobs(job : itemsItem){
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
             repository.createJob(job){
                 if (it?.id != null) {
-                    Log.d("job","succes ")
+                    Log.d("createjob","succes ")
+
                 } else {
                     Log.d("job","failure ")
                 }

@@ -4,7 +4,10 @@ import com.example.freelancer.model.UserItem
 
 object ActiveUser{
     fun getActiveUser():UserItem{
-        return UserItem(id = 1, username = "IOS",password = "ios",role = "king",score = 0 )
+        return user
+        return UserItem(id = 3, username = "qq", password = "q",role = "ROLE_USER",score = 0 )
     }
+    lateinit var user: UserItem
     lateinit var token:String
+    lateinit var username:String
 }

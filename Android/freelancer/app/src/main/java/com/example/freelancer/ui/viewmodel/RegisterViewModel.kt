@@ -14,7 +14,7 @@ class RegisterViewModel: ViewModel() {
     private lateinit var repository: FreeLancerRepository
 
     fun registerUser(userItem: UserItem):Boolean{
-        var res= false
+        var res= true
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
 

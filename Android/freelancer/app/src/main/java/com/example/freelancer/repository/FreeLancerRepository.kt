@@ -43,7 +43,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
     fun registerUser(userItem: UserItem, onResult: (UserItem?) -> Unit):Boolean{
         try {
-            freelancerAPi.registerUser(userItem = userItem,ActiveUser.token).enqueue(
+            freelancerAPi.registerUser(userItem = userItem).enqueue(
                 object : Callback<UserItem>{
                     override fun onFailure(call: Call<UserItem>, t: Throwable) {
                         onResult(null)
@@ -76,6 +76,9 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                         throw t
                     }
                     override fun onResponse( call: Call<Source>, response: Response<Source>) {
+                        Log.d("Source response",response.raw().toString())
+                        Log.d("Source token",ActiveUser.token)
+
                         val newSource = response.body()
                         onResult(newSource)
                         if (newSource != null) {
@@ -105,6 +108,8 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                         throw t
                     }
                     override fun onResponse( call: Call<itemsItem>, response: Response<itemsItem>) {
+                        Log.d("item creation",response.raw().body.toString())
+
                         val newItem = response.body()
                         onResult(newItem)
                         if(newItem!=null){
@@ -123,7 +128,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
         return result
     }
-    fun createJob(jobItem: jobItem, onResult: (jobItem?) -> Unit): Boolean {
+    fun createJob(jobItem: itemsItem, onResult: (jobItem?) -> Unit): Boolean {
         try {
             freelancerAPi.createJob(jobItem = jobItem,ActiveUser.token).enqueue(
                 object : Callback<jobItem>{
@@ -132,6 +137,8 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                         throw t
                     }
                     override fun onResponse( call: Call<jobItem>, response: Response<jobItem>) {
+                        Log.d("job response",response.raw().toString())
+
                         val newjob = response.body()
                         onResult(newjob)
                     }
@@ -147,7 +154,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
         return true
     }
-    fun login(userDTO: UserDTO, onResult:  (UserDTO?) -> Boolean): Boolean {
+    fun login(userDTO: UserDTO, onResult: (UserDTO?) -> Unit): Boolean {
         try {
             freelancerAPi.login(userDTO = userDTO).enqueue(
                 object : Callback<UserDTO>{
@@ -159,7 +166,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
                         val user = response.body()
                         Log.d("login sent",userDTO.username)
                         response.headers().get("Set-Cookie")?.let { Log.d("login token", it) }
-                        ActiveUser.token = response.headers().get("Set-Cookie").toString()
+                        ActiveUser.token =response.headers().get("Set-Cookie").toString()
                         Log.d("login","Succesfull")
                             onResult(user)
                     }

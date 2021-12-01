@@ -20,14 +20,14 @@ class SourceViewModel: ViewModel(){
         viewModelScope.launch {
             result = repository.createSource(source = source) {
                 if (it?.id != null) {
-                    Log.d("source","succes ")
+                    Log.d("source","success ")
 
 
                     val item = itemsItem(destination = destination,
                         id=0,
                         properties =properties,
                         source = it,
-                        status = "New"
+                        //status = "New"
                     )
                     val itemViewModel = ItemViewModel()
                     itemViewModel.createItem(item)

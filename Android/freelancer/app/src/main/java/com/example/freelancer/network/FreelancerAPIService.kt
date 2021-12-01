@@ -25,34 +25,34 @@ interface FreelancerAPIService {
     var token: String
 
     @GET("/api/v1/user")
-    suspend fun getAllUsers(@Header("token") token: String): List<UserItem>
+    suspend fun getAllUsers(@Header("Cookie") token: String): List<UserItem>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/user")
-    fun registerUser(@Body userItem: UserItem,@Header("token") token: String) : Call<UserItem>
+    fun registerUser(@Body userItem: UserItem) : Call<UserItem>
 
     @GET("/api/v1/jobs")
-    suspend fun getJobs(@Header("token") token: String) : List<jobItem>
+    suspend fun getJobs(@Header("Cookie") token: String) : List<jobItem>
 
     @GET("/api/v1/items")
-    suspend fun getItems(@Header("token") token: String) : List<itemsItem>
+    suspend fun getItems(@Header("Cookie") token: String) : List<itemsItem>
 
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/jobs")
-    fun createJob(@Body jobItem: jobItem,@Header("token") token: String) : Call<jobItem>
+    fun createJob(@Body jobItem: itemsItem,@Header("Cookie") token: String) : Call<jobItem>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/sources")
-    fun createSource(@Body source: Source,@Header("Set-Cookie") token: String) : Call<Source>
+    fun createSource(@Body source: Source,@Header("Cookie") token: String) : Call<Source>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/items")
-    fun createItems(@Body item: itemsItem,@Header("token") token: String) : Call<itemsItem>
+    fun createItems(@Body item: itemsItem,@Header("Cookie") token: String) : Call<itemsItem>
 
 
     @Headers("Content-Type: application/json")
-    @POST("/api/auth")
+    @POST("/api/v1/auth")
     fun login(@Body userDTO: UserDTO) : Call<UserDTO>
 }
 

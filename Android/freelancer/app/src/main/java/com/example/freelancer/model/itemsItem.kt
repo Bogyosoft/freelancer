@@ -1,5 +1,6 @@
 package com.example.freelancer.model
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -27,7 +28,7 @@ data class itemsItem(
     val id: Int,
     val properties: String,
     val source: Source,
-    val status: String
+    //val status: String
 ):IItem {
     @Composable
     override fun ListViewItem(
@@ -105,13 +106,14 @@ data class itemsItem(
                 CustomText(title = "sender:", text =item.source.owner.username , mod = mod )
                 CustomText(title = "destination:", text =item.destination , mod = mod )
                 CustomText(title = "properties:", text =item.properties , mod = mod )
-                CustomText(title = "status:", text =item.status , mod = mod )
+                //CustomText(title = "status:", text =item.status , mod = mod )
                 Spacer(modifier = Modifier.height(150.dp))
                 Button(
                     onClick = {
-                        val job = jobItem(ActiveUser.getActiveUser(),0,this@itemsItem)
+                        val job = jobItem(ActiveUser.getActiveUser(),0,this@itemsItem,"??")
+                        Log.d("item content",this@itemsItem.destination)
                         val jobViewModel = JobViewModel()
-                        jobViewModel.createJobs(job)
+                        jobViewModel.createJobs(this@itemsItem)
                         navController?.navigate("Main")
                     },
                     colors = ButtonDefaults.buttonColors(backgroundColor = rndColor()),

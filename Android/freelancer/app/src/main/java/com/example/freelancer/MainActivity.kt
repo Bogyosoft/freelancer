@@ -1,9 +1,11 @@
 package com.example.freelancer
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,12 +23,15 @@ import androidx.navigation.compose.rememberNavController
 import com.example.freelancer.ui.screens.*
 import com.example.freelancer.ui.theme.FreelancerTheme
 import com.example.freelancer.ui.viewmodel.*
+import com.sucho.placepicker.AddressData
+import com.sucho.placepicker.Constants
 import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
     companion object{
         lateinit var screen: String
+        var location: String = ""
     }
 
     @ExperimentalFoundationApi
@@ -40,17 +45,29 @@ class MainActivity : ComponentActivity() {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer(this,this)
+                Freelancer(this,this,this)
             }
         }
 
+    }
+    override fun onActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
+        if (requestCode == Constants.PLACE_PICKER_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                val addressData = data?.getParcelableExtra<AddressData>(Constants.ADDRESS_INTENT)
+                location = addressData.toString()
+                Log.d("PlacePicker", location)
+
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
 
 }
 @ExperimentalFoundationApi
 @Composable
-fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner){
+fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner,activity:MainActivity){
     val registerViewModel = RegisterViewModel()
     val navController = rememberNavController()
     val userViewModel = UsersViewModel()
@@ -88,7 +105,7 @@ fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner){
 
         NavHost(navController = navController, startDestination = MainActivity.screen) {
             composable("Login") { LoginScreen(navController,loginViewModel) }
-            composable("CreateJob") { CreateJobScreen(navController) }
+            composable("CreateJob") { CreateJobScreen(navController,activity) }
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
 

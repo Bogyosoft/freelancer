@@ -103,7 +103,7 @@ data class UserItem(
             {
                 Column() {
                     CustomText(title = "username:", text =item.username , mod = mod )
-                    CustomText(title = "password:", text =password , mod = mod )
+                    //CustomText(title = "password:", text =password , mod = mod )
                     CustomText(title = "role:", text =item.role , mod = mod )
                     CustomText(title = "score:", text =item.score.toString() , mod = mod )
                 }
