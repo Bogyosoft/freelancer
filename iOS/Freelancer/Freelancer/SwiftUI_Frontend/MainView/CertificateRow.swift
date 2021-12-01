@@ -43,15 +43,15 @@ struct CertificateRow_Previews: PreviewProvider {
 struct Certificate: Identifiable {
    var id = UUID()
    var title: String
-   var image: String
+   //var image: String
    var width: Int
    var height: Int
 }
 
 let certificateData = [
-   Certificate(title: "Folymatban lévő munka", image: "Certificate1", width: 230, height: 150),
-   Certificate(title: "Folymatban lévő munka", image: "Certificate2", width: 230, height: 150),
-   Certificate(title: "Folymatban lévő munka", image: "Certificate3", width: 230, height: 150),
-   Certificate(title: "Folymatban lévő munka", image: "Certificate4", width: 230, height: 150)
+   Certificate(title: "Folymatban lévő munka"/*, image: "Certificate1"*/, width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka"/*, image: "Certificate1"*/, width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka"/*, image: "Certificate1"*/, width: 230, height: 150),
+   Certificate(title: "Folymatban lévő munka"/*, image: "Certificate1"*/, width: 230, height: 150)
 ]
 

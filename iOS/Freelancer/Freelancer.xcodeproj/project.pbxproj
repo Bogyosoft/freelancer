@@ -250,8 +250,6 @@
 			children = (
 				29DE5DB42724A19500431A75 /* UpdateList.swift */,
 				29DE5DB72724A1E000431A75 /* UpdateDetail.swift */,
-				29DE5DB92724A26900431A75 /* ContentView.swift */,
-				29DE5DBD2724A2D200431A75 /* CertificateRow.swift */,
 				29DE5DBF2724A3CC00431A75 /* TabBar.swift */,
 				29DE5DC12724A3E900431A75 /* Settings.swift */,
 				29DE5DC32724A43700431A75 /* UpdateStore.swift */,
@@ -298,6 +296,8 @@
 		29E548E127170B5900033FD6 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				29DE5DB92724A26900431A75 /* ContentView.swift */,
+				29DE5DBD2724A2D200431A75 /* CertificateRow.swift */,
 				29DE5DB227249F7C00431A75 /* HomeList.swift */,
 				29DE5DBB2724A29600431A75 /* BlurView.swift */,
 				29DE5DB027249EF500431A75 /* Home.swift */,

@@ -34,7 +34,7 @@ struct HomeList: View {
                      Button(action: { self.showContent.toggle() }) {
                         GeometryReader { geometry in
                            CourseView(title: item.title,
-                                      image: item.image,
+                                      //image: item.image,
                                       color: item.color,
                                       shadowColor: item.shadowColor)
                               .rotation3DEffect(Angle(degrees:
@@ -68,7 +68,7 @@ struct HomeList_Previews: PreviewProvider {
 struct CourseView: View {
 
    var title = "Build an app with SwiftUI"
-   var image = "Illustration1"
+   //var image = "Illustration1"
    var color = Color("background3")
    var shadowColor = Color("backgroundShadow3")
 
@@ -83,12 +83,12 @@ struct CourseView: View {
 
          Spacer()
 
-         Image(image)
+         /*Image(image)
             .resizable()
             .renderingMode(.original)
             .aspectRatio(contentMode: .fit)
             .frame(width: 246, height: 150)
-            .padding(.bottom, 30)
+            .padding(.bottom, 30)*/
       }
       .background(color)
       .cornerRadius(30)
@@ -107,23 +107,23 @@ struct Course: Identifiable {
 
 let coursesData = [
    Course(title: "Munka leírása",
-          image: "Illustration1",
+          image: "car",
           color: Color("background3"),
           shadowColor: Color("backgroundShadow3")),
    Course(title: "Munka leírása",
-          image: "Illustration2",
+          image: "car",
           color: Color("background4"),
           shadowColor: Color("backgroundShadow4")),
    Course(title: "Munka leírása",
-          image: "Illustration3",
+          image: "car",
           color: Color("background7"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),
    Course(title: "Munka leírása",
-          image: "Illustration4",
+          image: "car",
           color: Color("background8"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),
    Course(title: "Munka leírása",
-          image: "Illustration5",
+          image: "car",
           color: Color("background9"),
           shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5)),
 ]

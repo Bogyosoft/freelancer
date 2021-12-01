@@ -89,7 +89,7 @@ struct CardView: View {
 
 struct CertificateView: View {
 
-   var item = Certificate(title: "UI Design", image: "Certificate1", width: 340, height: 220)
+   var item = Certificate(title: "UI Design"/*, image: "Certificate1"*/, width: 340, height: 220)
 
    var body: some View {
       return VStack {
@@ -113,9 +113,9 @@ struct CertificateView: View {
          .padding(.horizontal)
          Spacer()
 
-         Image(item.image)
+         /*Image(item.image)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .offset(y: 50)
+            .offset(y: 50)*/
       }
       .frame(width: CGFloat(item.width), height: CGFloat(item.height))
       .background(Color.black)
