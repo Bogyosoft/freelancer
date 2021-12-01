@@ -15,9 +15,9 @@ class ItemData: Codable, Identifiable
     var status: String
     var source: SourceData
     
-    init(inDestination: String, inProperties: String, inStatus: String, inSource: SourceData)
+    init(inID: Int, inDestination: String, inProperties: String, inStatus: String, inSource: SourceData)
     {
-        id = 0
+        id = inID
         destination = inDestination
         propertis = inProperties
         status = inStatus

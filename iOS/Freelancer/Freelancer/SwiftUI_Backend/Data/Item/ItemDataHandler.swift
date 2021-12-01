@@ -13,7 +13,7 @@ class ItemDataHandler
 {
     internal var networkHandler: APICommunicator = APICommunicator()
     
-    func get(input: Item, completion: @escaping (Array<ItemData>) -> Void)
+    func get(input: Item, completion: @escaping (Array<ItemData>, Bool) -> Void)
     {
         print("ItemDataHandler_get()")
         var items: Array<ItemData> = Array<ItemData>()
@@ -35,6 +35,9 @@ class ItemDataHandler
                             if let dictionary = elem as? [String: Any]
                             {
                                 print("KONYVTAR: \(dictionary)")
+                                
+                                let id: Int = dictionary["id"] as? Int ?? -1
+                                
                                 let destination: String = dictionary["destination"] as? String ?? "NIL"
                                 let properties: String = dictionary["properties"] as? String ?? "NIL"
                                 let status: String = dictionary["status"] as? String ?? "NIL"
@@ -51,10 +54,10 @@ class ItemDataHandler
                                 print("status: \(status)\n\n\n")
                                 print("source: \(source)\n\n\n")
                                             
-                                
+                            
                                 let ujStatus = SourceData(inputName: ownerName, inputLocation: sourceLocation)
                                 
-                                let ujItem = ItemData(inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
+                                let ujItem = ItemData(inID: id, inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
                                 
                                 items.append(ujItem)
                                         
@@ -62,7 +65,7 @@ class ItemDataHandler
                             
                         }
                         
-                        completion(items)
+                        completion(items, true)
                             
                     }
                     

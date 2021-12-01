@@ -64,7 +64,7 @@ struct CreateNewItemUIView: View {
                             print("Source ID beallitva!Mehet az ITEM creation")
                             source.data.id = valaszID
                             
-                            let itemData = ItemData(inDestination: destination, inProperties: tulajdonsag, inStatus: statusz, inSource: source.data)
+                            let itemData = ItemData(inID: -1, inDestination: destination, inProperties: tulajdonsag, inStatus: statusz, inSource: source.data)
                             let item = Item(inData: itemData)
                             item.itemHandler.post(input: item, completion: {(valaszBefejezettseg: Bool)->Void in
                                 
