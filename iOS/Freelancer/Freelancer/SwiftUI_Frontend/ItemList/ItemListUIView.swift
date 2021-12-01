@@ -15,7 +15,14 @@ struct ItemListUIView: View {
         }.onAppear{
             print("LEKEREEEES")
             let lekertAdatok = Item(inData: ItemData(inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputName: "nil", inputLocation: "nil")))
-            lekertAdatok.itemHandler.get(input: lekertAdatok)
+            
+            lekertAdatok.itemHandler.get(input: lekertAdatok, completion: {(valaszArray: Array<ItemData>)->Void in
+                
+                print(valaszArray[0].propertis)
+                
+            })
+            
+
             //let itemHandler = ItemDataHandler()
             
             //itemHandler.get(input: lekertAdatok)

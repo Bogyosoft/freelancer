@@ -22,6 +22,7 @@ class UserData: Codable
     }
 }
 
+/*
 class receivedUserData: Codable
 {
     let id: Int
@@ -29,3 +30,4 @@ class receivedUserData: Codable
     let score: Int
     let username: String
 }
+*/

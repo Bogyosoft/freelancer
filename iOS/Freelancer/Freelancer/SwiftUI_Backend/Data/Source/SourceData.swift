@@ -21,9 +21,9 @@ class SourceData: Codable
     }
 }
 
-class receivedSourceData: Codable
+/*class receivedSourceData: Codable
 {
     let id: Int
     let location: String
     let owner: receivedUserData
-}
+}*/
