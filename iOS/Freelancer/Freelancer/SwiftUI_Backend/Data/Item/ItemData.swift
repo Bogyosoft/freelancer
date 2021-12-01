@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ItemData: Codable
+class ItemData: Codable, Identifiable
 {
     var id: Int
     var destination: String
