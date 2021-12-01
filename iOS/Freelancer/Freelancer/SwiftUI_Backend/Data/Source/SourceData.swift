@@ -13,9 +13,9 @@ class SourceData: Codable
     let location: String
     let ownerName: String
     
-    init(inputName: String, inputLocation: String)
+    init(inputID: Int, inputName: String, inputLocation: String)
     {
-        id = -1
+        id = inputID
         location = inputLocation
         ownerName = inputName
     }

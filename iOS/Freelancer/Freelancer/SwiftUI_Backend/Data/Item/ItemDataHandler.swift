@@ -55,7 +55,7 @@ class ItemDataHandler
                                 print("source: \(source)\n\n\n")
                                             
                             
-                                let ujStatus = SourceData(inputName: ownerName, inputLocation: sourceLocation)
+                                let ujStatus = SourceData(inputID: -1, inputName: ownerName, inputLocation: sourceLocation)
                                 
                                 let ujItem = ItemData(inID: id, inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
                                 
