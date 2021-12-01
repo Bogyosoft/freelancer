@@ -22,7 +22,7 @@ class Item:Transferable
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
             "destination": data.destination,
-            "id" : 0,
+            "id" : data.id,
             "properties": data.propertis,
             "source":[
                 "id": data.source.id,

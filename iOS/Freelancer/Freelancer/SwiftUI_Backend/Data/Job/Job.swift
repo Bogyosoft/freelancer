@@ -12,11 +12,13 @@ class Job: Transferable
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/jobs/"
     let jobHandler = JobDataHandler()
     var data: JobData
+    var item: Item
     
-    init(inData: JobData)
+    init(inData: JobData, itemIn : Item)
     {
         print("Job init....")
         data = inData
+        item = itemIn
     }
     
     /*func createJSON() -> [String : Any] {
@@ -46,14 +48,14 @@ class Job: Transferable
     
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
-            "freelancer": ["id":8,"username":"000000","role":"ROLE_USER","score":0],
+            "freelancer": ["username":"dani"],
             "id" : 0,
             "item":[
-                "id":9,"properties":"","destination":"","status":"",
+                "id":2,"properties":"Túl.","destination":"Cél ","status":"Státusz",
                 "source":[
-                    "id":9,"location":"locationBe",
+                    "id":2,"location":"locationBe",
                             "owner":[
-                                "id":9,"username":"Dani","role":"ROLE_USER","score":0
+                                "username":"Dani"
                                     ]
                         ],
             ]
@@ -61,6 +63,16 @@ class Job: Transferable
         
         return parameters
     }
+    
+    /*func createJSON() -> [String : Any] {
+        let parameters: [String: Any] = [
+            "freelancer": ["username":"Dani"],
+            "id" : 0,
+            "item":item.createJSON()
+        ]
+        
+        return parameters
+    }*/
     
     
 }
