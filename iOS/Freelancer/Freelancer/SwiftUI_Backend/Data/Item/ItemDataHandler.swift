@@ -25,7 +25,7 @@ class ItemDataHandler
                     {
                         let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
                             
-                        print("JSON[0]: \(json[0])")
+                        //print("JSON[0]: \(json[0])")
 
                         print("Response: \(String(describing: json))")
                         
