@@ -57,7 +57,11 @@ struct CreateNewItemUIView: View {
                         
                         if(valaszID == -1)
                         {
-                            print("valami hiba volt a lekeresnel")
+                            print("valami hiba volt a lekeresnel - createNewitem")
+                            withAnimation()
+                            {
+                                UserSettingsWorker.shared.itemCreationFail.toggle()
+                            }
                         }
                         else
                         {

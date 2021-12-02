@@ -48,14 +48,14 @@ class Job: Transferable
     
     func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
-            "freelancer": ["username":"Dani"],
+            "freelancer": ["username":"qq"],
             "id" : -1,
             "item":[
-                "id":103,"properties":"","destination":"","status":"",
+                "id":5,"properties":"","destination":"","status":"",
                 "source":[
-                    "id":101,"location":"locationBe",
+                    "id":5,"location":"locationBe",
                             "owner":[
-                                "username":"Dani"
+                                "username":"D"
                                     ]
                         ],
             ]
