@@ -75,8 +75,11 @@ public class UserResource {
         Cookie cookie = new Cookie("token", "deleted");
         cookie.setPath("/");
         //cookie.setSecure(true);
-        cookie.setHttpOnly(true);
+        //cookie.setHttpOnly(true);
+        cookie.setMaxAge(114);
         response.addCookie(cookie);
+        response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
+        response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,UPDATE,OPTIONS");
         response.addHeader("Access-Control-Expose-Headers", "Set-Cookie");
         System.out.println("logout");
         return ResponseEntity.ok().build();

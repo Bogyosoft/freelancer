@@ -22,26 +22,26 @@ export class RestapiService {
   }
 
   public getSources(){
-    return this.http.get(this.apiUrl + "/source", { withCredentials:true })
+    return this.http.get(this.apiUrl + "/sources", { withCredentials:true })
   }
 
   public getItems(){
-    return this.http.get(this.apiUrl + "/item", { withCredentials:true })
+    return this.http.get(this.apiUrl + "/items", { withCredentials:true })
   }
 
   public getJobs(){
-    return this.http.get(this.apiUrl + "/job", { withCredentials:true })
+    return this.http.get(this.apiUrl + "/jobs", { withCredentials:true })
   }
 
   public postUser(user:User){
-    return this.http.post(this.apiUrl + "/users", user, { withCredentials:true })
+    return this.http.post(this.apiUrl + "/user", user, { withCredentials:true })
   }
 
   public login(user:UserDto){
-    return this.http.post(this.apiUrl + "/auth", user);
+    return this.http.post(this.apiUrl + "/auth", user, { withCredentials:true });
   }
 
-  logout() {
+  public logout() {
     return this.http.get(this.apiUrl + "/user/logout",{ withCredentials:true });
   }
 }

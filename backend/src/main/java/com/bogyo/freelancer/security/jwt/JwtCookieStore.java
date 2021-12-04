@@ -40,16 +40,15 @@ public class JwtCookieStore {
 
     private void storeTokenInCookie(HttpServletResponse response, String token) {
         System.out.println("store token");
-        Cookie cookie = new Cookie(COOKIE_NAME, token);
+        Cookie cookie = new Cookie("token", token);
         cookie.setMaxAge(EXPIRATION);
         cookie.setPath("/");
         //cookie.setSecure(true);
-        cookie.setHttpOnly(true);
+        //cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        response.addHeader("Access-Control-Expose-Headers", "Set-Cookie");
-        response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,UPDATE,OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
-        //response.addHeader("Content-Type", "application/json");
+        response.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,UPDATE,OPTIONS");
+        response.addHeader("Access-Control-Expose-Headers", "Set-Cookie");//response.addHeader("Content-Type", "application/json");
     }
 
     private String generateToken(Authentication auth) {

@@ -22,7 +22,8 @@ public class Item {
     @Column(name = "destination")
     private String destination;
 
-    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", columnDefinition = "enum('TO_BE_DELIVERED','IN_PROGRESS','DELIVERED')")
     private ItemStatus status;
 
     @OneToOne

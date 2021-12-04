@@ -13,4 +13,6 @@ public class SecurityUtils {
     public String getLoggedInUserAuthorities(){
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities().iterator().next().toString();
     }
+
+
 }

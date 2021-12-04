@@ -15,9 +15,13 @@ export class AuthService {
 
   login(user:UserDto) {
     this.service.login(user).subscribe((response:any) => {
-      if(response.status == "ok")
+      console.log("asd")
+
+      console.log(response)
+      if(response.status == "ok"){
         this.loggedIn = true;
         this.router.navigate(['home'])
+      }
     })
   }
 

@@ -5,6 +5,7 @@ import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.repository.ItemRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.bogyo.freelancer.repository.UserRepository;
 import com.bogyo.freelancer.security.SecurityUtils;
@@ -37,7 +38,12 @@ public class ItemResource {
     if(userRepository.findByUsername(securityUtils.getLoggedInUsername()).getRole().equals("ROLE_ADMIN")){
       return ResponseEntity.ok(itemRepository.findAll());
     }
-    return ResponseEntity.ok(itemRepository.findByStatus(ItemStatus.TO_BE_DELIVERED.toString()));
+    return ResponseEntity.ok(itemRepository.findByStatus(ItemStatus.TO_BE_DELIVERED)
+            .stream()
+            .filter(items -> {
+              return !items.getSource().getOwner().getUsername().equals(securityUtils.getLoggedInUsername());
+            })
+            .collect(Collectors.toList()));
   }
 
   @PutMapping

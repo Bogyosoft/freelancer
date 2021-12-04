@@ -57,23 +57,31 @@ public class JobResource {
     return ResponseEntity.ok(jobRepository.save(job));
   }
 
-  @DeleteMapping
-  public ResponseEntity deleteJob(@RequestBody Job job){
-    jobRepository.delete(job);
-    Optional<Item> optionalItem = itemRepository.findById(job.getId());
-    if(optionalItem.isPresent()){
-      Item item = optionalItem.get();
-      item.setStatus(ItemStatus.DELIVERED);
-      itemRepository.save(item);
-    }else{
-      System.out.println("item missing");
-      ResponseEntity.badRequest();
+  @DeleteMapping("/{id}")
+  public ResponseEntity deleteJob(@PathVariable Long id){
+    Optional<Job> optionalJob = jobRepository.findById(id);
+    if(optionalJob.isPresent()) {
+      Job job = optionalJob.get();
+      jobRepository.delete(job);
+      Optional<Item> optionalItem = itemRepository.findById(job.getId());
+      if (optionalItem.isPresent()) {
+        Item item = optionalItem.get();
+        item.setStatus(ItemStatus.DELIVERED);
+        itemRepository.save(item);
+      } else {
+        System.out.println("item missing");
+        ResponseEntity.badRequest();
+      }
+      User userToUpdateScore = userRepository.findByUsername(securityUtils.getLoggedInUsername());
+      userToUpdateScore.setScore(userToUpdateScore.getScore() + 10);
+      userRepository.save(userToUpdateScore);
+      return ResponseEntity.ok().build();
     }
-    return ResponseEntity.ok().build();
+    return ResponseEntity.badRequest().build();
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity handOverJob(@RequestParam Long id){
+  public ResponseEntity handOverJob(@PathVariable Long id){
     Optional<Job> jobToDelete = jobRepository.findById(id);
     if(jobToDelete.isPresent()) {
       jobRepository.delete(jobToDelete.get());

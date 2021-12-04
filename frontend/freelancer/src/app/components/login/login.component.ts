@@ -23,11 +23,9 @@ export class LoginComponent implements OnInit {
     console.log("log"  + this.form.value)
     if (this.form.valid) {
       this.login();
-      this.submitEM.emit(this.form.value);
+      //this.submitEM.emit(this.form.value);
     }
-    if(this.authService.loggedIn == true){
-      this.router.navigate(['home'])
-    }
+    
   }
   @Input() error: string | null | undefined;
 

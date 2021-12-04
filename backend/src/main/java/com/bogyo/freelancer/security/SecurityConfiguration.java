@@ -93,12 +93,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,  "/swagger-ui/**").permitAll()
 
                 .antMatchers(HttpMethod.GET,  "/swagger-resources/**").permitAll()
-
-                .antMatchers(HttpMethod.GET, "/api/v1/user").permitAll()
+                .antMatchers(HttpMethod.GET, "/").permitAll()
+                .antMatchers(HttpMethod.GET, "/*.js", "/*.css", "/*.png", "/*.html", "/*.ttf", "/assets/**").permitAll()
+                //.antMatchers(HttpMethod.GET, "/api/v1/user").permitAll()
                 /*.antMatchers("/**").hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/**").hasRole("USER")*/
-                .anyRequest().permitAll();
+                .anyRequest().authenticated();
     }
 
     @Override
