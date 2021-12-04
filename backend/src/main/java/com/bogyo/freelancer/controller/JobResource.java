@@ -54,6 +54,7 @@ public class JobResource {
     job.setFreelancer(user);
     item.setStatus(ItemStatus.IN_PROGRESS);
     job.setItem(item);
+    itemRepository.save(item);
     return ResponseEntity.ok(jobRepository.save(job));
   }
 
@@ -62,8 +63,8 @@ public class JobResource {
     Optional<Job> optionalJob = jobRepository.findById(id);
     if(optionalJob.isPresent()) {
       Job job = optionalJob.get();
+      Optional<Item> optionalItem = itemRepository.findById(job.getItem().getId());
       jobRepository.delete(job);
-      Optional<Item> optionalItem = itemRepository.findById(job.getId());
       if (optionalItem.isPresent()) {
         Item item = optionalItem.get();
         item.setStatus(ItemStatus.DELIVERED);
@@ -75,7 +76,7 @@ public class JobResource {
       User userToUpdateScore = userRepository.findByUsername(securityUtils.getLoggedInUsername());
       userToUpdateScore.setScore(userToUpdateScore.getScore() + 10);
       userRepository.save(userToUpdateScore);
-      return ResponseEntity.ok().build();
+      return ResponseEntity.ok(job);
     }
     return ResponseEntity.badRequest().build();
   }
@@ -90,13 +91,11 @@ public class JobResource {
         Item updatedItem = itemToUpdate.get();
         updatedItem.setStatus(ItemStatus.TO_BE_DELIVERED);
         itemRepository.save(updatedItem);
+        return ResponseEntity.ok(jobToDelete.get());
       }else{
-        ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().build();
       }
     }
-    else {
-      ResponseEntity.badRequest().build();
-    }
-    return ResponseEntity.ok().build();
+    return ResponseEntity.badRequest().build();
   }
 }
