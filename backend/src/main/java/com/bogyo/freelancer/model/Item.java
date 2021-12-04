@@ -20,7 +20,7 @@ public class Item {
     private String properties;
 
     @Column(name = "destination")
-    private Point destination;
+    private String destination;
 
     @Column(name = "status")
     private String status;
@@ -46,11 +46,11 @@ public class Item {
         this.properties = properties;
     }
 
-    public Point getDestination() {
+    public String getDestination() {
         return destination;
     }
 
-    public void setDestination(Point destination) {
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 

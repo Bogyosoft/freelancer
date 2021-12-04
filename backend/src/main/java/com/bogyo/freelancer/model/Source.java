@@ -1,5 +1,6 @@
 package com.bogyo.freelancer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.geo.Point;
@@ -17,7 +18,7 @@ public class Source {
     private long id;
 
     @Column(name = "location")
-    private Point location;
+    private String location;
 
     @OneToOne
     @JoinColumn(name = "fk_owner", nullable = false)
@@ -32,11 +33,11 @@ public class Source {
         this.id = id;
     }
 
-    public Point getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Point location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 

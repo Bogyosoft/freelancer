@@ -1,24 +1,67 @@
 package com.bogyo.freelancer.controller;
 
 import com.bogyo.freelancer.model.User;
-import com.bogyo.freelancer.service.UserService;
+import com.bogyo.freelancer.repository.UserRepository;
+
+import java.util.List;
+
+import com.bogyo.freelancer.security.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@RestController("api/v1/user")
+@RestController
+@RequestMapping("api/v1/user")
 @EnableSwagger2
 public class UserResource {
 
     @Autowired
-    UserService userService;
+    UserRepository userRepository;
+
+    @Autowired
+    SecurityUtils securityUtils;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserResource.class);
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
-        userService.createUser(user);
-        return new ResponseEntity.ok(user);
+        logger.info("User {} {} {}",user.getUsername(),user.getPassword(),user.getRole());
+        if(userRepository.findByUsername(user.getUsername()) != null)
+                return ResponseEntity.badRequest().build();
+        user.setRole("ROLE_USER");
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        logger.info("User {} {} {}",user.getUsername(),user.getPassword(),user.getRole());
+        User dbUser = userRepository.findByUsername(user.getUsername());
+        if(dbUser == null)
+            return ResponseEntity.badRequest().build();
+        dbUser.setPassword(user.getPassword());
+        userRepository.save(dbUser);
+        return  ResponseEntity.ok(user);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> getUsers(){
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteUser(@PathVariable Long id){
+        userRepository.delete(userRepository.findById(id).get());
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/loggedin")
+    public ResponseEntity<String> getLoggedInUsername(){
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().iterator().next().toString());
+        return ResponseEntity.ok(securityUtils.getLoggedInUsername());
     }
 }

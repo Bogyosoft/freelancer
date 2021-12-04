@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "password": "password",
+  "role": "string",
+  "score": 1,
+  "username": "username"
+}
