@@ -41,7 +41,6 @@
 		29DE5DC22724A3E900431A75 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DC12724A3E900431A75 /* Settings.swift */; };
 		29DE5DC42724A43700431A75 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DE5DC32724A43700431A75 /* UpdateStore.swift */; };
 		29E548DD2715DE5400033FD6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548DC2715DE5400033FD6 /* Item.swift */; };
-		29E548E327170BD000033FD6 /* MainUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E548E227170BD000033FD6 /* MainUIView.swift */; };
 		29EA5FA4274656260080A250 /* JobListUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA5FA3274656260080A250 /* JobListUIView.swift */; };
 		29EA5FA6274657CD0080A250 /* CreateNewJobUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA5FA5274657CD0080A250 /* CreateNewJobUIView.swift */; };
 		29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */; };
@@ -96,7 +95,6 @@
 		29DE5DC12724A3E900431A75 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		29DE5DC32724A43700431A75 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 		29E548DC2715DE5400033FD6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		29E548E227170BD000033FD6 /* MainUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIView.swift; sourceTree = "<group>"; };
 		29EA5FA3274656260080A250 /* JobListUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListUIView.swift; sourceTree = "<group>"; };
 		29EA5FA5274657CD0080A250 /* CreateNewJobUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJobUIView.swift; sourceTree = "<group>"; };
 		29EACD002720448300A433D9 /* ProfileUpdateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateUIView.swift; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				29DE5DB227249F7C00431A75 /* HomeList.swift */,
 				29DE5DBB2724A29600431A75 /* BlurView.swift */,
 				29DE5DB027249EF500431A75 /* Home.swift */,
-				29E548E227170BD000033FD6 /* MainUIView.swift */,
 				29DE5DAE27249EC100431A75 /* ModernMainMenu.swift */,
 				29B5FB1B273A6B6F00327744 /* newJobnewItempopUPUIView.swift */,
 			);
@@ -546,7 +543,6 @@
 				2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */,
 				29F281DD274060BB00E63E63 /* ResponseData.swift in Sources */,
 				29F286FD27415BB300578D8E /* ItemData.swift in Sources */,
-				29E548E327170BD000033FD6 /* MainUIView.swift in Sources */,
 				29DE5DBA2724A26900431A75 /* ContentView.swift in Sources */,
 				29F281D9273F0AD600E63E63 /* DataHandler.swift in Sources */,
 				29F281D3273EF85000E63E63 /* Source.swift in Sources */,

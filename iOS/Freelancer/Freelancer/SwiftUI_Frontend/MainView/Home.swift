@@ -54,7 +54,7 @@ struct Home: View {
           
           if showPopUp
           {
-              newJobnewItempopUPUIView(showPopUp: $showPopUp).padding(.top, 135)
+              newJobnewItempopUPUIView(showPopUp: $showPopUp).padding(.top, 130).padding(.trailing,30)
                   
           }
           
@@ -71,15 +71,34 @@ struct Home: View {
        }
       .background(Color("background"))
       .edgesIgnoringSafeArea(.all)
+      .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                          .onEnded({ value in
+                              if value.translation.width < 0 {
+                                  // left
+                                  
+                              }
+
+                              if value.translation.width > 0 {
+                                  // right
+                                  self.show.toggle()
+                              }
+                              if value.translation.height < 0 {
+                                  // up
+                              }
+
+                              if value.translation.height > 0 {
+                                  // down
+                              }
+                          }))
       
    }
+    
 }
 
 #if DEBUG
 struct Home_Previews: PreviewProvider {
    static var previews: some View {
       Home()
-         //.previewDevice("iPhone X")
    }
 }
 #endif
@@ -113,11 +132,12 @@ struct Menu: Identifiable {
 
 let menuData = [
    Menu(title: "Profil", icon: "person.crop.circle"),
-   Menu(title: "Beállítások", icon: "gear"),
-   Menu(title: "Fizetés", icon: "creditcard"),
+   
+   //Menu(title: "Fizetés", icon: "creditcard"),
    Menu(title: "Munkák", icon: "hammer"),
-   Menu(title: "Szállítmányok", icon: "giftcard"),
+   Menu(title: "Szállítmányok", icon: "bag"),
    //Menu(title: "Team", icon: "person.2"),
+   Menu(title: "Beállítások", icon: "gear"),
    Menu(title: "Kijelentkezés", icon: "arrow.uturn.down")
 ]
 
@@ -133,7 +153,14 @@ struct MenuView: View {
 
    var body: some View {
       return HStack {
+          
          VStack(alignment: .leading) {
+             
+             Text(String(describing: UserSettingsWorker.shared.loadUserSettings(key: "userName") as! String))
+               .font(.largeTitle)
+               .fontWeight(.heavy)
+               .padding(.bottom, 30)
+             
             ForEach(menu) { item in
                if item.title == "Beállítások"
                 {
@@ -205,6 +232,24 @@ struct MenuView: View {
          Spacer()
       }
       .padding(.top, statusBarHeight)
+      .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                          .onEnded({ value in
+                              if value.translation.width < 0 {
+                                  // left
+                                  self.show.toggle()
+                              }
+
+                              if value.translation.width > 0 {
+                                  // right
+                              }
+                              if value.translation.height < 0 {
+                                  // up
+                              }
+
+                              if value.translation.height > 0 {
+                                  // down
+                              }
+                          }))
    }
 }
 
@@ -259,10 +304,10 @@ struct MenuRight: View {
                 //CircleButton(icon: "person.crop.circle").sheet(isPresented: self.$show) { ProfileUpdateUIView() }
                 CircleButton(icon: "plus.circle")//.sheet(isPresented: self.$show) { newJobnewItempopUPUIView() }
             }
-            Button(action: { self.showUpdate.toggle() }) {
+            /*Button(action: { self.showUpdate.toggle() }) {
                CircleButton(icon: "bell")
                   .sheet(isPresented: self.$showUpdate) { UpdateList() }
-            }
+            }*/
          }
          Spacer()
       }

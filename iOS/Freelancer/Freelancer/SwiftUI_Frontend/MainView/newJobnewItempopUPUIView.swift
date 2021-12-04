@@ -50,18 +50,16 @@ struct newJobnewItempopUPUIView: View {
 
                 //}
             }
-            
-            
             .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 120)
             .background(Color(red: 242 / 255, green: 242 / 255, blue: 242 / 255))
             .cornerRadius(20)
-        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topTrailing)
             
     }
 }
 
-/*struct newJobnewItempopUPUIView_Previews: PreviewProvider {
+struct newJobnewItempopUPUIView_Previews: PreviewProvider {
     static var previews: some View {
-        newJobnewItempopUPUIView()
+        newJobnewItempopUPUIView(showPopUp: .constant(true))
     }
-}*/
+}

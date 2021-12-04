@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateNewItemUIView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var settings = UserSettingsWorker.shared
     
     @State var destination: String = ""
@@ -108,8 +109,10 @@ struct CreateNewItemUIView: View {
                         withAnimation()
                         {
                             UserSettingsWorker.shared.itemCreationSuccess.toggle()
+                             
                         }
                     })
+                    presentationMode.wrappedValue.dismiss()
                     
                 }).opacity(0.9).transition(.opacity)
             }
