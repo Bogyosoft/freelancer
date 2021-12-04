@@ -6,16 +6,6 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Search in results..." #input>
     </mat-form-field>
 
-
-    <mat-form-field *ngFor="let column of displayedColumns" style="margin-right: 10px;">
-        <mat-label>Filter {{column}}</mat-label>
-        <mat-select multiple  (selectionChange)="columnFilterChange($event.value, column)">
-            <mat-option *ngFor="let element of distinct(tableData.data,column)" [value]="element">
-                {{element[column]}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
     <table mat-table [dataSource]="tableData" multiTemplateDataRows  matSort  class="mat-elevation-z8" cdkDropList
     cdkDropListLockAxis="x"
     cdkDropListOrientation="horizontal"

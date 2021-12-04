@@ -3,6 +3,7 @@ package com.bogyo.freelancer.component;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 import com.bogyo.freelancer.TestDataLoader;
+import com.bogyo.freelancer.enums.ItemStatus;
 import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.model.Job;
 import com.bogyo.freelancer.model.Source;
@@ -98,7 +99,7 @@ public class JobResourceComponentTests {
     item.setProperties("properties");
     item.setDestination("dest");
     item.setSource(getMockSource());
-    item.setStatus("OK");
+    item.setStatus(ItemStatus.TO_BE_DELIVERED);
     item.setId(1);
     return item;
   }

@@ -33,7 +33,7 @@ export class JobTableComponent implements OnInit {
     if(this.httpCall){
       this.httpCall.unsubsribe();
     }
-    this.service.getUsers().subscribe(data=>{
+    this.service.getJobs().subscribe(data=>{
       console.log(data)
       this.jobs = data;
     })

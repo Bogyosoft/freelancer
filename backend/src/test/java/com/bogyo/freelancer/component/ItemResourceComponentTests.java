@@ -2,6 +2,7 @@ package com.bogyo.freelancer.component;
 
 import com.bogyo.freelancer.TestDataLoader;
 import com.bogyo.freelancer.controller.UserResource;
+import com.bogyo.freelancer.enums.ItemStatus;
 import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.model.Source;
 import com.bogyo.freelancer.model.User;
@@ -96,7 +97,7 @@ public class ItemResourceComponentTests {
         item.setProperties("properties");
         item.setDestination("dest");
         item.setSource(getMockSource());
-        item.setStatus("OK");
+        item.setStatus(ItemStatus.TO_BE_DELIVERED);
         return item;
     }
 }

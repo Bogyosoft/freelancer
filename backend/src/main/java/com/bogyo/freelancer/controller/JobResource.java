@@ -1,8 +1,10 @@
 package com.bogyo.freelancer.controller;
 
+import com.bogyo.freelancer.enums.ItemStatus;
 import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.model.Job;
 import com.bogyo.freelancer.model.User;
+import com.bogyo.freelancer.repository.ItemRepository;
 import com.bogyo.freelancer.repository.JobRepository;
 import java.util.List;
 import java.util.Optional;
@@ -26,13 +28,15 @@ public class JobResource {
   @Autowired
   private SecurityUtils securityUtils;
 
+  @Autowired
+  private ItemRepository itemRepository;
+
   @GetMapping
   public ResponseEntity<List<Job>> getJobs(){
     if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN")){
       ResponseEntity.ok(jobRepository.findAll());
     }
     List<Job> list = jobRepository.findByfreelancer(userRepository.findByUsername(securityUtils.getLoggedInUsername()));
-    list.removeIf(job -> job.getItem().getSource().getOwner().getUsername().equals(securityUtils.getLoggedInUsername()));
     return ResponseEntity.ok(list);
   }
 
@@ -48,7 +52,43 @@ public class JobResource {
     }
     Job job = new Job();
     job.setFreelancer(user);
+    item.setStatus(ItemStatus.IN_PROGRESS);
     job.setItem(item);
     return ResponseEntity.ok(jobRepository.save(job));
+  }
+
+  @DeleteMapping
+  public ResponseEntity deleteJob(@RequestBody Job job){
+    jobRepository.delete(job);
+    Optional<Item> optionalItem = itemRepository.findById(job.getId());
+    if(optionalItem.isPresent()){
+      Item item = optionalItem.get();
+      item.setStatus(ItemStatus.DELIVERED);
+      itemRepository.save(item);
+    }else{
+      System.out.println("item missing");
+      ResponseEntity.badRequest();
+    }
+    return ResponseEntity.ok().build();
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity handOverJob(@RequestParam Long id){
+    Optional<Job> jobToDelete = jobRepository.findById(id);
+    if(jobToDelete.isPresent()) {
+      jobRepository.delete(jobToDelete.get());
+      Optional<Item> itemToUpdate = itemRepository.findById(jobToDelete.get().getItem().getId());
+      if(itemToUpdate.isPresent()){
+        Item updatedItem = itemToUpdate.get();
+        updatedItem.setStatus(ItemStatus.TO_BE_DELIVERED);
+        itemRepository.save(updatedItem);
+      }else{
+        ResponseEntity.badRequest().build();
+      }
+    }
+    else {
+      ResponseEntity.badRequest().build();
+    }
+    return ResponseEntity.ok().build();
   }
 }

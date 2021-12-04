@@ -33,8 +33,7 @@ export class SourceTableComponent implements OnInit {
     if(this.httpCall){
       this.httpCall.unsubsribe();
     }
-    this.service.getUsers().subscribe(data=>{
-      console.log(data)
+    this.service.getSources().subscribe(data=>{
       this.sources = data;
     })
   }

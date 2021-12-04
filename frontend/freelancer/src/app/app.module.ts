@@ -22,7 +22,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
-import { FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 
 import {MatTableModule} from '@angular/material/table';
@@ -64,7 +64,9 @@ import { JobTableComponent } from './components/job-table/job-table.component';
     MatCardModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

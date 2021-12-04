@@ -9,10 +9,14 @@ import com.bogyo.freelancer.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api/v1/user")
@@ -63,5 +67,18 @@ public class UserResource {
     public ResponseEntity<String> getLoggedInUsername(){
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().iterator().next().toString());
         return ResponseEntity.ok(securityUtils.getLoggedInUsername());
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity logout(HttpServletResponse response){
+        SecurityContextHolder.clearContext();
+        Cookie cookie = new Cookie("token", "deleted");
+        cookie.setPath("/");
+        //cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        response.addHeader("Access-Control-Expose-Headers", "Set-Cookie");
+        System.out.println("logout");
+        return ResponseEntity.ok().build();
     }
 }

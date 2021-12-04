@@ -35,7 +35,7 @@ export class ItemTableComponent implements OnInit {
     if(this.httpCall){
       this.httpCall.unsubsribe();
     }
-    this.service.getUsers().subscribe(data=>{
+    this.service.getItems().subscribe(data=>{
       console.log(data)
       this.items = data;
     })

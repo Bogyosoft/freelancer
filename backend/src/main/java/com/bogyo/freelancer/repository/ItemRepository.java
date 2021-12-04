@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item,Long>, JpaSpecificationExecutor<Item> {
     List<Item> findByproperties(String property);
+
+    List<Item> findByStatus(String status);
 }

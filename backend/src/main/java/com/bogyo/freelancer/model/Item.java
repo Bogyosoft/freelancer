@@ -1,8 +1,8 @@
 package com.bogyo.freelancer.model;
 
+import com.bogyo.freelancer.enums.ItemStatus;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class Item {
     private String destination;
 
     @Column(name = "status")
-    private String status;
+    private ItemStatus status;
 
     @OneToOne
     @JoinColumn(name = "fk_source", nullable = false)
@@ -54,11 +54,11 @@ public class Item {
         this.destination = destination;
     }
 
-    public String getStatus() {
+    public ItemStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ItemStatus status) {
         this.status = status;
     }
 

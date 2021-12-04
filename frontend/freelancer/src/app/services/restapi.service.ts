@@ -8,6 +8,7 @@ import { UserDto } from '../entities/user-dto';
   providedIn: 'root'
 })
 export class RestapiService {
+ 
 
   apiUrl?:string
 
@@ -38,5 +39,9 @@ export class RestapiService {
 
   public login(user:UserDto){
     return this.http.post(this.apiUrl + "/auth", user);
+  }
+
+  logout() {
+    return this.http.get(this.apiUrl + "/user/logout",{ withCredentials:true });
   }
 }

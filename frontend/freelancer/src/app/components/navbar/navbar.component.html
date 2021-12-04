@@ -2,6 +2,6 @@
   <button mat-button routerLink="/home">Home</button>
   <button mat-button routerLink="/profile">Profile</button>
   <span class="spacer"></span>
-  <button mat-button routerLink="/login">Login</button>
-  <button mat-button routerLink="/home" (click)="logout()">Logout</button>
+  <button *ngIf="!loggedIn()" mat-button routerLink="/login">Login</button>
+  <button *ngIf="loggedIn()" mat-button routerLink="/home" (click)="logout()">Logout</button>
 </mat-toolbar>
