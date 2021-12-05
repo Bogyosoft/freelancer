@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SourceDTO } from 'src/app/entities/source';
+import { Sourcew } from 'src/app/entities/sourcew';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
@@ -20,7 +22,7 @@ export class SourceTableComponent implements OnInit {
     'owner'
   ]
 
-  sources!:any;
+  sources:Sourcew[] = [];
 
   constructor(private service:RestapiService) { }
 
@@ -33,8 +35,18 @@ export class SourceTableComponent implements OnInit {
     if(this.httpCall){
       this.httpCall.unsubsribe();
     }
-    this.service.getSources().subscribe(data=>{
-      this.sources = data;
+    this.service.getSources().subscribe((data:SourceDTO[])=>{
+      data.forEach(s => {
+        let sources = []
+        let sourcew = new Sourcew();
+        sourcew.id = s.id;
+        sourcew.location = s.location
+        sourcew.owner = s.owner?.username
+        sources.push(sourcew)
+        this.sources = sources
+        console.log("souce")
+        console.log(this.sources)
+      })
     })
   }
 

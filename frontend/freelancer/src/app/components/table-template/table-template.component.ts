@@ -45,7 +45,7 @@ export class TableTemplateComponent implements OnInit, OnChanges {
         return a[val.active] > b[val.active] ? 1 : -1;
       })
       this.table.renderRows();
-    });
+    });   
   }
 
   setTableData(){

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../entities/user';
 import { UserDto } from '../entities/user-dto';
+import { SourceDTO } from '../entities/source';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class RestapiService {
   }
 
   public getSources(){
-    return this.http.get(this.apiUrl + "/sources", { withCredentials:true })
+    return this.http.get<SourceDTO[]>(this.apiUrl + "/sources", { withCredentials:true })
   }
 
   public getItems(){
