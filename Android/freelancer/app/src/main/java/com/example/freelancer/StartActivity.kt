@@ -20,7 +20,7 @@ class StartActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         setContentView(R.layout.activity_start)
-        window.setFlags(WindowManager.LayoutParams.SOFT_INPUT_IS_FORWARD_NAVIGATION, WindowManager.LayoutParams.SOFT_INPUT_IS_FORWARD_NAVIGATION)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         FreelancerApiClient.setContext(this.applicationContext as Application)
         FreelancerApiClient.initRetrofit()

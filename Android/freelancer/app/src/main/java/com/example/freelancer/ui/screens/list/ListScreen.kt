@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -26,7 +24,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.example.freelancer.data.model.IItem
+import com.example.freelancer.ui.screens.TopBar
+import com.example.freelancer.ui.theme.PrimaryColor
+import com.example.freelancer.ui.theme.PrimaryVariant
 import com.example.freelancer.ui.viewmodel.BaseViewModel
+import kotlinx.coroutines.launch
 
 
 @ExperimentalFoundationApi
@@ -39,8 +41,10 @@ fun MainList(
 ) {
     LaunchedEffect(Unit) {
         viewModel.fetch()
-
     }
+
+
+
     MainHeader(title = title)
 
     if (viewModel.list.value==null) {
@@ -94,7 +98,7 @@ fun MainHeader(title: String) {
     Surface(
         Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.background)
+            .background(PrimaryVariant)
 
     ) {
         Text(
@@ -104,8 +108,7 @@ fun MainHeader(title: String) {
             fontSize = 40.sp,
             color = Color.White,
             modifier = Modifier
-                .alpha(0.7f)
-                .background(Color.Red)
+                .background(PrimaryVariant)
                 .padding(10.dp)
 
         )

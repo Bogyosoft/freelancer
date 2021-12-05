@@ -16,8 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.example.freelancer.MainActivity
 import com.example.freelancer.ui.theme.PrimaryColor
 import android.content.Intent
-
-
+import androidx.compose.foundation.Image
+import androidx.compose.material.Divider
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
+import com.example.freelancer.R
 
 
 class ComposeView @JvmOverloads constructor(
@@ -27,7 +32,14 @@ class ComposeView @JvmOverloads constructor(
 ) : AbstractComposeView(context, attrs, defStyleAttr) {
     @Composable
     override fun Content() {
-        Column() {
+        Column(modifier = Modifier.padding(0.dp,0.dp,0.dp,100.dp)) {
+            Image(
+                painter = painterResource(R.mipmap.appicon_foreground),
+                contentDescription = "App icon",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+            )
             Button(
                 onClick = {
                     val i = Intent(context, MainActivity::class.java)

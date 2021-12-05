@@ -4,12 +4,12 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.freelancer.data.model.IItem
 import com.example.freelancer.data.model.Item
-import com.example.freelancer.data.repository.IRepository
-import com.example.freelancer.utils.ServiceLocatior
+import com.example.freelancer.utils.RepositoryService
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ItemViewModel: BaseViewModel(){
-    private var repository = ServiceLocatior.getItemRepository()
+class ItemViewModel :BaseViewModel()  {
+    private var repository = RepositoryService.getItemRepository()
 
     fun createItem(item: Item):Item?{
         var result:Item? = null
@@ -28,23 +28,13 @@ class ItemViewModel: BaseViewModel(){
         return result
     }
 
-
     override fun itemClicked(item: IItem) {
         clickedItem = item
     }
 
     override suspend fun fetch() {
         viewModelScope.launch {
-            val response = repository.fetchItems()
-            when (response) {
-                is IRepository.Result.Success -> {
-                    list.value = response.list as List<IItem>
-                    Log.d("itemsviewmodel", "Success ${list.value?.size}")
-                }
-                is IRepository.Result.Failure -> {
-                    Log.d("itemsviewmodel", "FAILURE")
-                }
-            }
+            repository.fetchItems().collect { items -> list.value = items }
         }
     }
 }
