@@ -4,7 +4,7 @@
 //
 //  Created by Kiss Dániel Márk on 2021. 11. 12..
 //
-
+//
 import Foundation
 
 class Source: Transferable

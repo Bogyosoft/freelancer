@@ -4,7 +4,7 @@
 //
 //  Created by Kiss Dániel Márk on 2021. 11. 14..
 //
-
+//
 import Foundation
 
 class UserData: Codable
@@ -22,12 +22,3 @@ class UserData: Codable
     }
 }
 
-/*
-class receivedUserData: Codable
-{
-    let id: Int
-    let role: String
-    let score: Int
-    let username: String
-}
-*/

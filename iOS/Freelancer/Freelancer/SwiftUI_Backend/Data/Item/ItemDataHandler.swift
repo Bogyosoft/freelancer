@@ -4,6 +4,7 @@
 //
 //  Created by Kiss Dániel Márk on 2021. 11. 09..
 //
+//
 
 import Foundation
 import Alamofire

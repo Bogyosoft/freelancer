@@ -4,7 +4,7 @@
 //
 //  Created by Kiss Dániel Márk on 2021. 10. 23..
 //
-
+//
 import SwiftUI
 
 struct Settings: View {
