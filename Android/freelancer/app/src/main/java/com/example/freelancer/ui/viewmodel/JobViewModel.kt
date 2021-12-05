@@ -5,12 +5,12 @@ import androidx.lifecycle.*
 import com.example.freelancer.data.model.IItem
 import com.example.freelancer.data.model.Item
 import com.example.freelancer.data.model.JobItem
-import com.example.freelancer.data.repository.IRepository
-import com.example.freelancer.utils.ServiceLocatior
+import com.example.freelancer.utils.RepositoryService
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class JobViewModel : BaseViewModel() {
-    private var repository = ServiceLocatior.getJobRepository()
+class JobViewModel  : BaseViewModel() {
+    private var repository = RepositoryService.getJobRepository()
 
     fun createJobs(job: Item) {
         viewModelScope.launch {
@@ -31,17 +31,7 @@ class JobViewModel : BaseViewModel() {
 
     override suspend fun fetch() {
         viewModelScope.launch {
-            val response = repository.getJobs()
-            when (response) {
-                is IRepository.Result.Success -> {
-
-                    Log.d("JobViewModel", "Success")
-                    list.value = response.list as List<IItem>
-                }
-                is IRepository.Result.Failure -> {
-                    Log.d("JobViewModel", "FAILURE")
-                }
-            }
+            repository.getJobs().collect { jobs -> list.value = jobs }
         }
     }
 }

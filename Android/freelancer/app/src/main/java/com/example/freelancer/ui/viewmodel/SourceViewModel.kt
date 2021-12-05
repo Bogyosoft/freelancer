@@ -6,38 +6,32 @@ import androidx.lifecycle.viewModelScope
 import com.example.freelancer.data.model.Source
 import com.example.freelancer.data.model.Item
 import com.example.freelancer.data.network.FreelancerApiClient
-import com.example.freelancer.data.repository.FreeLancerRepository
+import com.example.freelancer.utils.RepositoryService
 import kotlinx.coroutines.launch
 
-class SourceViewModel: ViewModel(){
-    private val apiService = FreelancerApiClient.service
-    private lateinit var repository: FreeLancerRepository
+class SourceViewModel: ViewModel() {
+    private  var repository = RepositoryService.getItemRepository()
 
-     fun createSource(source: Source,destination: String, properties : String): Source? {
-        var result:Source? = null
+    fun createSource(source: Source, destination: String, properties: String): Source? {
+        var result: Source? = null
 
-        repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
             result = repository.createSource(source = source) {
                 if (it?.id != null) {
-                    Log.d("source","success ")
+                    Log.d("source", "success ")
 
-
-                    val item = Item(destination = destination,
-                        id=0,
-                        properties =properties,
+                    val item = Item(
+                        destination = destination,
+                        id = 0,
+                        properties = properties,
                         source = it,
                         //status = "New"
                     )
                     val itemViewModel = ItemViewModel()
                     itemViewModel.createItem(item)
 
-
-
-
-
                 } else {
-                    Log.d("source","failure ")
+                    Log.d("source", "failure ")
                 }
             }
         }

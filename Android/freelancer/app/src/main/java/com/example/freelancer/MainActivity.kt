@@ -32,9 +32,10 @@ import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
-    companion object{
+    companion object {
         lateinit var screen: String
         var location: String = ""
+        var mapData = mutableMapOf("location" to "", "destination" to "")
     }
 
     @ExperimentalFoundationApi
@@ -49,35 +50,48 @@ class MainActivity : ComponentActivity() {
             FreelancerTheme {
                 // A surface container using the 'background' color from the theme
                 //LoginScreen()
-                Freelancer(this,this,this)
+                Freelancer(this, this, this)
             }
         }
 
     }
-    override fun onActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
-        if (requestCode == Constants.PLACE_PICKER_REQUEST) {
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 0) {
             if (resultCode == Activity.RESULT_OK) {
                 val addressData = data?.getParcelableExtra<AddressData>(Constants.ADDRESS_INTENT)
-                location = addressData.toString()
-                Log.d("PlacePicker", location)
+
+                mapData["location"] = addressData.toString()
+
+
 
             }
+
+        } else if (requestCode == 1) {
+            val addressData = data?.getParcelableExtra<AddressData>(Constants.ADDRESS_INTENT)
+
+            mapData["destination"] = addressData.toString()
+
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+        Log.d("PlacePicker location", mapData.get("location").toString())
+        Log.d("PlacePicker destination", mapData.get("destination").toString())
     }
 
 
 }
+
 @ExperimentalFoundationApi
 @Composable
-fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner,activity:MainActivity){
+fun Freelancer(context: Context, lifecycleOwner: LifecycleOwner, activity: MainActivity) {
     val registerViewModel = RegisterViewModel()
     val navController = rememberNavController()
     val userViewModel = UsersViewModel()
     val jobViewModel = JobViewModel()
     val loginViewModel = LoginViewModel()
     val itemViewModel = ItemViewModel()
+
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val openDrawer = {
@@ -98,7 +112,7 @@ fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner,activity:MainActi
                         drawerState.close()
                     }
                     navController.navigate(route) {
-                        popUpTo( navController.graph.startDestinationId)
+                        popUpTo(navController.graph.startDestinationId)
                         launchSingleTop = true
                     }
                 }
@@ -108,24 +122,60 @@ fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner,activity:MainActi
 
 
         NavHost(navController = navController, startDestination = MainActivity.screen) {
-            composable("Login") { LoginScreen(navController,loginViewModel) }
-            composable("CreateJob") { CreateJobScreen(navController,activity) }
-            composable("Register") { RegisterScreen(navController,registerViewModel) }
-            composable("Main") { MainScreen(navController,openDrawer) }
+            composable("Login") { LoginScreen(navController, loginViewModel) }
+            composable("CreateJob") { CreateJobScreen(navController, activity) }
+            composable("Register") { RegisterScreen(navController, registerViewModel) }
+            composable("Main") { MainScreen(navController, openDrawer) }
 
-            composable("UserList"){ MainList(navController = navController, viewModel = userViewModel,lifecycleOwner,"Users") }
-            composable("userDetails"){ userViewModel.clickedItem.Details(item = userViewModel.clickedItem,navController)}
+            composable("UserList") {
+                MainList(
+                    navController = navController,
+                    viewModel = userViewModel,
+                    lifecycleOwner,
+                    "Users"
+                )
+            }
+            composable("userDetails") {
+                userViewModel.clickedItem.Details(
+                    item = userViewModel.clickedItem,
+                    navController
+                )
+            }
 
-            composable("jobDetails"){ jobViewModel.clickedItem.Details(item = jobViewModel.clickedItem,navController)}
-            composable("JobList"){ MainList(navController = navController, viewModel = jobViewModel,lifecycleOwner,"Your Jobs") }
+            composable("jobDetails") {
+                jobViewModel.clickedItem.Details(
+                    item = jobViewModel.clickedItem,
+                    navController
+                )
+            }
+            composable("JobList") {
+                MainList(
+                    navController = navController,
+                    viewModel = jobViewModel,
+                    lifecycleOwner,
+                    "Your Jobs"
+                )
+            }
 
-            composable("itemsDetails"){ itemViewModel.clickedItem.Details(item = itemViewModel.clickedItem,navController)}
-            composable("Items"){ MainList(navController = navController, viewModel = itemViewModel,lifecycleOwner,"Available Jobs") }
+            composable("itemsDetails") {
+                itemViewModel.clickedItem.Details(
+                    item = itemViewModel.clickedItem,
+                    navController
+                )
+            }
+            composable("Items") {
+                MainList(
+                    navController = navController,
+                    viewModel = itemViewModel,
+                    lifecycleOwner,
+                    "Available Jobs"
+                )
+            }
 
-            composable("SignOut"){
+            composable("SignOut") {
                 val i = Intent(context, StartActivity::class.java)
-                i.flags=FLAG_ACTIVITY_NEW_TASK
-                ActiveUser.token=""
+                i.flags = FLAG_ACTIVITY_NEW_TASK
+                ActiveUser.token = ""
                 context.startActivity(i)
             }
         }

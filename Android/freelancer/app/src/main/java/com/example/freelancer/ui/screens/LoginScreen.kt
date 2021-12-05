@@ -1,6 +1,7 @@
 package com.example.freelancer.ui.screens
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,11 +13,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.utils.ActiveUser
 import com.example.freelancer.MainActivity
+import com.example.freelancer.R
 import com.example.freelancer.data.model.UserDTO
 import com.example.freelancer.data.model.UserItem
 import com.example.freelancer.data.network.FreelancerApiClient
@@ -32,8 +35,7 @@ import retrofit2.Response
 
 //https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
 @Composable
-fun LoginScreen(navController: NavHostController,loginViewModel: LoginViewModel) {
-    val context = LocalContext.current
+fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel) {
     val email = remember { mutableStateOf(TextFieldValue()) }
     val emailErrorState = remember { mutableStateOf(false) }
     val passwordErrorState = remember { mutableStateOf(false) }
@@ -47,41 +49,33 @@ fun LoginScreen(navController: NavHostController,loginViewModel: LoginViewModel)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
     ) {
+
+        Image(
+            painter = painterResource(R.mipmap.appicon_foreground),
+            contentDescription = "box",
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.25F)
+            ,
+        )
         title("Sign in")
 
-        inputField(email,emailErrorState,"Email")
+        inputField(email, emailErrorState, "Email")
 
-        passwordField(password,passwordVisibility,passwordErrorState)
+        passwordField(password, passwordVisibility, passwordErrorState)
 
-        loginButton(passwordErrorState,password,email,emailErrorState,navController,loginViewModel)
-        
-        elseButton(text = "Register?",navController)
-        
+        loginButton(
+            passwordErrorState,
+            password,
+            email,
+            emailErrorState,
+            navController,
+        )
+
+        elseButton(text = "Register?", navController)
+
     }
 }
-/*
-*
-suspend fun login(userDTO: UserDTO):Boolean{
-    val apiService = FreelancerApiClient.service
-    var repository = FreeLancerRepository(apiService)
-
-
-    val res = GlobalScope.async  {
-        repository.login(userDTO) {
-            if (it?.equals(null) ?: (true)) {
-                Log.d("login model","failure ")
-                return@login false
-            } else {
-                Log.d("login model","succes ")
-                return@login true
-
-            }
-        }
-    }
-
-    return res.await()
-}
-* */
 
 @Composable
 fun loginButton(
@@ -90,11 +84,10 @@ fun loginButton(
     email: MutableState<TextFieldValue>,
     emailErrorState: MutableState<Boolean>,
     navController: NavHostController,
-    loginViewModel: LoginViewModel
-)
-{
-    val (showDialog,setShowDialog) = remember { mutableStateOf(false)}
-    loginDialog(showDialog,setShowDialog)
+) {
+    val loginViewModel = LoginViewModel()
+    val (showDialog, setShowDialog) = remember { mutableStateOf(false) }
+    loginDialog(showDialog, setShowDialog)
     Button(
         onClick = {
             when {
@@ -107,42 +100,31 @@ fun loginButton(
                 else -> {
                     passwordErrorState.value = false
                     emailErrorState.value = false
+                    loginViewModel.loginUser(
+                        UserDTO(
+                            email.value.text,
+                            password.value.text
+                        ),
+                        onFailure = {
+                            setShowDialog(true)
+                        },
+                        onSuccess = {
+                            if (!ActiveUser.token.equals("null")) {
+                                ActiveUser.user =
+                                    UserItem(
+                                        0,
+                                        password.value.text,
+                                        "",
+                                        0,
+                                        email.value.text
+                                    )
 
-                   FreelancerApiClient.service.login(UserDTO(email.value.text,password.value.text))
-                        .enqueue(object : Callback<UserDTO> {
-                            override fun onFailure(call: Call<UserDTO>, t: Throwable) {
-                                setShowDialog(true)
-                            }
-                            override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
-                                val user = response.body()
+                                MainActivity.screen = "Main"
+                                navController.navigate("Main")
+                            } else setShowDialog(true)
+                        }
 
-                                response.headers().get("Set-Cookie")?.let { Log.d("login token", it) }
-                                ActiveUser.token =response.headers().get("Set-Cookie").toString()
-                                Log.d("login", ActiveUser.token)
-                                if(!ActiveUser.token.equals("null")){
-                                    ActiveUser.user = UserItem(0,password.value.text,"",0,email.value.text)
-
-                                    MainActivity.screen ="Main"
-                                    navController.navigate("Main")
-                                }
-                                else setShowDialog(true)
-
-
-                            }
-                        })
-
-
-                    /*
-                    *
-                    if(loginViewModel.loginUser(UserDTO(email.value.text,password.value.text))){
-                        Log.d("navButton", "navigate")
-                        MainActivity.screen ="Main"
-                        navController.navigate("Main")
-                    }
-                    else{
-                        setShowDialog(true)
-                    }
-                    * */
+                    )
 
                 }
             }
@@ -161,6 +143,7 @@ fun loginButton(
 
 }
 
+
 @Composable
 fun loginDialog(showDialog: Boolean, setShowDialog: (Boolean) -> Unit) {
     if (showDialog) {
@@ -178,16 +161,20 @@ fun loginDialog(showDialog: Boolean, setShowDialog: (Boolean) -> Unit) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(width = 2.dp, color = PrimaryColor, shape = RoundedCornerShape(50.dp))
+                        .border(
+                            width = 2.dp,
+                            color = PrimaryColor,
+                            shape = RoundedCornerShape(50.dp)
+                        )
                         .height(50.dp)
                 ) {
                     Text(text = "Try again", color = PrimaryColor)
                 }
             },
             text = {
-                Text(text = "Email adress or password incorrect",color = PrimaryColor)
+                Text(text = "Email adress or password incorrect", color = PrimaryColor)
             },
 
-        )
+            )
     }
 }

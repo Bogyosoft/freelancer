@@ -2,8 +2,6 @@ package com.example.freelancer.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
-val PrimaryColor = Color.Red
+val PrimaryVariant = Color(0xFF2979FF)
+val Secondary = Color(0xFFFF9100)
+val PrimaryColor = Color(0xFF2979FF)

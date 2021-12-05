@@ -1,5 +1,6 @@
 package com.example.freelancer.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -11,11 +12,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.utils.ActiveUser
 import com.example.freelancer.MainActivity
+import com.example.freelancer.R
 import com.example.freelancer.data.model.Source
 import com.example.freelancer.ui.parts.MapField
 import com.example.freelancer.ui.parts.inputField
@@ -37,13 +40,23 @@ fun CreateJobScreen(navController: NavHostController,activity: MainActivity) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(20.dp),
         verticalArrangement = Arrangement.Center,
     ) {
-        sourcelocation.value = TextFieldValue(MainActivity.location)
+        Image(
+            painter = painterResource(R.mipmap.box_foreground),
+            contentDescription = "box",
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.25F)
+                ,
+        )
+        sourcelocation.value = TextFieldValue(MainActivity.mapData["location"] ?:"")
+        destination.value = TextFieldValue(MainActivity.mapData["destination"] ?:"")
+
         title(title = "Create Job")
-        inputField(input = destination, ErrorState =destinationErrorState , text = "Destination" )
-        MapField(input = sourcelocation, ErrorState =sourcelocationErrorState , text = "Source Location",activity)
+        MapField(input = destination, ErrorState =destinationErrorState , text = "Destination",activity)
+        MapField(input = sourcelocation, ErrorState =sourcelocationErrorState , text = "Location",activity)
         inputField(input = properties, ErrorState =propertiesErrorState , text = "Properties" )
 
         CreateJobButton(destinationErrorState,destination,sourcelocation,sourcelocationErrorState,properties,propertiesErrorState,"Create",navController)

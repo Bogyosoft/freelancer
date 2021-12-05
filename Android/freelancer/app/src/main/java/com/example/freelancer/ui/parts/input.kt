@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
 import com.example.freelancer.MainActivity
 import com.example.freelancer.ui.theme.PrimaryColor
+import com.example.freelancer.ui.theme.Secondary
 import com.sucho.placepicker.Constants
 import com.sucho.placepicker.MapType
 import com.sucho.placepicker.PlacePicker
@@ -81,7 +82,7 @@ fun MapField(
             IconButton(onClick = {
                 val intent = PlacePicker.IntentBuilder()
                     .setLatLong(40.748672, -73.985628)  // Initial Latitude and Longitude the Map will load into
-                    .showLatLong(true)  // Show Coordinates in the Activity
+                    .showLatLong(false)  // Show Coordinates in the Activity
                     .setMapZoom(12.0f)  // Map Zoom Level. Default: 14.0
                     .setAddressRequired(true) // Set If return only Coordinates if cannot fetch Address for the coordinates. Default: True
                     .hideMarkerShadow(true) // Hides the shadow under the map marker. Default: False
@@ -93,16 +94,15 @@ fun MapField(
                     //.setBottomViewColor(R.color.bottomViewColor) // Change Address View Background Color (Default: White)
                     //.setMapRawResourceStyle(R.raw.map_style)  //Set Map Style (https://mapstyle.withgoogle.com/)
                     .setMapType(MapType.NORMAL)
-                    .setPlaceSearchBar(true, Constants.GOOGLE_API_KEY) //Activate GooglePlace Search Bar. Default is false/not activated. SearchBar is a chargeable feature by Google
-                    .onlyCoordinates(true)  //Get only Coordinates from Place Picker
+                    .setPlaceSearchBar(false, Constants.GOOGLE_API_KEY) //Activate GooglePlace Search Bar. Default is false/not activated. SearchBar is a chargeable feature by Google
+                    .onlyCoordinates(false)  //Get only Coordinates from Place Picker
                     .hideLocationButton(true)   //Hide Location Button (Default: false)
                     .disableMarkerAnimation(true)   //Disable Marker Animation (Default: false)
                     .build(activity)
-
                 ActivityCompat.startActivityForResult(
                     activity,
                     intent,
-                    Constants.PLACE_PICKER_REQUEST,
+                    if(text.lowercase() =="location") 0 else 1,
                     null
                 )
 
@@ -111,7 +111,7 @@ fun MapField(
                 Icon(
                     Icons.Default.Map,
                     "Map",
-                    tint = PrimaryColor
+                    tint = Secondary
                 )
             }
         },

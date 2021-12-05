@@ -1,16 +1,14 @@
 package com.example.freelancer.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.freelancer.data.model.IItem
-import com.example.freelancer.data.repository.IRepository
-import com.example.freelancer.utils.ServiceLocatior
+import com.example.freelancer.utils.RepositoryService
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UsersViewModel() : BaseViewModel() {
 
-    private var repository = ServiceLocatior.getUserRepository()
-
+    private var repository = RepositoryService.getUserRepository()
 
     override fun itemClicked(item: IItem) {
         clickedItem = item
@@ -18,17 +16,7 @@ class UsersViewModel() : BaseViewModel() {
 
     override suspend fun fetch() {
         viewModelScope.launch {
-            val response = repository.getAllUsers()
-            when (response) {
-                is IRepository.Result.Success -> {
-
-                    Log.d("MainViewModel", "Success")
-                    list.value = response.list as List<IItem>
-                }
-                is IRepository.Result.Failure -> {
-                    Log.d("MainViewModel", "FAILURE")
-                }
-            }
+            repository.getAllUsers().collect { users -> list.value = users }
         }
     }
 }
