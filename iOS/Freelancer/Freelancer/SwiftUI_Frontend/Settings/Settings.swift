@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Settings: View {
 
-   @State var receive = false
+    @State var receive = false
    @State var number = 1
    @State var selection = 1
    @State var date = Date()
@@ -33,9 +33,16 @@ struct Settings: View {
                Text("Date")
             })*/
             Section(header: Text("Autologin")) {
-                Toggle(isOn: $receive) {
-                   Text("Automatikus bejelentkezés")
+                Toggle(isOn: $receive)
+                {
+                    Text("Automatikus bejelentkezés").foregroundColor(Color.black)
                 }
+                .toggleStyle(SwitchToggleStyle(tint: Color.yellowCustom))
+                .onChange(of: receive) { value in
+                            //perform your action here...
+                            print(value)
+                    UserSettingsWorker.shared.saveUserSettings(value: value, key: "automataLogin")
+                        }
             }
             /*Button(action: { self.submit.toggle() }) {
                Text("Submit")
@@ -46,7 +53,10 @@ struct Settings: View {
              Text("Settings")*/
          }
          .navigationBarTitle("Beállítások")
-      }
+      }.onAppear
+       {
+           self.receive = UserSettingsWorker.shared.loadUserSettings(key: "automataLogin") as! Bool
+       }
    }
 }
 

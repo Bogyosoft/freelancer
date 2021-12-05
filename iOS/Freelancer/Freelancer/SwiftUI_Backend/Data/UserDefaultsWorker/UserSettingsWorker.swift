@@ -15,17 +15,19 @@ class UserSettingsWorker : ObservableObject {
     
     //https://developer.apple.com/documentation/swift/dictionary
     //DICTIONARY FOR ALL UD - VALUE:KEY
-    private let keyValues = ["loggedIn", "userName", "userToken", "userPassword"]
+    private let keyValues = ["loggedIn", "userName", "userToken", "userPassword", "automataLogin"]
     
     private let defaultValues : [String:Any] = ["loggedIn":false,
                                                 "userName":"nilUserName",
                                                 "userToken":"nilToken",
-                                                "userPassword":"nilPassword"]
+                                                "userPassword":"nilPassword",
+                                                "automataLogin":false]
     
     @Published var values : [String:Any] = ["loggedIn":false,
                                             "userName":"nilUserName",
                                             "userToken":"nilToken",
-                                            "userPassword":"nilPassword"]
+                                            "userPassword":"nilPassword",
+                                            "automataLogin":false]
     
     var zoom: Double = 1
     @Published var loggedIn : Bool = false
@@ -47,43 +49,9 @@ class UserSettingsWorker : ObservableObject {
     
     @Published var jobDeleteSuccess = false
     @Published var jobDeleteID = -1
-    
-    
+
     func loadEverySettings()
     {
-        /*
-        let json = """
-        {
-        
-                "id": 5,
-                "location": "hh",
-                "owner" :         {
-                                "id": 3,
-                                "role": "ROLE_USER",
-                                "score": 0,
-                                "username": "qq"
-                },
-            
-            
-        }
-        """.data(using: .utf8)!
-
-        let decoder = JSONDecoder()
-        do {
-            print("PRÓBAAAAA")
-            let product = try decoder.decode(receivedSourceData.self, from: json)
-            print(product) // Prints "Durian"
-        } catch {
-            print("HIBAAAAAAAA")
-            print(error.localizedDescription)
-        }
-        
-        
-        
-         */
-        
-        
-        
         for i in keyValues
         {
             print("EZ AZ \(i)")

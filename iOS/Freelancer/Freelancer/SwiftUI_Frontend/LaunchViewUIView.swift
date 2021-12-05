@@ -22,48 +22,33 @@ struct LaunchView: View {
                 //NewsView()
             } else if viewlaunch.currentPage == "login"
             {
-                /*if(Token.shared.alreadyLogedIn)
-                {
-                    TabBar()
-                }
-                else
-                {
-                    
-                    LoginSignupView()
-                }*/
-                
                 LoginSignupView()
-                
             }
             else if viewlaunch.currentPage == "menuView"
             {
                 TabBar()
-                
-                /*if (!UserSettings.shared.loggedIn && !UserSettings.shared.guest)
-                {
-                    LoginPageUIView()
-                }*/
             }
         }.onAppear{
             
             print("LaunchView_onAppeare()")
             let eredmeny = UserSettingsWorker.shared.loadUserSettings(key: "loggedIn")
-            
-            /*print("CHECK FOR LOGED IN STATET")
-            print("IF LOGED IN ")->DO IT by LocalSave data -> és akkor megy a login
-             
-            print("NO LOGIN DATA AVAILABLE->do nothing, loginView will got it")*/
+            let autologin = UserSettingsWorker.shared.loadUserSettings(key: "automataLogin")
             
             print("LOGED IN: \((eredmeny) as? Bool)")
             
             if eredmeny as? Bool == true
             {
-                print("BE VAN JELENTKEZVE MAR")
-
+                if autologin as? Bool == true
+                {
+                    print("BE VAN JELENTKEZVE MAR")
+                    viewlaunch.currentPage = "menuView"
+                    UserSettingsWorker.shared.loadEverySettings()
+                }
+                else
+                {
+                    print("be van loginolva de nincs autologi engedelyezve")
+                }
                 
-                //Token.shared.alreadyLogedIn = true
-                viewlaunch.currentPage = "menuView"
-                UserSettingsWorker.shared.loadEverySettings()
             }
             else
             {
