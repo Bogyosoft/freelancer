@@ -31,20 +31,21 @@ struct Settings: View {
             }
             DatePicker(selection: $date, label: {
                Text("Date")
-            })
-            Section(header: Text("Email")) {
-               TextField("Your email: ", text: $email)
-                  .textFieldStyle(RoundedBorderTextFieldStyle())
+            })*/
+            Section(header: Text("Autologin")) {
+                Toggle(isOn: $receive) {
+                   Text("Automatikus bejelentkezés")
+                }
             }
-            Button(action: { self.submit.toggle() }) {
+            /*Button(action: { self.submit.toggle() }) {
                Text("Submit")
             }
             .alert(isPresented: $submit, content: {
                Alert(title: Text("Thanks"), message: Text("Email: \(email)"))
-            })*/
-             Text("Settings")
+            })
+             Text("Settings")*/
          }
-         .navigationBarTitle("Settings")
+         .navigationBarTitle("Beállítások")
       }
    }
 }

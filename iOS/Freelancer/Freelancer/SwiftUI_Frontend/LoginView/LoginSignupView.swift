@@ -68,6 +68,7 @@ struct LoginSignupView: View {
                             
                             if(Token.shared.tokenReceived)
                             {
+                                print("LOGIN SIGNUP VIEW TOKEN RECEIVED")
                                 UserSettingsWorker.shared.loggedIn = true
                                 self.viewlaunch.currentPage = "menuView"
                             }

@@ -155,6 +155,14 @@
 			path = JSONSerializer;
 			sourceTree = "<group>";
 		};
+		294A9481275D779B0087A8EF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				29DE5DC12724A3E900431A75 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2990082E2752C17100F43C8D /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +265,6 @@
 				29DE5DB42724A19500431A75 /* UpdateList.swift */,
 				29DE5DB72724A1E000431A75 /* UpdateDetail.swift */,
 				29DE5DBF2724A3CC00431A75 /* TabBar.swift */,
-				29DE5DC12724A3E900431A75 /* Settings.swift */,
 				29DE5DC32724A43700431A75 /* UpdateStore.swift */,
 			);
 			path = EXTERNAL;
@@ -276,6 +283,7 @@
 		29E548D827159AF400033FD6 /* SwiftUI_Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				294A9481275D779B0087A8EF /* Settings */,
 				29EA5F9F274655CB0080A250 /* JobList */,
 				29F286F92741578400578D8E /* ItemList */,
 				29B5FB1E273A717500327744 /* CreateJob */,

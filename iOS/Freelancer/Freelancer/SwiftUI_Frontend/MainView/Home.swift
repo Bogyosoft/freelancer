@@ -174,7 +174,7 @@ struct MenuView: View {
                 else if item.title == "Kijelentkezés"
                 {
                     Button(action: {
-                        
+                        Token.shared.tokenReceived = false
                         UserSettingsWorker.shared.resetUserSetting()
                         self.viewlaunch.currentPage = "login"
                         

@@ -79,6 +79,14 @@ struct ItemList: View {
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
+                else
+                {
+                    VStack
+                    {
+                        Text("Nincs elérhető szállítmány!").foregroundColor(Color.black).font(.largeTitle).font(.system(size: 40))
+                        Text("❌").font(.system(size: 60))
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             if settings.jobAcceptSuccess
             {
