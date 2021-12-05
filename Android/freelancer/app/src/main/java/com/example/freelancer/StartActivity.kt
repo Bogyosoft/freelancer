@@ -6,8 +6,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.freelancer.network.FreelancerApiClient
-import com.example.freelancer.ui.screens.colors
+import com.example.freelancer.data.network.FreelancerApiClient
+import com.example.freelancer.ui.screens.Colors
 import egolabsapps.basicodemine.videolayout.VideoLayout
 
 class StartActivity : AppCompatActivity() {
@@ -25,9 +25,8 @@ class StartActivity : AppCompatActivity() {
         FreelancerApiClient.setContext(this.applicationContext as Application)
         FreelancerApiClient.initRetrofit()
         FreelancerApiClient.initService()
-        //findViewById<VideoLayout>(R.id.videoLayout).mediaPlayer.start()
 
-        colors.initColors()
+        Colors.initColors()
     }
 
 
