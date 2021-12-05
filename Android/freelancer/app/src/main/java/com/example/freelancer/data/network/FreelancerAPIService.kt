@@ -1,6 +1,6 @@
-package com.example.freelancer.network
+package com.example.freelancer.data.network
 
-import com.example.freelancer.model.*
+import com.example.freelancer.data.model.*
 import retrofit2.Call
 import retrofit2.http.*
 

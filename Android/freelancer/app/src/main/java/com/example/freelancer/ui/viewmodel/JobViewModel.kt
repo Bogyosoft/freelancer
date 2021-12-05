@@ -1,50 +1,25 @@
 package com.example.freelancer.ui.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.freelancer.model.IItem
-import com.example.freelancer.model.Item
-import com.example.freelancer.model.JobItem
-import com.example.freelancer.network.FreelancerApiClient
-import com.example.freelancer.repository.FreeLancerRepository
+import androidx.lifecycle.*
+import com.example.freelancer.data.model.IItem
+import com.example.freelancer.data.model.Item
+import com.example.freelancer.data.model.JobItem
+import com.example.freelancer.data.repository.IRepository
+import com.example.freelancer.utils.ServiceLocatior
 import kotlinx.coroutines.launch
 
-class JobViewModel : ViewModel(),IViewModel{
-    private val apiService = FreelancerApiClient.service
-    private lateinit var repository: FreeLancerRepository
-    override lateinit var clickedItem: IItem
+class JobViewModel : BaseViewModel() {
+    private var repository = ServiceLocatior.getJobRepository()
 
-    init {
-        fetchJobs()
-    }
-
-    fun fetchJobs() {
-        repository = FreeLancerRepository(apiService)
+    fun createJobs(job: Item) {
         viewModelScope.launch {
-            val response = repository.getJobs()
-            when (response) {
-                is FreeLancerRepository.Result.Success -> {
-
-                    Log.d("JobViewModel", "Success")
-                    list.value = response.list as List<IItem>
-                }
-                is FreeLancerRepository.Result.Failure -> {
-                    Log.d("JobViewModel", "FAILURE")
-                }
-            }
-        }
-    }
-    fun createJobs(job : Item){
-        repository = FreeLancerRepository(apiService)
-        viewModelScope.launch {
-            repository.createJob(job){
+            repository.createJob(job) {
                 if (it?.id != null) {
-                    Log.d("createjob","succes ")
+                    Log.d("createjob", "succes ")
 
                 } else {
-                    Log.d("job","failure ")
+                    Log.d("job", "failure ")
                 }
             }
         }
@@ -54,13 +29,19 @@ class JobViewModel : ViewModel(),IViewModel{
         clickedItem = item as JobItem
     }
 
-    override fun refresh() {
-        fetchJobs()
-    }
+    override suspend fun fetch() {
+        viewModelScope.launch {
+            val response = repository.getJobs()
+            when (response) {
+                is IRepository.Result.Success -> {
 
-    override val list: MutableLiveData<List<IItem>> by lazy {
-        MutableLiveData<List<IItem>>().also {
-            fetchJobs()
+                    Log.d("JobViewModel", "Success")
+                    list.value = response.list as List<IItem>
+                }
+                is IRepository.Result.Failure -> {
+                    Log.d("JobViewModel", "FAILURE")
+                }
+            }
         }
     }
 }

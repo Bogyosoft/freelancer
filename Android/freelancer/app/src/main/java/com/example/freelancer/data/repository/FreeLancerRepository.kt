@@ -1,9 +1,9 @@
-package com.example.freelancer.repository
+package com.example.freelancer.data.repository
 
 import android.util.Log
-import com.example.freelancer.ActiveUser
-import com.example.freelancer.model.*
-import com.example.freelancer.network.FreelancerAPIService
+import com.example.freelancer.utils.ActiveUser
+import com.example.freelancer.data.model.*
+import com.example.freelancer.data.network.FreelancerAPIService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +40,6 @@ class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
             Log.d("Job Passing", "Failed $exception")
 
         }
-
     }
 
     suspend fun getAllUsers():Result{
@@ -96,7 +95,7 @@ class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
     fun createSource(source: Source, onResult: (Source?) -> Unit): Source? {
         var result : Source? = null
         try {
-            freelancerAPi.createSource(source = source,ActiveUser.token).enqueue(
+            freelancerAPi.createSource(source = source, ActiveUser.token).enqueue(
                 object : Callback<Source>{
                     override fun onFailure(call: Call<Source>, t: Throwable) {
                         onResult(null)
@@ -104,7 +103,7 @@ class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
                     }
                     override fun onResponse( call: Call<Source>, response: Response<Source>) {
                         Log.d("Source response",response.raw().toString())
-                        Log.d("Source token",ActiveUser.token)
+                        Log.d("Source token", ActiveUser.token)
 
                         val newSource = response.body()
                         onResult(newSource)
@@ -128,7 +127,7 @@ class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
     fun createItem(item: Item, onResult: (Item?) -> Unit): Item? {
         var result : Item? = null
         try {
-            freelancerAPi.createItems(item = item,ActiveUser.token).enqueue(
+            freelancerAPi.createItems(item = item, ActiveUser.token).enqueue(
                 object : Callback<Item>{
                     override fun onFailure(call: Call<Item>, t: Throwable) {
                         onResult(null)
@@ -157,7 +156,7 @@ class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
     }
     fun createJob(jobItem: Item, onResult: (JobItem?) -> Unit): Boolean {
         try {
-            freelancerAPi.createJob(jobItem = jobItem,ActiveUser.token).enqueue(
+            freelancerAPi.createJob(jobItem = jobItem, ActiveUser.token).enqueue(
                 object : Callback<JobItem>{
                     override fun onFailure(call: Call<JobItem>, t: Throwable) {
                         onResult(null)

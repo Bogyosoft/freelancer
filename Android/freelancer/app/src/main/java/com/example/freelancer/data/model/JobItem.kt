@@ -1,4 +1,4 @@
-package com.example.freelancer.model
+package com.example.freelancer.data.model
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
@@ -19,9 +19,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.freelancer.network.FreelancerAPIService
-import com.example.freelancer.network.FreelancerApiClient
-import com.example.freelancer.repository.FreeLancerRepository
+import com.example.freelancer.data.network.FreelancerApiClient
+import com.example.freelancer.data.repository.FreeLancerRepository
 import com.example.freelancer.ui.screens.rndColor
 
 data class JobItem(

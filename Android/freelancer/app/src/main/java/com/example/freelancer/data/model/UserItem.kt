@@ -1,4 +1,4 @@
-package com.example.freelancer.model
+package com.example.freelancer.data.model
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border

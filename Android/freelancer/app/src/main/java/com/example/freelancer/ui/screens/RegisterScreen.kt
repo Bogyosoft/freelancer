@@ -15,17 +15,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.freelancer.MainActivity
-import com.example.freelancer.model.UserItem
-import com.example.freelancer.network.FreelancerApiClient
-import com.example.freelancer.repository.FreeLancerRepository
+import com.example.freelancer.data.model.UserItem
 import com.example.freelancer.ui.parts.elseButton
 import com.example.freelancer.ui.parts.inputField
 import com.example.freelancer.ui.parts.passwordField
 import com.example.freelancer.ui.parts.title
 import com.example.freelancer.ui.theme.PrimaryColor
 import com.example.freelancer.ui.viewmodel.RegisterViewModel
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
