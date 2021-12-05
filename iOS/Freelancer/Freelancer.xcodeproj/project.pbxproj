@@ -13,6 +13,8 @@
 		2947C41627216735006FEA8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C41527216735006FEA8B /* SceneDelegate.swift */; };
 		2947C4182721677C006FEA8B /* LaunchViewUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C4172721677C006FEA8B /* LaunchViewUIView.swift */; };
 		2947C41A2721696E006FEA8B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2947C4192721696E006FEA8B /* Launch Screen.storyboard */; };
+		294A947A275CE6900087A8EF /* itemListRowNormalUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A9479275CE6900087A8EF /* itemListRowNormalUIView.swift */; };
+		294A947C275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A947B275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift */; };
 		2957E800273028700039429D /* Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957E7FF273028700039429D /* Transferable.swift */; };
 		2990082D2752BF0200F43C8D /* SuccessCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */; };
 		299008302752C18400F43C8D /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082F2752C18400F43C8D /* Haptics.swift */; };
@@ -67,6 +69,8 @@
 		2947C41527216735006FEA8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2947C4172721677C006FEA8B /* LaunchViewUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewUIView.swift; sourceTree = "<group>"; };
 		2947C4192721696E006FEA8B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		294A9479275CE6900087A8EF /* itemListRowNormalUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemListRowNormalUIView.swift; sourceTree = "<group>"; };
+		294A947B275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemListRowExpanedeUIView.swift; sourceTree = "<group>"; };
 		2957E7FF273028700039429D /* Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transferable.swift; sourceTree = "<group>"; };
 		2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCardUIView.swift; sourceTree = "<group>"; };
 		2990082F2752C18400F43C8D /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 			isa = PBXGroup;
 			children = (
 				29F286FA2741579E00578D8E /* ItemListUIView.swift */,
+				294A9479275CE6900087A8EF /* itemListRowNormalUIView.swift */,
+				294A947B275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift */,
 			);
 			path = ItemList;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294A947C275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift in Sources */,
 				2991F2A82755366500AD3BB1 /* JobDataHandler.swift in Sources */,
 				2990082D2752BF0200F43C8D /* SuccessCardUIView.swift in Sources */,
 				29F2870127415CD700578D8E /* UserData.swift in Sources */,
@@ -531,6 +538,7 @@
 				2947C41427216600006FEA8B /* AppDelegate.swift in Sources */,
 				29DE5DC02724A3CC00431A75 /* TabBar.swift in Sources */,
 				29DE5DAF27249EC100431A75 /* ModernMainMenu.swift in Sources */,
+				294A947A275CE6900087A8EF /* itemListRowNormalUIView.swift in Sources */,
 				29DE5DB327249F7D00431A75 /* HomeList.swift in Sources */,
 				29DE5DB127249EF500431A75 /* Home.swift in Sources */,
 				29F2F01527026003008871B3 /* FreelancerApp.swift in Sources */,
