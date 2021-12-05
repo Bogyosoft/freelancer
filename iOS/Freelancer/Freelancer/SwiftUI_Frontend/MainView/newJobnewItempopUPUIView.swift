@@ -33,7 +33,7 @@ struct newJobnewItempopUPUIView: View {
                            .imageScale(.large)
                            .foregroundColor(Color("icons"))
                            .frame(width: 32, height: 32)
-                        Text("Munkák böngészése").sheet(isPresented: $showNewJob) { CreateNewJobUIView()
+                        Text("Munkák böngészése").foregroundColor(Color.yellowCustom).sheet(isPresented: $showNewJob) { CreateNewJobUIView()
                             
                         }
                     }
@@ -55,7 +55,7 @@ struct newJobnewItempopUPUIView: View {
                            .imageScale(.large)
                            .foregroundColor(Color("icons"))
                            .frame(width: 32, height: 32)
-                        Text("Küldemény feladása").sheet(isPresented: $showNewItem) { CreateNewItemUIView() }
+                        Text("Küldemény feladása").foregroundColor(Color.yellowCustom).sheet(isPresented: $showNewItem) { CreateNewItemUIView() }
                         }
                     }
                    

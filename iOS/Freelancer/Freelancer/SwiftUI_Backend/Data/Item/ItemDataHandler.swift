@@ -24,51 +24,66 @@ class ItemDataHandler
                     print("SIKERES KOMMUNIKÁCIO SZERVER")
                     if let data = valasz.data
                     {
-                        
-                        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
-                            
-                        //print("JSON[0]: \(json[0])")
-
-                        print("Response: \(String(describing: json))")
-                        
-                        for elem in json
+                        do
                         {
+                            let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray
                             
-                            if let dictionary = elem as? [String: Any]
+                            print("Response: \(String(describing: json))")
+                            if json != nil
                             {
-                                print("KONYVTAR: \(dictionary)")
-                                
-                                let id: Int = dictionary["id"] as? Int ?? -1
-                                
-                                let destination: String = dictionary["destination"] as? String ?? "NIL"
-                                let properties: String = dictionary["properties"] as? String ?? "NIL"
-                                let status: String = dictionary["status"] as? String ?? "NIL"
-                                
-                                let source: [String:Any] = dictionary["source"] as? [String:Any] ?? ["NULL":-1]
-                                let sourceLocation: String = source["location"] as? String ?? "NIL"
-                                let sourceID: Int = source["id"] as? Int ?? -2
-                                
-                                let user:[String:Any] = dictionary["owner"] as? [String:Any] ?? ["NULL":-1]
-                                
-                                let ownerName: String = user["username"] as? String ?? "NIL"
-                                
-                                print("destination: \(destination)\n\n\n")
-                                print("properties: \(properties)\n\n\n")
-                                print("status: \(status)\n\n\n")
-                                print("source: \(source)\n\n\n")
-                                            
-                            
-                                let ujStatus = SourceData(inputID: sourceID, inputName: ownerName, inputLocation: sourceLocation)
-                                
-                                let ujItem = ItemData(inID: id, inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
-                                
-                                items.append(ujItem)
+                                for elem in json!
+                                {
+                                    
+                                    if let dictionary = elem as? [String: Any]
+                                    {
+                                        print("KONYVTAR: \(dictionary)")
                                         
+                                        let id: Int = dictionary["id"] as? Int ?? -1
+                                        
+                                        let destination: String = dictionary["destination"] as? String ?? "NIL"
+                                        let properties: String = dictionary["properties"] as? String ?? "NIL"
+                                        let status: String = dictionary["status"] as? String ?? "NIL"
+                                        
+                                        let source: [String:Any] = dictionary["source"] as? [String:Any] ?? ["NULL":-1]
+                                        let sourceLocation: String = source["location"] as? String ?? "NIL"
+                                        let sourceID: Int = source["id"] as? Int ?? -2
+                                        
+                                        let user:[String:Any] = dictionary["owner"] as? [String:Any] ?? ["NULL":-1]
+                                        
+                                        let ownerName: String = user["username"] as? String ?? "NIL"
+                                        
+                                        print("destination: \(destination)\n\n\n")
+                                        print("properties: \(properties)\n\n\n")
+                                        print("status: \(status)\n\n\n")
+                                        print("source: \(source)\n\n\n")
+                                                    
+                                    
+                                        let ujStatus = SourceData(inputID: sourceID, inputName: ownerName, inputLocation: sourceLocation)
+                                        
+                                        let ujItem = ItemData(inID: id, inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
+                                        
+                                        items.append(ujItem)
+                                                
+                                    }
+                                    
+                                }
+                                
+                                completion(items, true)
+                            }
+                            else
+                            {
+                                print("ÜRES VOLT")
+                                completion(items, false)
                             }
                             
                         }
+                        catch
+                        {
+                            print("TERMINALIS HIBA VOLT")
+                            completion(items, false)
+                        }
+
                         
-                        completion(items, true)
                             
                     }
                     
