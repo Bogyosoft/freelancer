@@ -26,7 +26,7 @@ import com.example.freelancer.R
 import kotlinx.coroutines.Job
 import java.util.concurrent.ThreadLocalRandom
 
-object colors{
+object Colors{
     var colors = ArrayList<Color>()
     fun initColors(){
         for (i in 0..3){
@@ -47,13 +47,13 @@ fun MainScreen(navController: NavController, openDrawer: () -> Job){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row() {
-                gridItem(navController = navController, navTo = "Items", title = "Get a job!", colors.colors[0])
-                gridItem(navController = navController, navTo = "JobList", title = "View your jobs!",colors.colors[1])
+                GridItem(navController = navController, navTo = "Items", title = "Get a job!", Colors.colors[0])
+                GridItem(navController = navController, navTo = "JobList", title = "View your jobs!",Colors.colors[1])
 
             }
             Row() {
-                gridItem(navController = navController, navTo = "CreateJob", title = "Post a job!",colors.colors[2])
-                gridItem(navController = navController, navTo = "UserList", title = "View other users",colors.colors[3])
+                GridItem(navController = navController, navTo = "CreateJob", title = "Post a job!",Colors.colors[2])
+                GridItem(navController = navController, navTo = "UserList", title = "View other users",Colors.colors[3])
 
             }
         }
@@ -67,7 +67,7 @@ fun MainScreen(navController: NavController, openDrawer: () -> Job){
 
 
 @Composable
-fun gridItem(navController:NavController,navTo:String,title:String,color:Color){
+fun GridItem(navController:NavController, navTo:String, title:String, color:Color){
 
     val infiniteTransition = rememberInfiniteTransition()
     val size by infiniteTransition.animateFloat(

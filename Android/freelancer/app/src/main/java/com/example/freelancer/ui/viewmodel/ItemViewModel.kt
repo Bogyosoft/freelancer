@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
-import com.example.freelancer.model.itemsItem
+import com.example.freelancer.model.Item
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
 import kotlinx.coroutines.launch
@@ -25,8 +25,8 @@ class ItemViewModel: ViewModel(),IViewModel{
         fetchItems()
     }
 
-    fun createItem(item: itemsItem):itemsItem?{
-        var result:itemsItem? = null
+    fun createItem(item: Item):Item?{
+        var result:Item? = null
 
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
@@ -43,14 +43,15 @@ class ItemViewModel: ViewModel(),IViewModel{
         return result
     }
 
-    fun fetchItems(){
+    private fun fetchItems(){
             repository = FreeLancerRepository(apiService)
             viewModelScope.launch {
                 val response = repository.fetchItems()
                 when (response) {
                     is FreeLancerRepository.Result.Success -> {
-                        Log.d("itemsviewmodel", "Success")
                         list.value = response.list as List<IItem>
+                        Log.d("itemsviewmodel", "Success ${list.value?.size}")
+
                     }
                     is FreeLancerRepository.Result.Failure -> {
                         Log.d("itemsviewmodel", "FAILURE")

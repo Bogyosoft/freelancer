@@ -8,14 +8,41 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
+class FreeLancerRepository (private val freelancerAPi: FreelancerAPIService) {
     sealed class Result {
         object LOADING : Result()
         data class Success(val list : List<Any>) :Result()
         data class Failure(val throwable: Throwable): Result()
+    }
 
+    fun passJob(job: JobItem, onResult: (JobItem?) -> Unit){
+        try {
+            freelancerAPi.passJob(id = job.id, token = ActiveUser.token)
+                .enqueue(
+                object : Callback<JobItem>{
+                    override fun onFailure(call: Call<JobItem>, t: Throwable) {
+                        onResult(null)
+                        throw t
+                    }
+                    override fun onResponse( call: Call<JobItem>, response: Response<JobItem>) {
+                        val responseItem = response.body()
+                        onResult(responseItem)
+                        Log.d("Job Passing response",response.raw().toString())
+
+                        Log.d("Job Passing response","Succes")
+                    }
+                }
+            )
+            Log.d("Job Passing response","Succes")
+
+        }
+        catch (exception:Exception){
+            Log.d("Job Passing", "Failed $exception")
+
+        }
 
     }
+
     suspend fun getAllUsers():Result{
         return try {
             val userList = freelancerAPi.getAllUsers(ActiveUser.token)
@@ -89,7 +116,7 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
             )
         }
         catch (exception:Exception){
-            Log.d("Source creation","Failed " +exception.toString())
+            Log.d("Source creation", "Failed $exception")
 
             return null
         }
@@ -98,16 +125,16 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
         return result
     }
 
-    fun createItem(item: itemsItem, onResult: (itemsItem?) -> Unit): itemsItem? {
-        var result : itemsItem? = null
+    fun createItem(item: Item, onResult: (Item?) -> Unit): Item? {
+        var result : Item? = null
         try {
             freelancerAPi.createItems(item = item,ActiveUser.token).enqueue(
-                object : Callback<itemsItem>{
-                    override fun onFailure(call: Call<itemsItem>, t: Throwable) {
+                object : Callback<Item>{
+                    override fun onFailure(call: Call<Item>, t: Throwable) {
                         onResult(null)
                         throw t
                     }
-                    override fun onResponse( call: Call<itemsItem>, response: Response<itemsItem>) {
+                    override fun onResponse(call: Call<Item>, response: Response<Item>) {
                         Log.d("item creation",response.raw().body.toString())
 
                         val newItem = response.body()
@@ -128,15 +155,15 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
 
         return result
     }
-    fun createJob(jobItem: itemsItem, onResult: (jobItem?) -> Unit): Boolean {
+    fun createJob(jobItem: Item, onResult: (JobItem?) -> Unit): Boolean {
         try {
             freelancerAPi.createJob(jobItem = jobItem,ActiveUser.token).enqueue(
-                object : Callback<jobItem>{
-                    override fun onFailure(call: Call<jobItem>, t: Throwable) {
+                object : Callback<JobItem>{
+                    override fun onFailure(call: Call<JobItem>, t: Throwable) {
                         onResult(null)
                         throw t
                     }
-                    override fun onResponse( call: Call<jobItem>, response: Response<jobItem>) {
+                    override fun onResponse(call: Call<JobItem>, response: Response<JobItem>) {
                         Log.d("job response",response.raw().toString())
 
                         val newjob = response.body()
@@ -193,4 +220,37 @@ class FreeLancerRepository (val freelancerAPi: FreelancerAPIService) {
             Result.Failure(exception)
         }
     }
+    fun delivereJob(job: JobItem,onResult: (JobItem?) -> Unit){
+
+            try {
+                freelancerAPi.deliverJob(job.id, token = ActiveUser.token)
+                .enqueue(
+                    object : Callback<JobItem>{
+                        override fun onFailure(call: Call<JobItem>, t: Throwable) {
+                            onResult(null)
+                            throw t
+                        }
+                        override fun onResponse( call: Call<JobItem>, response: Response<JobItem>) {
+                            val responseItem = response.body()
+                            onResult(responseItem)
+                            Log.d("Job delivery response",response.raw().toString())
+
+                            Log.d("Job delivery response","Succes")
+                        }
+                    }
+
+
+
+                )
+
+                Log.d("Job delivery", "succes")
+
+            }
+            catch (exception:Exception){
+                Log.d("Job delivery", "Failed $exception")
+
+            }
+
+    }
+
 }

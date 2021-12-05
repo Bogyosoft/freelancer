@@ -22,7 +22,6 @@ private val moshi = Moshi.Builder()
 
 
 interface FreelancerAPIService {
-    var token: String
 
     @GET("/api/v1/user")
     suspend fun getAllUsers(@Header("Cookie") token: String): List<UserItem>
@@ -32,15 +31,15 @@ interface FreelancerAPIService {
     fun registerUser(@Body userItem: UserItem) : Call<UserItem>
 
     @GET("/api/v1/jobs")
-    suspend fun getJobs(@Header("Cookie") token: String) : List<jobItem>
+    suspend fun getJobs(@Header("Cookie") token: String) : List<JobItem>
 
     @GET("/api/v1/items")
-    suspend fun getItems(@Header("Cookie") token: String) : List<itemsItem>
+    suspend fun getItems(@Header("Cookie") token: String) : List<Item>
 
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/jobs")
-    fun createJob(@Body jobItem: itemsItem,@Header("Cookie") token: String) : Call<jobItem>
+    fun createJob(@Body jobItem: Item, @Header("Cookie") token: String) : Call<JobItem>
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/sources")
@@ -48,12 +47,20 @@ interface FreelancerAPIService {
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/items")
-    fun createItems(@Body item: itemsItem,@Header("Cookie") token: String) : Call<itemsItem>
+    fun createItems(@Body item: Item, @Header("Cookie") token: String) : Call<Item>
 
 
     @Headers("Content-Type: application/json")
     @POST("/api/v1/auth")
     fun login(@Body userDTO: UserDTO) : Call<UserDTO>
+
+    @Headers("Content-Type: application/json")
+    @PUT("/api/v1/jobs/{id}")
+    fun passJob(@Path("id") id:Int, @Header("Cookie") token: String) : Call<JobItem>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("/api/v1/jobs/{id}")
+    fun deliverJob(@Path("id") id:Int, @Header("Cookie") token: String) : Call<JobItem>
 }
 
 //object FreelancerAPI{
