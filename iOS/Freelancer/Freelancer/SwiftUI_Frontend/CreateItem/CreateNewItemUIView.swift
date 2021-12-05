@@ -207,7 +207,15 @@ struct CreateNewItemUIView: View {
                              
                         }
                     })
-                    presentationMode.wrappedValue.dismiss()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        withAnimation()
+                        {
+                            presentationMode.wrappedValue.dismiss()
+                             
+                        }
+                    })
+                    
                     
                 }).opacity(0.9).transition(.opacity)
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct itemListRowNormalUIView: View {
     
-    //var item: ItemData
+    var item: ItemData
     //let namespace: Namespace.ID
     
     var body: some View {
@@ -27,7 +27,7 @@ struct itemListRowNormalUIView: View {
                             HStack
                             {
                                 Image(systemName: "mappin").foregroundColor(Color.yellowCustom)
-                                Text("item.destination")
+                                Text(item.destination)
                                     .foregroundColor(Color.yellowCustom)
                             }
                             
@@ -35,7 +35,7 @@ struct itemListRowNormalUIView: View {
                             HStack
                             {
                                 Image(systemName: "tag").foregroundColor(Color.yellowCustom)
-                                Text("item.property")
+                                Text(item.propertis)
                                     .foregroundColor(Color.yellowCustom)
                             }
                             Spacer()
@@ -55,7 +55,7 @@ struct itemListRowNormalUIView: View {
 
 struct itemListRowNormalUIView_Previews: PreviewProvider {
     static var previews: some View {
-        itemListRowNormalUIView()
+        itemListRowNormalUIView(item: ItemData(inID: 0, inDestination: "nincs", inProperties: "nincs", inStatus: "nincs", inSource: SourceData(inputID: 0, inputName: "nincs", inputLocation: "nincs")))
     }
 }
 

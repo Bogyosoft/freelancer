@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateNewJobUIView: View {
     
     @ObservedObject var settings = UserSettingsWorker.shared
-    
+    @State var showAcceptJobMenu = true
     var body: some View {
         
         
@@ -41,7 +41,7 @@ struct CreateNewJobUIView: View {
                     }
                     
                 }
-                .padding(.bottom, 55)
+                .padding(.bottom, 15)
                 .padding(.horizontal)
                 .padding(.top, 40)
                     .frame(
@@ -53,13 +53,13 @@ struct CreateNewJobUIView: View {
                 
                 VStack(alignment: .center)
                 {
-                    ItemListUIView()
+                    ItemList(showAcceptJobMenu: $showAcceptJobMenu)
                 }
                 //.padding(.bottom, 100)
                 .frame(
                       minWidth: 0,
                       maxWidth: .infinity,
-                      maxHeight: 250,
+                      maxHeight: UIScreen.main.bounds.size.height/2.5,
                       alignment: .bottom
                     )
                 
@@ -133,6 +133,7 @@ struct CreateNewJobUIView: View {
                       alignment: .bottom
                     )*/
             }
+            
             .frame(
                   minWidth: 0,
                   maxWidth: .infinity,
@@ -140,7 +141,8 @@ struct CreateNewJobUIView: View {
                   maxHeight: .infinity,
                   alignment: .bottom
                 )
-            .padding(.bottom, 10)
+            .edgesIgnoringSafeArea(.bottom)
+            //.padding(.bottom, 10)
             
             if settings.itemCreationSuccess
             {

@@ -9,8 +9,23 @@ import SwiftUI
 
 struct ItemListUIView: View {
     
+    @State var showAcceptJobMenu = false
+    var body: some View {
+        
+        VStack
+        {
+            Text("Elérhető munkák")
+            ItemList(showAcceptJobMenu: $showAcceptJobMenu)
+        }
+        
+    }
+}
+
+struct ItemList: View {
     @State var itemsUI: Array<ItemData> = Array<ItemData>()
     @State var spinner: Bool = false
+    
+    @Binding var showAcceptJobMenu:Bool
     
     var body: some View {
         
@@ -30,7 +45,11 @@ struct ItemListUIView: View {
             }.padding(.horizontal)*/
             VStack {
                 ForEach(itemsUI) { item in
-                    CardDetector(item: item, position: .small)
+                    
+                    
+                    CardDetector(showAcceptJobMenu: $showAcceptJobMenu, item: item, position: .small)
+                    
+                    
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -87,6 +106,8 @@ struct ItemListUIView: View {
     }
 }
 
+
+
 struct ItemDataRowView: View {
     var item: ItemData
 
@@ -111,16 +132,19 @@ enum CardPosition: CaseIterable {
 
 struct CardDetector: View {
     
+    @Binding var showAcceptJobMenu:Bool
     //var p: ListData
     var item: ItemData
     @State var position: CardPosition
     @Namespace var namespace
     var body: some View {
         
+        if showAcceptJobMenu
+        {
             Group {
                 switch position {
                 case .small:
-                itemListRowNormalUIView()
+                    itemListRowNormalUIView(item: item)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 120)
@@ -134,7 +158,7 @@ struct CardDetector: View {
                     }
                     .padding(.horizontal)
                 case .big:
-                itemListRowExpanedeUIView()
+                    itemListRowExpanedeUIView(item: item)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 270)
@@ -150,6 +174,24 @@ struct CardDetector: View {
                 }
             }.cornerRadius(10)
         }
+        else
+        {
+            itemListRowNormalUIView(item: item)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .frame(height: 120)
+                .background(BlurView(style: .regular))
+                .cornerRadius(10)
+                .padding(.vertical,6)
+                .onTapGesture {
+                    withAnimation {
+                        position = .big
+                    }
+                }
+                .padding(.horizontal)
+        }
+            
+    }
 }
 
 

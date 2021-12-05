@@ -9,6 +9,7 @@ import SwiftUI
 
 struct itemListRowExpanedeUIView: View {
     
+    var item: ItemData
     //var p: ListData
     //let namespace: Namespace.ID
     
@@ -33,7 +34,7 @@ struct itemListRowExpanedeUIView: View {
                         HStack
                         {
                             Image(systemName: "mappin").foregroundColor(Color.yellowCustom)
-                            Text("item.destination")
+                            Text(item.destination)
                                 .foregroundColor(Color.yellowCustom)
                         }
                         
@@ -41,14 +42,14 @@ struct itemListRowExpanedeUIView: View {
                         HStack
                         {
                             Image(systemName: "tag").foregroundColor(Color.yellowCustom)
-                            Text("item.property")
+                            Text(item.propertis)
                                 .foregroundColor(Color.yellowCustom)
                         }
                         Spacer()
                         HStack
                         {
                             Image(systemName: "person").foregroundColor(Color.yellowCustom)
-                            Text("item.felado")
+                            Text(item.source.ownerName)
                                 .foregroundColor(Color.yellowCustom)
                         }
                         Spacer()
@@ -88,7 +89,7 @@ struct itemListRowExpanedeUIView: View {
 
 struct itemListRowExpanedeUIView_Previews: PreviewProvider {
     static var previews: some View {
-        itemListRowExpanedeUIView()
+        itemListRowExpanedeUIView(item: ItemData(inID: 0, inDestination: "nincs", inProperties: "nincs", inStatus: "nincs", inSource: SourceData(inputID: 0, inputName: "nincs", inputLocation: "nincs")))
     }
 }
 
