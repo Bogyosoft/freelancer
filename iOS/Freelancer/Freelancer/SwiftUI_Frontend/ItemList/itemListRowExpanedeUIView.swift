@@ -10,50 +10,86 @@ import SwiftUI
 struct itemListRowExpanedeUIView: View {
     
     //var p: ListData
-    let namespace: Namespace.ID
+    //let namespace: Namespace.ID
     
     var body: some View {
-        
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
+        GeometryReader { g in
+            VStack(alignment: .trailing) {
+                HStack{
+                    //Spacer()
+                    VStack
+                    {
+                        Image("box")
+                            .resizable()
+                            .frame(width: 90, height: 90)
+                            .cornerRadius(10)
+                        Spacer()
+                    }
                     
-                    Spacer()
-                    VStack(alignment: .leading) {
-                        HStack {
-                            //blurTags(tags: p.postType, namespace: namespace)
-                            Spacer()
-                            Image(systemName: "ellipsis")
-                                .foregroundColor(Color.white)
-                                //.matchedGeometryEffect(id: "ellipsis", in: namespace)
+                        //.matchedGeometryEffect(id: "image", in: namespace)
+                    VStack(alignment: .leading)
+                    {
+                        Spacer()
+                        HStack
+                        {
+                            Image(systemName: "mappin").foregroundColor(Color.yellowCustom)
+                            Text("item.destination")
+                                .foregroundColor(Color.yellowCustom)
                         }
                         
                         Spacer()
-                        Text("p.title")
-                            //.foregroundColor(Color.textColor)
-                            //.matchedGeometryEffect(id: "title", in: namespace)
-                        Spacer()
-                        HStack {
-                            //Stars(star: p.stars)
-                                //.matchedGeometryEffect(id: "stars", in: namespace)
-                            Text("(100)")
-                                .font(.caption2)
-                                .foregroundColor(.gray)
-                                //.matchedGeometryEffect(id: "ratingNum", in: namespace)
+                        HStack
+                        {
+                            Image(systemName: "tag").foregroundColor(Color.yellowCustom)
+                            Text("item.property")
+                                .foregroundColor(Color.yellowCustom)
                         }
-                    }
-                    Spacer()
-                    VStack {
                         Spacer()
-                    }
+                        HStack
+                        {
+                            Image(systemName: "person").foregroundColor(Color.yellowCustom)
+                            Text("item.felado")
+                                .foregroundColor(Color.yellowCustom)
+                        }
+                        Spacer()
+                    }.padding(.leading)
+                    
+                    //
+                        
+                    Spacer()
                 }
+                
+                HStack
+                {
+                    Spacer()
+                    Button(action: {
+                    }) {
+                        Text("Munka elfogadása")
+                            .foregroundColor(.black)
+                            .fontWeight(.bold)
+                            .padding(.vertical)
+                            .padding(.horizontal, 50)
+                            .background(Color.yellowCustom)
+                            .clipShape(Capsule())
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                            
+                    }//.offset(y: 25)
+                    //.opacity(self.index == 0 ? 1: 0)
+                    .buttonStyle(GrowingButtonRegistration())
+                    Spacer()
+                }
+                Spacer()
+                Divider().background(Color.white.opacity(0.5))
             }
+        }//.border(Color.yellowCustom)
+        
     }
 }
 
-/*struct itemListRowExpanedeUIView_Previews: PreviewProvider {
+struct itemListRowExpanedeUIView_Previews: PreviewProvider {
     static var previews: some View {
         itemListRowExpanedeUIView()
     }
-}*/
+}
 
 

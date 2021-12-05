@@ -16,23 +16,40 @@ struct itemListRowNormalUIView: View {
             GeometryReader { g in
                 VStack(alignment: .leading) {
                     HStack {
-                        VStack(alignment: .leading) {
-                            //blurTags(tags: p.postType, namespace: namespace)
+                        Image("box")
+                            .resizable()
+                            .frame(width: 90, height: 90)
+                            .cornerRadius(10)
+                            //.matchedGeometryEffect(id: "image", in: namespace)
+                        VStack(alignment: .leading)
+                        {
                             Spacer()
-                            Text("item.destination")
-                                .foregroundColor(.blue)
-                            Spacer()
-                            HStack {
-                                Text("(100)")
-                                    .font(.caption2)
-                                    .foregroundColor(.gray)
-                                    //.matchedGeometryEffect(id: "ratingNum", in: namespace)
+                            HStack
+                            {
+                                Image(systemName: "mappin").foregroundColor(Color.yellowCustom)
+                                Text("item.destination")
+                                    .foregroundColor(Color.yellowCustom)
                             }
+                            
+                            Spacer()
+                            HStack
+                            {
+                                Image(systemName: "tag").foregroundColor(Color.yellowCustom)
+                                Text("item.property")
+                                    .foregroundColor(Color.yellowCustom)
+                            }
+                            Spacer()
                         }.padding(.leading)
+                        
+                        //
         
-                    }.background(Color.red)
+                    }
+                    Divider().background(Color.white.opacity(0.5))
                 }
+                
             }
+            //.border(Color.yellowCustom)
+            //.background(Color.yellowCustom)
     }
 }
 

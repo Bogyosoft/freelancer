@@ -23,6 +23,7 @@ class ItemDataHandler
                     print("SIKERES KOMMUNIKÁCIO SZERVER")
                     if let data = valasz.data
                     {
+                        
                         let json = try! JSONSerialization.jsonObject(with: data, options: []) as! NSArray
                             
                         //print("JSON[0]: \(json[0])")

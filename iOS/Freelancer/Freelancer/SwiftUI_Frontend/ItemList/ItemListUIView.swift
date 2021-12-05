@@ -134,7 +134,7 @@ struct CardDetector: View {
                     }
                     .padding(.horizontal)
                 case .big:
-                itemListRowExpanedeUIView(namespace: namespace)
+                itemListRowExpanedeUIView()
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 270)
@@ -148,7 +148,7 @@ struct CardDetector: View {
                     }
                     .padding(.horizontal)
                 }
-            }
+            }.cornerRadius(10)
         }
 }
 
