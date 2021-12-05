@@ -92,7 +92,7 @@ struct ItemList: View {
                         }
                     })
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
                         withAnimation()
                         {
                             deleteItem()

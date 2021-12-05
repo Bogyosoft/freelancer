@@ -31,6 +31,7 @@ class UserSettingsWorker : ObservableObject {
     @Published var loginError = false
     @Published var loginSuccess = false
     
+    //LISTAKNAL KELLENEK
     @Published var itemCreationSuccess = false
     @Published var itemCreationFail = false
     
@@ -39,6 +40,12 @@ class UserSettingsWorker : ObservableObject {
     @Published var jobAcceptFail = false
     
     @Published var jobAcceptID = -1
+    
+    @Published var jobPutSuccess = false
+    @Published var jobPutID = -1
+    
+    @Published var jobDeleteSuccess = false
+    @Published var jobDeleteID = -1
     
     
     func loadEverySettings()

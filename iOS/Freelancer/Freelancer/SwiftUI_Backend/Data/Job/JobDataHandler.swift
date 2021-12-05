@@ -150,5 +150,58 @@ class JobDataHandler
         })
         
     }
+    
+    func put(input: Job, completion: @escaping (Bool) -> Void)
+    {
+        print("ItemDataHandler_put()")
+        input.link = input.link + String(describing: input.data.id)
+        networkHandler.put(input: input, completion: {(valasz: DataResponse<Any, AFError>)->Void in
+                if(valasz.response?.statusCode == 400)
+                {
+                    print("ERROR VALAMI BAJ VAN")
+                    completion(false)
+                }
+                else if(valasz.response?.statusCode == 500)
+                {
+                    print("FRANC TUDJA")
+                    completion(false)
+                }
+                else if(valasz.response?.statusCode == 200)
+                {
+                    completion(true)
+                }
+                else
+                {
+                    print("ERROR")
+                    completion(false)
+                }
+        })
+    }
+    func delete(input: Job, completion: @escaping (Bool) -> Void)
+    {
+        print("ItemDataHandler_delete()")
+        input.link = input.link + String(describing: input.data.id)
+        networkHandler.delete(input: input, completion: {(valasz: DataResponse<Any, AFError>)->Void in
+                if(valasz.response?.statusCode == 400)
+                {
+                    print("ERROR VALAMI BAJ VAN")
+                    completion(false)
+                }
+                else if(valasz.response?.statusCode == 500)
+                {
+                    print("FRANC TUDJA")
+                    completion(false)
+                }
+                else if(valasz.response?.statusCode == 200)
+                {
+                    completion(true)
+                }
+                else
+                {
+                    print("ERROR")
+                    completion(false)
+                }
+        })
+    }
 
 }

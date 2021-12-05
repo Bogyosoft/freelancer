@@ -12,11 +12,6 @@ class TokenHandler//: DataHandler
 {
     internal var networkHandler: APICommunicator = APICommunicator()
     
-    func get(input: Transferable)
-    {
-        print("TokenHandler_get()")
-        networkHandler.GetRequest(input: input)
-    }
     //https://www.raywenderlich.com/35-alamofire-tutorial-getting-started
     //https://stackoverflow.com/questions/30401439/how-could-i-create-a-function-with-a-completion-handler-in-swift
 //  MARK: post Token with completionHandler

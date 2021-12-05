@@ -94,7 +94,8 @@ struct JobList: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
-            /*if settings.jobAcceptSuccess
+            
+            if settings.jobPutSuccess
             {
                 
                 SuccessCardUIView().onAppear(perform: {
@@ -102,12 +103,12 @@ struct JobList: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         withAnimation()
                         {
-                            UserSettingsWorker.shared.jobAcceptSuccess.toggle()
+                            UserSettingsWorker.shared.jobPutSuccess.toggle()
                              
                         }
                     })
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
                         withAnimation()
                         {
                             deleteItem()
@@ -117,7 +118,33 @@ struct JobList: View {
                     
                     
                 }).opacity(0.9).transition(.opacity)
-            }*/
+            }
+            
+            if settings.jobDeleteSuccess
+            {
+                
+                SuccessCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.success)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.jobDeleteSuccess.toggle()
+                             
+                        }
+                    })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+                        withAnimation()
+                        {
+                            deleteItemDelete()
+                             
+                        }
+                    })
+                    
+                    
+                }).opacity(0.9).transition(.opacity)
+            }
+           
         }.onAppear
         {
             
@@ -145,17 +172,31 @@ struct JobList: View {
     }
 
     func deleteItem() {
-        /*var i = 0
+        var i = 0
         var stepper = 0
-        for item in self.jobsUI{
-            if item.id == UserSettingsWorker.shared.jobAcceptID
+        for job in self.jobsUI{
+            if job.id == UserSettingsWorker.shared.jobPutID
             {
                 i = stepper
             }
             stepper += 1
         }
         let indexSet = IndexSet(integer: i)
-        self.itemsUI.remove(atOffsets: indexSet)*/
+        self.jobsUI.remove(atOffsets: indexSet)
+    }
+    
+    func deleteItemDelete() {
+        var i = 0
+        var stepper = 0
+        for job in self.jobsUI{
+            if job.id == UserSettingsWorker.shared.jobDeleteID
+            {
+                i = stepper
+            }
+            stepper += 1
+        }
+        let indexSet = IndexSet(integer: i)
+        self.jobsUI.remove(atOffsets: indexSet)
     }
 }
 

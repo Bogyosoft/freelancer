@@ -63,25 +63,24 @@ struct jobListRowExpandedUIView: View {
                     Spacer()
                     Button(action: {
                         
+                        //PUT
+                        let job = Job(inData: job, itemIn: Item(inData: ItemData(inID: 0, inDestination: "", inProperties: "", inStatus: "", inSource: SourceData(inputID: 0, inputName: "", inputLocation: ""))))
                         
-                       /* print("ITEM SOURCE ID: \(item.source.id)")
-                        
-                        let sourceData = SourceData(inputID: item.source.id,inputName: item.source.ownerName , inputLocation: item.source.location)
-                        
-                        let itemData = ItemData(inID: item.id, inDestination: item.destination, inProperties: item.propertis, inStatus: "TO_BE_DELIVERED", inSource: sourceData)
-                        
-                        let jobData = JobData(inID: 0, inFreelancer: "000000", inItem: itemData)
-                        let job = Job(inData: jobData, itemIn: Item(inData: itemData))
-                        
-                        job.jobHandler.post(input: job, completion: {(valaszBefejezettseg: Bool)->Void in
+                        job.jobHandler.put(input: job) {valasz in
                             
-                            print("VALASZ FOR CREATEJOB: \(valaszBefejezettseg)")
-                            //vissza kene adni hogy lehet torolni a listabol
-                            UserSettingsWorker.shared.jobAcceptSuccess.toggle()
-                            UserSettingsWorker.shared.jobAcceptID = itemData.id
-                        
-                        })
-                        */
+                            print("KESZ A PUT")
+                            
+                            if valasz
+                            {
+                                UserSettingsWorker.shared.jobPutSuccess.toggle()
+                                UserSettingsWorker.shared.jobPutID = job.data.id
+                            }
+                            else
+                            {
+                                
+                            }
+                            
+                        }
                         
                     }) {
                         Text("Visszaadás")
@@ -100,25 +99,24 @@ struct jobListRowExpandedUIView: View {
                     Spacer()
                     Button(action: {
                         
+                        //DELETE
+                        let job = Job(inData: job, itemIn: Item(inData: ItemData(inID: 0, inDestination: "", inProperties: "", inStatus: "", inSource: SourceData(inputID: 0, inputName: "", inputLocation: ""))))
                         
-                       /* print("ITEM SOURCE ID: \(item.source.id)")
-                        
-                        let sourceData = SourceData(inputID: item.source.id,inputName: item.source.ownerName , inputLocation: item.source.location)
-                        
-                        let itemData = ItemData(inID: item.id, inDestination: item.destination, inProperties: item.propertis, inStatus: "TO_BE_DELIVERED", inSource: sourceData)
-                        
-                        let jobData = JobData(inID: 0, inFreelancer: "000000", inItem: itemData)
-                        let job = Job(inData: jobData, itemIn: Item(inData: itemData))
-                        
-                        job.jobHandler.post(input: job, completion: {(valaszBefejezettseg: Bool)->Void in
+                        job.jobHandler.delete(input: job) {valasz in
                             
-                            print("VALASZ FOR CREATEJOB: \(valaszBefejezettseg)")
-                            //vissza kene adni hogy lehet torolni a listabol
-                            UserSettingsWorker.shared.jobAcceptSuccess.toggle()
-                            UserSettingsWorker.shared.jobAcceptID = itemData.id
-                        
-                        })
-                        */
+                            print("KESZ A DELETE")
+                            
+                            if valasz
+                            {
+                                UserSettingsWorker.shared.jobDeleteSuccess.toggle()
+                                UserSettingsWorker.shared.jobDeleteID = job.data.id
+                            }
+                            else
+                            {
+                                
+                            }
+                            
+                        }
                         
                     }) {
                         Text("Kiszállítva")
