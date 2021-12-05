@@ -15,7 +15,7 @@ struct jobListRowNormalUIView: View {
             GeometryReader { g in
                 VStack(alignment: .leading) {
                     HStack {
-                        Image("box")
+                        Image("workerhat")
                             .resizable()
                             .frame(width: 90, height: 90)
                             .cornerRadius(10)
