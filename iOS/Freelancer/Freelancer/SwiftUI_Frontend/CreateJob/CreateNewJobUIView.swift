@@ -62,76 +62,6 @@ struct CreateNewJobUIView: View {
                       maxHeight: UIScreen.main.bounds.size.height/2.5,
                       alignment: .bottom
                     )
-                
-                
-                
-               /* Button(action: {
-                    
-                    /*
-                    let sourceData = SourceData(inputID: -1, inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: kiindulas)
-                    let source = Source(inData: sourceData)
-                    //let handSource = SourceHandler()
-                    source.dataHandler.post(input: source, completion: {(valaszBefejezettseg: Bool, valaszID: Int)->Void in
-                        
-                        print("SOURCE POST ON CREATENEWITEM: \(valaszBefejezettseg), ID: \(valaszID)")
-                        
-                        if(valaszID == -1)
-                        {
-                            print("valami hiba volt a lekeresnel - createNewitem")
-                            withAnimation()
-                            {
-                                UserSettingsWorker.shared.itemCreationFail.toggle()
-                            }
-                        }
-                        else
-                        {
-                            print("Source ID beallitva!Mehet az ITEM creation")
-                            source.data.id = valaszID
-                            
-                            let itemData = ItemData(inID: -1, inDestination: destination, inProperties: tulajdonsag, inStatus: statusz, inSource: source.data)
-                            let item = Item(inData: itemData)
-                            item.itemHandler.post(input: item, completion: {(valaszBefejezettseg: Bool)->Void in
-                                
-                                print("ITEM CREATION IS FINISHED? \(valaszBefejezettseg)")
-                                
-                                if valaszBefejezettseg
-                                {
-                                    withAnimation()
-                                    {
-                                        UserSettingsWorker.shared.itemCreationSuccess.toggle()
-                                    }
-                                }
-                                else
-                                {
-                                    withAnimation()
-                                    {
-                                        UserSettingsWorker.shared.itemCreationFail.toggle()
-                                    }
-                                }
-                                
-                            })
-                        }
-                    })
-                    */
-                    
-                }) {
-                    Text("Küldemény feladása")
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
-                        .padding(.vertical)
-                        .padding(.horizontal, 50)
-                        .background(Color.yellowCustom)
-                        .clipShape(Capsule())
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-                        
-                }//.offset(y: 25)
-                //.opacity(self.index == 0 ? 1: 0)
-                .buttonStyle(GrowingButtonRegistration())
-                .frame(
-                      minWidth: 0,
-                      maxWidth: .infinity,
-                      alignment: .bottom
-                    )*/
             }
             
             .frame(
@@ -175,27 +105,7 @@ struct CreateNewJobUIView: View {
                 }).opacity(0.9).transition(.opacity)
             }
         }
-        
-        
-        
-        /*VStack
-        {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        }.onAppear()
-        {
-            //inputName: String(describing: UserSettingsWorker.shared.values["userName"]!)
-            let sourceData = SourceData(inputID: 9,inputName: "Dani" , inputLocation: "Danitoo")
-            
-            let itemData = ItemData(inID: 5, inDestination: "Pistinek", inProperties: "Torekenz", inStatus: "TO_BE_DELIVERED", inSource: sourceData)
-            let jobData = JobData(inID: 0, inFreelancer: "000000", inItem: itemData)
-            let job = Job(inData: jobData, itemIn: Item(inData: itemData))
-            
-            job.jobHandler.post(input: job, completion: {(valaszBefejezettseg: Bool)->Void in
-                
-                print("VALASZ FOR CREATEJOB: \(valaszBefejezettseg)")
-            })
-            
-        }*/
+       
         
     }
 }

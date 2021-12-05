@@ -64,6 +64,27 @@ struct itemListRowExpanedeUIView: View {
                 {
                     Spacer()
                     Button(action: {
+                        
+                        
+                        print("ITEM SOURCE ID: \(item.source.id)")
+                        
+                        let sourceData = SourceData(inputID: item.source.id,inputName: item.source.ownerName , inputLocation: item.source.location)
+                        
+                        let itemData = ItemData(inID: item.id, inDestination: item.destination, inProperties: item.propertis, inStatus: "TO_BE_DELIVERED", inSource: sourceData)
+                        
+                        let jobData = JobData(inID: 0, inFreelancer: "000000", inItem: itemData)
+                        let job = Job(inData: jobData, itemIn: Item(inData: itemData))
+                        
+                        job.jobHandler.post(input: job, completion: {(valaszBefejezettseg: Bool)->Void in
+                            
+                            print("VALASZ FOR CREATEJOB: \(valaszBefejezettseg)")
+                            //vissza kene adni hogy lehet torolni a listabol
+                            UserSettingsWorker.shared.jobAcceptSuccess.toggle()
+                            UserSettingsWorker.shared.jobAcceptID = itemData.id
+                        
+                        })
+                        
+                        
                     }) {
                         Text("Munka elfogadása")
                             .foregroundColor(.black)

@@ -45,6 +45,7 @@ class ItemDataHandler
                                 
                                 let source: [String:Any] = dictionary["source"] as? [String:Any] ?? ["NULL":-1]
                                 let sourceLocation: String = source["location"] as? String ?? "NIL"
+                                let sourceID: Int = source["id"] as? Int ?? -2
                                 
                                 let user:[String:Any] = dictionary["owner"] as? [String:Any] ?? ["NULL":-1]
                                 
@@ -56,7 +57,7 @@ class ItemDataHandler
                                 print("source: \(source)\n\n\n")
                                             
                             
-                                let ujStatus = SourceData(inputID: -1, inputName: ownerName, inputLocation: sourceLocation)
+                                let ujStatus = SourceData(inputID: sourceID, inputName: ownerName, inputLocation: sourceLocation)
                                 
                                 let ujItem = ItemData(inID: id, inDestination: destination, inProperties: properties, inStatus: status, inSource: ujStatus)
                                 

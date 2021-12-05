@@ -35,6 +35,12 @@ class UserSettingsWorker : ObservableObject {
     @Published var itemCreationFail = false
     
     
+    @Published var jobAcceptSuccess = false
+    @Published var jobAcceptFail = false
+    
+    @Published var jobAcceptID = -1
+    
+    
     func loadEverySettings()
     {
         /*

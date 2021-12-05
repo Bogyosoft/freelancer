@@ -58,7 +58,6 @@ struct JobListUIView: View {
             })
             
         }
-       
     }
 }
 
