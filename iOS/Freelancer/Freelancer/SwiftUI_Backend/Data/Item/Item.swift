@@ -30,7 +30,7 @@ class Item:Transferable
                 "owner":[
                     "username":data.source.ownerName]
             ],
-            "status":data.status
+            "status":"TO_BE_DELIVERED"
         ]
         
         return parameters
