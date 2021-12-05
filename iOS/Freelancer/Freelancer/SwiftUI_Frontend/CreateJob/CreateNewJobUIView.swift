@@ -14,7 +14,8 @@ struct CreateNewJobUIView: View {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         }.onAppear()
         {
-            let sourceData = SourceData(inputID: 9, inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "Danitoo")
+            //inputName: String(describing: UserSettingsWorker.shared.values["userName"]!)
+            let sourceData = SourceData(inputID: 9,inputName: "Dani" , inputLocation: "Danitoo")
             
             let itemData = ItemData(inID: 5, inDestination: "Pistinek", inProperties: "Torekenz", inStatus: "TO_BE_DELIVERED", inSource: sourceData)
             let jobData = JobData(inID: 0, inFreelancer: "000000", inItem: itemData)
