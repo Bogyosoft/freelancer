@@ -22,34 +22,106 @@ struct CreateNewItemUIView: View {
         {
             VStack
             {
-                Text("Új küldemény feladása")
-                HStack
+                
+                VStack
                 {
-                    Text("Cél: ")
-                    TextField("Placeholder", text: $destination)
+                    Image("box")
+                        .resizable()
+                        .frame(width: 220, height: 220)
+                        .shadow(color: Color.black.opacity(0.3), radius: 1, x: 5, y: 5)
                 }
                 
                 HStack
                 {
-                    Text("Kiindulás: ")
-                    TextField("Placeholder", text: $kiindulas)
+                    VStack(alignment: .leading, spacing: 10)
+                    {
+                        Text("Küldemény feladása")
+                          .font(.largeTitle)
+                          .fontWeight(.heavy)
+                          .foregroundColor(.black)
+                        Capsule()
+                            .fill(Color.yellowCustom)
+                            .frame(width: 100, height: 5)
+                    }
+                    
                 }
+                .padding(.bottom, 55)
+                .padding(.horizontal)
+                .padding(.top, 40)
+                    .frame(
+                          minWidth: 0,
+                          maxWidth: .infinity,
+                          alignment: .topLeading
+                        )
                 
-                HStack
-                {
-                    Text("Tulajdonságok: ")
-                    TextField("Placeholder", text: $tulajdonsag)
-                }
                 
-                HStack
+                VStack(alignment: .center)
                 {
-                    Text("Státusz: ")
-                    TextField("Placeholder", text: $statusz)
+                    VStack
+                    {
+                        HStack(spacing: 15)
+                        {
+                            Image(systemName: "airplane.departure").foregroundColor(Color.offWhite)
+                            TextField("Kiindulás", text: self.$kiindulas).multilineTextAlignment(.leading).foregroundColor(Color.yellowCustom)
+                                .accentColor(Color.yellowCustom)
+                            
+                        }
+                        
+                        Divider().background(Color.white.opacity(0.5))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 40)
+                    
+                    VStack
+                    {
+                        HStack(spacing: 15)
+                        {
+                            Image(systemName: "airplane.arrival").foregroundColor(Color.offWhite)
+                            TextField("Cél", text: self.$destination).multilineTextAlignment(.leading).foregroundColor(Color.yellowCustom)
+                                .accentColor(Color.yellowCustom)
+                            
+                        }
+                        
+                        Divider().background(Color.white.opacity(0.5))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 40)
+                    
+                    VStack
+                    {
+                        HStack(spacing: 15)
+                        {
+                            Image(systemName: "tag").foregroundColor(Color.offWhite)
+                            TextField("Tulajdonságok", text: self.$tulajdonsag).multilineTextAlignment(.leading).foregroundColor(Color.yellowCustom)
+                                .accentColor(Color.yellowCustom)
+                            
+                        }
+                        
+                        Divider().background(Color.white.opacity(0.5))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 40)
+                    
+               
+                    
+                    /*HStack
+                    {
+                        Text("Státusz: ")
+                        TextField("Placeholder", text: $statusz)
+                    }*/
                 }
+                .padding(.bottom, 100)
+                .frame(
+                      minWidth: 0,
+                      maxWidth: .infinity,
+                      alignment: .bottom
+                    )
+                
+                
                 
                 Button(action: {
                     
-                    let sourceData = SourceData(inputID: -1, inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: "locationBe")
+                    let sourceData = SourceData(inputID: -1, inputName: String(describing: UserSettingsWorker.shared.values["userName"]!), inputLocation: kiindulas)
                     let source = Source(inData: sourceData)
                     //let handSource = SourceHandler()
                     source.dataHandler.post(input: source, completion: {(valaszBefejezettseg: Bool, valaszID: Int)->Void in
@@ -94,11 +166,34 @@ struct CreateNewItemUIView: View {
                         }
                     })
                     
-                })
-                {
+                    
+                }) {
                     Text("Küldemény feladása")
-                }
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        .padding(.vertical)
+                        .padding(.horizontal, 50)
+                        .background(Color.yellowCustom)
+                        .clipShape(Capsule())
+                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                        
+                }//.offset(y: 25)
+                //.opacity(self.index == 0 ? 1: 0)
+                .buttonStyle(GrowingButtonRegistration())
+                .frame(
+                      minWidth: 0,
+                      maxWidth: .infinity,
+                      alignment: .bottom
+                    )
             }
+            .frame(
+                  minWidth: 0,
+                  maxWidth: .infinity,
+                  minHeight: 0,
+                  maxHeight: .infinity,
+                  alignment: .bottom
+                )
+            .padding(.bottom, 10)
             
             if settings.itemCreationSuccess
             {
