@@ -6,7 +6,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.freelancer.network.FreelancerApiClient
+import com.example.freelancer.data.network.FreelancerApiClient
 import com.example.freelancer.ui.screens.Colors
 import egolabsapps.basicodemine.videolayout.VideoLayout
 

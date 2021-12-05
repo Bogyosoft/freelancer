@@ -1,4 +1,4 @@
-package com.example.freelancer.network.interceptor;
+package com.example.freelancer.data.network.interceptor;
 
 import android.content.Context;
 import android.preference.PreferenceManager;

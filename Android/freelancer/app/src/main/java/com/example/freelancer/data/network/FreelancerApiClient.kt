@@ -1,4 +1,4 @@
-package com.example.freelancer.network
+package com.example.freelancer.data.network
 
 import android.app.Application
 import retrofit2.Retrofit

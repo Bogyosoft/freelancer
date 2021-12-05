@@ -1,7 +1,8 @@
-package com.example.freelancer
+package com.example.freelancer.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.freelancer.R
 
 class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)

@@ -14,9 +14,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.freelancer.ActiveUser
+import com.example.freelancer.utils.ActiveUser
 import com.example.freelancer.MainActivity
-import com.example.freelancer.model.Source
+import com.example.freelancer.data.model.Source
 import com.example.freelancer.ui.parts.MapField
 import com.example.freelancer.ui.parts.inputField
 import com.example.freelancer.ui.parts.title

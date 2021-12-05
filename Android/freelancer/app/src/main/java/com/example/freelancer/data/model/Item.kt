@@ -1,4 +1,4 @@
-package com.example.freelancer.model
+package com.example.freelancer.data.model
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.freelancer.ActiveUser
+import com.example.freelancer.utils.ActiveUser
 import com.example.freelancer.ui.screens.rndColor
 import com.example.freelancer.ui.viewmodel.JobViewModel
 
