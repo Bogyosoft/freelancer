@@ -109,14 +109,20 @@ fun Freelancer( context:Context,lifecycleOwner: LifecycleOwner,activity:MainActi
             composable("Register") { RegisterScreen(navController,registerViewModel) }
             composable("Main") { MainScreen(navController,openDrawer) }
 
-            composable("UserList"){ MainList(navController = navController, viewModel = userViewModel,lifecycleOwner,"Users")}
+            composable("UserList"){ MainList(navController = navController, viewModel = userViewModel,lifecycleOwner,"Users")
+                userViewModel.refresh()
+            }
             composable("userDetails"){ userViewModel.clickedItem.Details(item = userViewModel.clickedItem,navController)}
 
             composable("jobDetails"){ jobViewModel.clickedItem.Details(item = jobViewModel.clickedItem,navController)}
-            composable("JobList"){MainList(navController = navController, viewModel = jobViewModel,lifecycleOwner,"Your Jobs")}
+            composable("JobList"){MainList(navController = navController, viewModel = jobViewModel,lifecycleOwner,"Your Jobs")
+                jobViewModel.refresh()
+            }
 
             composable("itemsDetails"){ itemViewModel.clickedItem.Details(item = itemViewModel.clickedItem,navController)}
-            composable("Items"){MainList(navController = navController, viewModel = itemViewModel,lifecycleOwner,"Available Jobs")}
+            composable("Items"){MainList(navController = navController, viewModel = itemViewModel,lifecycleOwner,"Available Jobs")
+                itemViewModel.refresh()
+            }
 
             composable("SignOut"){
                 val i = Intent(context, StartActivity::class.java)

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freelancer.model.IItem
-import com.example.freelancer.model.itemsItem
-import com.example.freelancer.model.jobItem
+import com.example.freelancer.model.Item
+import com.example.freelancer.model.JobItem
 import com.example.freelancer.network.FreelancerApiClient
 import com.example.freelancer.repository.FreeLancerRepository
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ class JobViewModel : ViewModel(),IViewModel{
             }
         }
     }
-    fun createJobs(job : itemsItem){
+    fun createJobs(job : Item){
         repository = FreeLancerRepository(apiService)
         viewModelScope.launch {
             repository.createJob(job){
@@ -51,7 +51,7 @@ class JobViewModel : ViewModel(),IViewModel{
     }
 
     override fun itemClicked(item: IItem) {
-        clickedItem = item as jobItem
+        clickedItem = item as JobItem
     }
 
     override fun refresh() {

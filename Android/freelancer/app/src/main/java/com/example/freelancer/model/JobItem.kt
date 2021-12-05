@@ -1,5 +1,6 @@
 package com.example.freelancer.model
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,12 +19,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.freelancer.network.FreelancerAPIService
+import com.example.freelancer.network.FreelancerApiClient
+import com.example.freelancer.repository.FreeLancerRepository
 import com.example.freelancer.ui.screens.rndColor
 
-data class jobItem(
+data class JobItem(
     val freelancer: UserItem,
     val id: Int,
-    val item: itemsItem,
+    val item: Item,
     val status :String
 ):IItem {
     @Composable
@@ -50,7 +54,7 @@ data class jobItem(
                     verticalAlignment = Alignment.Top,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = (item as jobItem ).item.destination,
+                    Text(text = (item as JobItem ).item.destination,
                         textAlign = TextAlign.Center,
                         fontSize = 31.sp,
                         modifier = Modifier
@@ -79,7 +83,7 @@ data class jobItem(
             .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(50.dp))
             .padding(15.dp)
 
-        item as jobItem
+        item as JobItem
         Card(modifier = Modifier
             .padding(15.dp)
             .fillMaxWidth()
@@ -101,8 +105,48 @@ data class jobItem(
 
                 Button(
                     onClick = {
+                        val service = FreelancerApiClient.service
+                        val repo = FreeLancerRepository(service)
+                        repo.delivereJob(this@JobItem) {
+                            if (it?.id != null) {
+                                Log.d("Job delivery","success ")
 
-                        navController?.navigate("Main")
+                                navController?.navigate("Main")
+                            } else {
+                                Log.d("Job delivery","failure ")
+                            }
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = rndColor()),
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .fillMaxWidth()
+                        .border(
+                            width = 2.dp,
+                            color = Color.White,
+                            shape = RoundedCornerShape(50.dp)
+                        )
+                        .height(50.dp),
+                    shape = RoundedCornerShape(50.dp)
+
+
+                ) {
+                    Text(text = "Delivered", color = Color.White)
+
+                }
+                Button(
+                    onClick = {
+                        val service = FreelancerApiClient.service
+                        val repo = FreeLancerRepository(service)
+                        repo.passJob(this@JobItem) {
+                            if (it?.id != null) {
+                                Log.d("Job Passing","success ")
+
+                                navController?.navigate("Main")
+                            } else {
+                                Log.d("Job Passing","failure ")
+                            }
+                        }
                     },
                     colors = ButtonDefaults.buttonColors(backgroundColor = rndColor()),
                     modifier = Modifier

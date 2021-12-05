@@ -1,5 +1,6 @@
 package com.example.freelancer.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -36,7 +37,6 @@ fun MainList(navController: NavController,
     List(
         navController = navController, list = viewModel.list,
         onItemClicked = (viewModel::itemClicked),
-        viewModel = viewModel,
         owner = owner
     )
 }
@@ -49,7 +49,6 @@ fun List(
     navController: NavController,
     list: MutableLiveData<List<IItem>>,
     onItemClicked: (IItem) -> Unit,
-    viewModel: IViewModel,
     owner:LifecycleOwner
 ) {
     val listState = rememberLazyListState()
@@ -63,10 +62,12 @@ fun List(
             verticalAlignment = Alignment.Bottom
         )
         {
-            viewModel.list.observe(owner, Observer<List<IItem>>{
+            list.observe(owner, Observer<List<IItem>>{
                 list->
                 itemsIndexed(list){ index, item ->
                     item.ListViewItem(navController = navController, item = item,onItemClicked)
+                    Log.d("list", "Success ${list.size}")
+
                 }
             })
         }
