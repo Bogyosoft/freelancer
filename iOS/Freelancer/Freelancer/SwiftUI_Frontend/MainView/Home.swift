@@ -134,7 +134,7 @@ let menuData = [
    Menu(title: "Profil", icon: "person.crop.circle"),
    
    //Menu(title: "Fizetés", icon: "creditcard"),
-   Menu(title: "Munkák", icon: "hammer"),
+   Menu(title: "Munkáim", icon: "hammer"),
    Menu(title: "Szállítmányok", icon: "bag"),
    //Menu(title: "Team", icon: "person.2"),
    Menu(title: "Beállítások", icon: "gear"),
@@ -201,7 +201,7 @@ struct MenuView: View {
                           .sheet(isPresented: self.$showItemList) { ItemListUIView() }
                     }
                 }
-                else if item.title == "Munkák"
+                else if item.title == "Munkáim"
                 {
                     Button(action: { self.showJobList.toggle() })
                      {

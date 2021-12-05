@@ -1,5 +1,5 @@
 //
-//  itemListRowNormalUIView.swift
+//  jobListRowNormalUIView.swift
 //  Freelancer
 //
 //  Created by Kiss Dániel Márk on 2021. 12. 05..
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct itemListRowNormalUIView: View {
-    
-    var item: ItemData
+struct jobListRowNormalUIView: View {
+    var job: JobData
     //let namespace: Namespace.ID
     
     var body: some View {
@@ -27,7 +26,7 @@ struct itemListRowNormalUIView: View {
                             HStack
                             {
                                 Image(systemName: "mappin").foregroundColor(Color.yellowCustom)
-                                Text(item.destination)
+                                Text(job.item.destination)
                                     .foregroundColor(Color.yellowCustom)
                             }
                             
@@ -35,7 +34,7 @@ struct itemListRowNormalUIView: View {
                             HStack
                             {
                                 Image(systemName: "tag").foregroundColor(Color.yellowCustom)
-                                Text(item.propertis)
+                                Text(job.item.propertis)
                                     .foregroundColor(Color.yellowCustom)
                             }
                             Spacer()
@@ -51,10 +50,8 @@ struct itemListRowNormalUIView: View {
     }
 }
 
-struct itemListRowNormalUIView_Previews: PreviewProvider {
+struct jobListRowNormalUIView_Previews: PreviewProvider {
     static var previews: some View {
-        itemListRowNormalUIView(item: ItemData(inID: 0, inDestination: "nincs", inProperties: "nincs", inStatus: "nincs", inSource: SourceData(inputID: 0, inputName: "nincs", inputLocation: "nincs")))
+        jobListRowNormalUIView(job: JobData(inID: 0, inFreelancer: "ugysekell", inItem: ItemData(inID: 0, inDestination: "nincs", inProperties: "nincs", inStatus: "nincs", inSource: SourceData(inputID: 0, inputName: "nincs", inputLocation: "nincs"))))
     }
 }
-
-

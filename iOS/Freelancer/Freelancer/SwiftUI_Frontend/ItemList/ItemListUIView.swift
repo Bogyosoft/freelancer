@@ -14,7 +14,29 @@ struct ItemListUIView: View {
         
         VStack
         {
-            Text("Elérhető munkák")
+            HStack
+            {
+                VStack(alignment: .leading, spacing: 10)
+                {
+                    Text("Elérhető szállítmányok")
+                      .font(.largeTitle)
+                      .fontWeight(.heavy)
+                      .foregroundColor(.black)
+                    Capsule()
+                        .fill(Color.yellowCustom)
+                        .frame(width: 100, height: 5)
+                }
+                
+            }
+            .padding(.bottom, 15)
+            .padding(.horizontal)
+            .padding(.top, 40)
+                .frame(
+                      minWidth: 0,
+                      maxWidth: .infinity,
+                      alignment: .topLeading
+                    )
+            
             ItemList(showAcceptJobMenu: $showAcceptJobMenu)
         }
         
@@ -32,34 +54,31 @@ struct ItemList: View {
         
         ZStack
         {
-            
-            ScrollView {
-                VStack {
-                    ForEach(itemsUI) { item in
-                        
-                        
-                        CardDetector(showAcceptJobMenu: $showAcceptJobMenu, item: item, position: .small)
-                        
-                        
-                    }
+            if !spinner
+            {
+                VStack
+                {
+                    ProgressView()
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+            }
+            else
+            {
+                if !itemsUI.isEmpty
+                {
+                    ScrollView {
+                        VStack {
+                            ForEach(itemsUI) { item in
+                                
+                                
+                                CardDetector(showAcceptJobMenu: $showAcceptJobMenu, item: item, position: .small)
+                                
+                                
+                            }
+                        }
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onAppear{
-                    print("LEKEREEEES")
-                    let lekertAdatok = Item(inData: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil")))
-                    
-                    lekertAdatok.itemHandler.get(input: lekertAdatok, completion: {(valaszArray: Array<ItemData>, valaszKesz: Bool)->Void in
-                        
-                        print(valaszArray[0].source.id)
-                        
-                        self.itemsUI = valaszArray
-                        self.spinner = valaszKesz
-                        
-                    })
-                }
-            
-            
-            
+            }
             if settings.jobAcceptSuccess
             {
                 
@@ -84,6 +103,18 @@ struct ItemList: View {
                     
                 }).opacity(0.9).transition(.opacity)
             }
+        }.onAppear{
+            print("LEKEREEEES")
+            let lekertAdatok = Item(inData: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil")))
+            
+            lekertAdatok.itemHandler.get(input: lekertAdatok, completion: {(valaszArray: Array<ItemData>, valaszKesz: Bool)->Void in
+                
+                //print(valaszArray[0].source.id)
+                
+                self.itemsUI = valaszArray
+                self.spinner = valaszKesz
+                
+            })
         }
         
         

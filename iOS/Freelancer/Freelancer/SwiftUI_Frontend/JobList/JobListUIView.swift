@@ -15,27 +15,109 @@ struct JobListUIView: View {
     var body: some View {
         VStack
         {
-            Text("Munkák").font(.largeTitle)
-            
+            HStack
+            {
+                VStack(alignment: .leading, spacing: 10)
+                {
+                    Text("Munkáim")
+                      .font(.largeTitle)
+                      .fontWeight(.heavy)
+                      .foregroundColor(.black)
+                    Capsule()
+                        .fill(Color.yellowCustom)
+                        .frame(width: 100, height: 5)
+                }
+                
+            }
+            .padding(.bottom, 15)
+            .padding(.horizontal)
+            .padding(.top, 40)
+                .frame(
+                      minWidth: 0,
+                      maxWidth: .infinity,
+                      alignment: .topLeading
+                    )
+            JobList()
+        }
+    }
+}
+
+struct JobDataRowView: View {
+    var job: JobData
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text(job.freelancer)
+                .foregroundColor(.primary)
+                .font(.headline)
+            HStack(spacing: 3) {
+                Label(job.item.destination, systemImage: "car")
+            }
+            .foregroundColor(.secondary)
+            .font(.subheadline)
+        }
+    }
+}
+
+struct JobList: View {
+    @ObservedObject var settings = UserSettingsWorker.shared
+    @State var jobsUI: Array<JobData> = Array<JobData>()
+    @State var spinner: Bool = false
+    
+    
+    var body: some View {
+        
+        ZStack
+        {
             if !spinner
             {
-                ProgressView()
+                VStack
+                {
+                    ProgressView()
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                
             }
             else
             {
                 if !jobsUI.isEmpty
                 {
-                    List
-                    {
-                        ForEach(jobsUI)
-                        { jobElem in
-                            JobDataRowView(job: jobElem)
-                            //Text(item.destination)
+                    ScrollView {
+                        VStack {
+                            ForEach(jobsUI) { job in
+                                
+                                
+                                CardDetectorForJob(job: job, position: .small)
+                                
+                                
+                            }
                         }
-                    }
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                
             }
+            /*if settings.jobAcceptSuccess
+            {
+                
+                SuccessCardUIView().onAppear(perform: {
+                    Haptics.shared.notify(.success)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        withAnimation()
+                        {
+                            UserSettingsWorker.shared.jobAcceptSuccess.toggle()
+                             
+                        }
+                    })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        withAnimation()
+                        {
+                            deleteItem()
+                             
+                        }
+                    })
+                    
+                    
+                }).opacity(0.9).transition(.opacity)
+            }*/
         }.onAppear
         {
             
@@ -58,25 +140,70 @@ struct JobListUIView: View {
             })
             
         }
+        
+        
     }
-}
 
-struct JobDataRowView: View {
-    var job: JobData
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text(job.freelancer)
-                .foregroundColor(.primary)
-                .font(.headline)
-            HStack(spacing: 3) {
-                Label(job.item.destination, systemImage: "car")
+    func deleteItem() {
+        /*var i = 0
+        var stepper = 0
+        for item in self.jobsUI{
+            if item.id == UserSettingsWorker.shared.jobAcceptID
+            {
+                i = stepper
             }
-            .foregroundColor(.secondary)
-            .font(.subheadline)
+            stepper += 1
         }
+        let indexSet = IndexSet(integer: i)
+        self.itemsUI.remove(atOffsets: indexSet)*/
     }
 }
+
+struct CardDetectorForJob: View {
+    
+    var job: JobData
+    @State var position: CardPosition
+    @Namespace var namespace
+    var body: some View {
+        
+        
+            Group {
+                switch position {
+                case .small:
+                    jobListRowNormalUIView(job: job)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 120)
+                    .background(BlurView(style: .regular))
+                    .cornerRadius(10)
+                    .padding(.vertical,6)
+                    .onTapGesture {
+                        withAnimation {
+                            position = .big
+                        }
+                    }
+                    .padding(.horizontal)
+                case .big:
+                    jobListRowExpandedUIView(job: job)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 270)
+                    .background(BlurView(style: .regular))
+                    .cornerRadius(10)
+                    .padding(.vertical,6)
+                    .onTapGesture {
+                        withAnimation {
+                            position = .small
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            }.cornerRadius(10)
+        
+            
+    }
+}
+
 
 struct JobListUIView_Previews: PreviewProvider {
     static var previews: some View {

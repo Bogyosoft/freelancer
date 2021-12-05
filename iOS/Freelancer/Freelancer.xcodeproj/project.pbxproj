@@ -15,6 +15,8 @@
 		2947C41A2721696E006FEA8B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2947C4192721696E006FEA8B /* Launch Screen.storyboard */; };
 		294A947A275CE6900087A8EF /* itemListRowNormalUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A9479275CE6900087A8EF /* itemListRowNormalUIView.swift */; };
 		294A947C275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A947B275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift */; };
+		294A947E275D12490087A8EF /* jobListRowNormalUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A947D275D12490087A8EF /* jobListRowNormalUIView.swift */; };
+		294A9480275D12C50087A8EF /* jobListRowExpandedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A947F275D12C50087A8EF /* jobListRowExpandedUIView.swift */; };
 		2957E800273028700039429D /* Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2957E7FF273028700039429D /* Transferable.swift */; };
 		2990082D2752BF0200F43C8D /* SuccessCardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */; };
 		299008302752C18400F43C8D /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2990082F2752C18400F43C8D /* Haptics.swift */; };
@@ -71,6 +73,8 @@
 		2947C4192721696E006FEA8B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		294A9479275CE6900087A8EF /* itemListRowNormalUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemListRowNormalUIView.swift; sourceTree = "<group>"; };
 		294A947B275CE6AA0087A8EF /* itemListRowExpanedeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemListRowExpanedeUIView.swift; sourceTree = "<group>"; };
+		294A947D275D12490087A8EF /* jobListRowNormalUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jobListRowNormalUIView.swift; sourceTree = "<group>"; };
+		294A947F275D12C50087A8EF /* jobListRowExpandedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jobListRowExpandedUIView.swift; sourceTree = "<group>"; };
 		2957E7FF273028700039429D /* Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transferable.swift; sourceTree = "<group>"; };
 		2990082C2752BF0200F43C8D /* SuccessCardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCardUIView.swift; sourceTree = "<group>"; };
 		2990082F2752C18400F43C8D /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				29EA5FA3274656260080A250 /* JobListUIView.swift */,
+				294A947D275D12490087A8EF /* jobListRowNormalUIView.swift */,
+				294A947F275D12C50087A8EF /* jobListRowExpandedUIView.swift */,
 			);
 			path = JobList;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				29F2870127415CD700578D8E /* UserData.swift in Sources */,
 				29B5FB27273A819600327744 /* ItemDataHandler.swift in Sources */,
 				29E548DD2715DE5400033FD6 /* Item.swift in Sources */,
+				294A9480275D12C50087A8EF /* jobListRowExpandedUIView.swift in Sources */,
 				2992D975274F900700711A8D /* UserSettingsWorker.swift in Sources */,
 				29A863C727207B170071C54F /* APICommunicator.swift in Sources */,
 				293C699C2733E7C0001BC990 /* JsonSerializer.swift in Sources */,
@@ -558,6 +565,7 @@
 				29EACD012720448300A433D9 /* ProfileUpdateUIView.swift in Sources */,
 				29F87911274570EA00BD38F3 /* Token.swift in Sources */,
 				29DE5DBC2724A29700431A75 /* BlurView.swift in Sources */,
+				294A947E275D12490087A8EF /* jobListRowNormalUIView.swift in Sources */,
 				29B5FB23273A71EA00327744 /* Job.swift in Sources */,
 				29CB206E272882F4006EFF33 /* User.swift in Sources */,
 				29F286FB2741579E00578D8E /* ItemListUIView.swift in Sources */,
