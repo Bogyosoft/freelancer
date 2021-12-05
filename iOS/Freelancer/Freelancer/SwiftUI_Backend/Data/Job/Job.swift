@@ -21,6 +21,23 @@ class Job: Transferable
         item = itemIn
     }
     
+    func createJSON() -> [String : Any] {
+        let parameters: [String: Any] = [
+            "destination": item.data.destination,
+            "id" : item.data.id,
+            "properties": item.data.propertis,
+            "source":[
+                "id": item.data.source.id,
+                "location": item.data.source.location,
+                "owner":[
+                    "username":item.data.source.ownerName]
+            ],
+            "status":"TO_BE_DELIVERED"
+        ]
+        
+        return parameters
+    }
+    
     /*func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
             "freelancer": ["username": data.freelancer],
@@ -46,7 +63,7 @@ class Job: Transferable
         return parameters
     }*/
     
-    func createJSON() -> [String : Any] {
+    /*func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
             "freelancer": ["username":"qq"],
             "id" : -1,
@@ -62,7 +79,7 @@ class Job: Transferable
         ]
         
         return parameters
-    }
+    }*/
     
     /*func createJSON() -> [String : Any] {
         let parameters: [String: Any] = [
