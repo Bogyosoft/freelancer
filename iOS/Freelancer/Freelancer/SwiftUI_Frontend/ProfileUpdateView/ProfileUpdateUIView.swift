@@ -51,19 +51,28 @@ struct ProfileUpdateUIView: View {
             {
                 if userUI.username != ""
                 {
-                    VStack {
-                        Text("\(userUI.username)").font(.body)
-                            .fontWeight(.heavy)
-                            .foregroundColor(.black)
-                        Text("\(userUI.role)")
-                            .font(.callout)
-                                .fontWeight(.heavy)
+                    
+                    List {
+                        HStack {
+                            Text("Felhasználónév").foregroundColor(Color.yellowCustom)
+                            Text((userUI.username) )
+                                .frame(maxWidth: .infinity, alignment: .trailing)
                                 .foregroundColor(.gray)
-                        Text("\(userUI.score)")
-                            .font(.footnote)
-                                .fontWeight(.heavy)
-                                .foregroundColor(.black)
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        HStack {
+                            Text("Role").foregroundColor(Color.yellowCustom)
+                            Text((userUI.role) )
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .foregroundColor(.gray)
+                        }
+                        HStack {
+                            Text("Pontok").foregroundColor(Color.yellowCustom)
+                            Text("\(userUI.score)")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
                 }
                 else
                 {
