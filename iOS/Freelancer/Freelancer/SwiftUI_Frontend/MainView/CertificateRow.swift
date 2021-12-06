@@ -11,8 +11,10 @@ import SwiftUI
 
 struct CertificateRow: View {
 
-   var certificates = certificateData
-
+    var certificates = certificateData
+    @State var jobsUI: Array<JobData> = Array<JobData>()
+    @ObservedObject var settings = UserSettingsWorker.shared
+    
    var body: some View {
       VStack(alignment: .leading) {
          Text("Folyamatban")
@@ -22,15 +24,77 @@ struct CertificateRow: View {
 
          ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
-               ForEach(certificates) { item in
-                  CertificateView(item: item)
+               ForEach(jobsUI) { job in
+                  CertificateView(job: job)
                }
             }
             .padding(20)
             .padding(.leading, 10)
          }
-      }
+          
+          if settings.jobPutSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          askJobData() 
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+          }
+          
+          if settings.jobAcceptSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          askJobData()
+                           
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+          }
+          
+          
+      }.onAppear
+       {
+           print("FOLYAMATBAN LEVO MUNKA")
+           askJobData()
+       }
    }
+    
+    func askJobData()
+    {
+        print("HOMELIS:LEKEREEEES-JOB")
+        let lekertAdatok = Item(inData: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil")))
+        
+        let jobLekeres = Job(inData: JobData(inID: 0, inFreelancer: "nil", inItem: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil"))), itemIn: lekertAdatok)
+        
+        
+        
+        jobLekeres.jobHandler.get(input: jobLekeres, completion: {(valaszArray: Array<JobData>, valaszKesz: Bool)->Void in
+            
+            print("VISSZA A UI-ra")
+            //print(valaszArray[0].propertis)
+            
+            self.jobsUI = valaszArray
+            //self.spinner = valaszKesz
+
+            
+        })
+    }
 }
 
 #if DEBUG

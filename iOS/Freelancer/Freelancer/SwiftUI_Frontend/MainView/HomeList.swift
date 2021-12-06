@@ -11,7 +11,8 @@ import SwiftUI
 struct HomeList: View {
 
     //var courses = coursesData
-    @State var jobsUI: Array<JobData> = Array<JobData>()
+    
+    @State var itemsUI: Array<ItemData> = Array<ItemData>()
     @State var showContent = false
     @State var userUI = UserData(inUser: "", inPass: "", inRole: "", inScore: 0)
     @ObservedObject var settings = UserSettingsWorker.shared
@@ -37,11 +38,11 @@ struct HomeList: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                HStack(spacing: 30.0) {
-                  ForEach(jobsUI) { job in
+                  ForEach(itemsUI) { item in
                      Button(action: { self.showContent.toggle() }) {
                         GeometryReader { geometry in
-                            CourseView(title: job.item.propertis,
-                                      image: "workerhat",
+                            CourseView(title: item.propertis,
+                                      image: "box",
                                       color: Color("background8"),
                                       shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5))
                               .rotation3DEffect(Angle(degrees:
@@ -57,7 +58,7 @@ struct HomeList: View {
                .padding(.bottom, 70)
                Spacer()
             }
-            //CertificateRow()
+            CertificateRow()
          }
          .padding(.top, 78)
           
@@ -69,8 +70,6 @@ struct HomeList: View {
                       {
                           print("UJRATOLTES")
                           askUserData()
-                          askJobData()
-                           
                       }
                   })
                   
@@ -89,8 +88,8 @@ struct HomeList: View {
                       withAnimation()
                       {
                           print("UJRATOLTES")
-                          //askUserData()
-                          askJobData()
+                          askUserData()
+                          askItemData()
                            
                       }
                   })
@@ -108,8 +107,9 @@ struct HomeList: View {
                       withAnimation()
                       {
                           print("UJRATOLTES")
+                          askItemData()
                           //askUserData()
-                          askJobData()
+                          //askJobData()
                            
                       }
                   })
@@ -123,7 +123,7 @@ struct HomeList: View {
       }.onAppear()
        {
            askUserData()
-           askJobData()
+           askItemData()
        }
        
        
@@ -146,23 +146,19 @@ struct HomeList: View {
         }
     }
     
-    func askJobData()
+    
+    
+    func askItemData()
     {
-        print("HOMELIS:LEKEREEEES-JOB")
+        print("LEKEREEEES")
         let lekertAdatok = Item(inData: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil")))
         
-        let jobLekeres = Job(inData: JobData(inID: 0, inFreelancer: "nil", inItem: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil"))), itemIn: lekertAdatok)
-        
-        
-        
-        jobLekeres.jobHandler.get(input: jobLekeres, completion: {(valaszArray: Array<JobData>, valaszKesz: Bool)->Void in
+        lekertAdatok.itemHandler.get(input: lekertAdatok, completion: {(valaszArray: Array<ItemData>, valaszKesz: Bool)->Void in
             
-            print("VISSZA A UI-ra")
-            //print(valaszArray[0].propertis)
+            //print(valaszArray[0].source.id)
             
-            self.jobsUI = valaszArray
+            self.itemsUI = valaszArray
             //self.spinner = valaszKesz
-
             
         })
     }

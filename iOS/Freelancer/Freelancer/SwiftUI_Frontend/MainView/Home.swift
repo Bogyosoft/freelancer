@@ -68,7 +68,7 @@ struct Home: View {
       }
       .background(Color("background"))
       .edgesIgnoringSafeArea(.all)
-      .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+      /*.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                           .onEnded({ value in
                               if value.translation.width < 0 {
                                   // left
@@ -86,7 +86,7 @@ struct Home: View {
                               if value.translation.height > 0 {
                                   // down
                               }
-                          }))
+                          }))*/
       
    }
     

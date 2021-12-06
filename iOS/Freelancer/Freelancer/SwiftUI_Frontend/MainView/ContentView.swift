@@ -48,7 +48,7 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.4))
             .offset(x: viewState.width, y: viewState.height)
 
-         CertificateView()
+          /*CertificateView()
             .offset(x: viewState.width, y: viewState.height)
             .scaleEffect(0.95)
             .rotationEffect(Angle(degrees: show ? 5 : 0))
@@ -66,7 +66,7 @@ struct ContentView: View {
                      self.viewState = CGSize.zero
                      self.show = false
                   }
-            )
+            )*/
       }
    }
 }
@@ -90,24 +90,30 @@ struct CardView: View {
 
 struct CertificateView: View {
 
-   var item = Certificate(title: "UI Design"/*, image: "Certificate1"*/, width: 340, height: 220)
+   //var item = Certificate(title: "UI Design"/*, image: "Certificate1"*/, width: 340, height: 220)
+    var job: JobData
 
    var body: some View {
       return VStack {
          HStack {
             VStack(alignment: .leading) {
-               Text(item.title)
+                Text(job.item.propertis)
                   .font(.headline)
                   .fontWeight(.bold)
                   .foregroundColor(Color("accent"))
                   .padding(.top)
 
-               Text("Leírás")
+               Text("Cél")
                   .foregroundColor(.white)
+                
+                Text("\(job.item.destination)")
+                    .foregroundColor(.white).italic()
+                
+                
             }
             Spacer()
 
-            Image("Logo")
+            Image("workerhat")
                .resizable()
                .frame(width: 30, height: 30)
          }
@@ -118,7 +124,7 @@ struct CertificateView: View {
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .offset(y: 50)*/
       }
-      .frame(width: CGFloat(item.width), height: CGFloat(item.height))
+      .frame(width: CGFloat(340), height: CGFloat(220))
       .background(Color.black)
       .cornerRadius(10)
       .shadow(radius: 10)
