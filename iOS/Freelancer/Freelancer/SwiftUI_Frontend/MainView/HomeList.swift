@@ -10,8 +10,11 @@ import SwiftUI
 
 struct HomeList: View {
 
-   var courses = coursesData
-   @State var showContent = false
+    var courses = coursesData
+    @State var jobsUI: Array<JobData> = Array<JobData>()
+    @State var showContent = false
+    @State var userUI = UserData(inUser: "", inPass: "", inRole: "", inScore: 0)
+    @ObservedObject var settings = UserSettingsWorker.shared
 
    var body: some View {
       ScrollView {
@@ -22,12 +25,15 @@ struct HomeList: View {
                      .font(.largeTitle)
                      .fontWeight(.heavy)
 
-                  Text("22 munka")
+                   Text("\(userUI.score) pont")
                      .foregroundColor(.gray)
                }
                Spacer()
+                
+                
             }
             .padding(.leading, 60.0)
+             
 
             ScrollView(.horizontal, showsIndicators: false) {
                HStack(spacing: 30.0) {
@@ -51,16 +57,54 @@ struct HomeList: View {
                .padding(.bottom, 70)
                Spacer()
             }
-            CertificateRow()
+            //CertificateRow()
          }
          .padding(.top, 78)
+          
+          if settings.jobDeleteSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          ask()
+                           
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+              
+              
+          }
+          
       }.onAppear()
        {
-           print("HOMELIST")
-           //let item = Item()
-           //item.itemHandler.get(input: item)
+           ask()
        }
+       
+       
    }
+    
+    func ask()
+    {
+        print("HOMELIST")
+        let user = User(inData: UserData(inUser: UserSettingsWorker.shared.values["userName"] as? String ?? "", inPass: "0", inRole: "", inScore: 0))
+        user.dataHandler.get(input: user) { valaszUser, valaszKesz in
+            print("PROFILLEKERES KESZ? :\(valaszKesz)")
+            print(valaszUser.username)
+            
+            if valaszKesz
+            {
+                self.userUI = valaszUser
+                //spinner.toggle()
+            }
+            
+        }
+    }
 }
 
 #if DEBUG
