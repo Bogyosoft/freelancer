@@ -99,7 +99,8 @@ fun CreateJobButton(
                         ActiveUser.getActiveUser()
                     )
 
-
+                    MainActivity.mapData["location"]=""
+                    MainActivity.mapData["destination"]=""
                     val sourceViewModel = SourceViewModel()
                     sourceViewModel.createSource(source = source,destination.value.text,properties.value.text)
                     navController.navigate("Main")

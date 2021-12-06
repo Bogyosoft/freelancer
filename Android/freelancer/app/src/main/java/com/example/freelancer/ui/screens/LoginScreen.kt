@@ -60,7 +60,7 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
         )
         title("Sign in")
 
-        inputField(email, emailErrorState, "Email")
+        inputField(email, emailErrorState, "username")
 
         passwordField(password, passwordVisibility, passwordErrorState)
 
