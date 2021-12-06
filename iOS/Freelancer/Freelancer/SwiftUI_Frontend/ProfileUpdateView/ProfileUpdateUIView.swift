@@ -13,35 +13,77 @@ struct ProfileUpdateUIView: View {
     @State private var newEmail: String = ""
     @State private var newEmailAgain: String = ""
     
+    @State var userUI = UserData(inUser: "", inPass: "", inRole: "", inScore: 0)
+    @State var spinner: Bool = false
+    
     var body: some View {
-        NavigationView
+        
+        VStack
         {
-            List
+            HStack
             {
-                
-                TextField("Új e-mail cím", text: $newEmail).padding(.top)
-                TextField("Új e-mail cím megerősítése", text: $newEmailAgain).padding(.top)
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    Text("E-mail cím frissítése")
-                }.padding()
-                
-                TextField("Új jelszó", text: $newEmail).padding(.top)
-                TextField("Új jelszó megerősítése", text: $newEmailAgain).padding(.top)
-                
-                Button(action: {}) {
-                    Text("Jelszófrissítése")
-                }.padding()
-                
-                TextField("Új telefonszám", text: $newEmail).padding(.top)
-                TextField("Új telefonszám megerősítése", text: $newEmailAgain).padding(.top)
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    Text("Telefonszám frissítése")
-                }.padding()
+                VStack(alignment: .leading, spacing: 10)
+                {
+                    Text("Profil")
+                      .font(.largeTitle)
+                      .fontWeight(.heavy)
+                      .foregroundColor(.black)
+                    Capsule()
+                        .fill(Color.yellowCustom)
+                        .frame(width: 100, height: 5)
+                }
                 
             }
-        }.navigationTitle("Adatok módosítása")
+            .padding(.bottom, 15)
+            .padding(.horizontal)
+            .padding(.top, 40)
+            .frame(minWidth: 0,maxWidth: .infinity,alignment: .topLeading)
+            
+            if !spinner
+            {
+                VStack
+                {
+                    ProgressView()
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+            }
+            else
+            {
+                if userUI.username != ""
+                {
+                    VStack {
+                        Text("\(userUI.username)")
+                        Text("\(userUI.role)")
+                        Text("\(userUI.score)")
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                else
+                {
+                    VStack
+                    {
+                        Text("Nincs elérhető adat!").foregroundColor(Color.black).font(.largeTitle).font(.system(size: 40))
+                        Text("❌").font(.system(size: 60))
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+            
+            
+        }
+        .onAppear{
+                print("PROFIL VIEW")
+                let user = User(inData: UserData(inUser: UserSettingsWorker.shared.values["userName"] as? String ?? "", inPass: "0", inRole: "", inScore: 0))
+                user.dataHandler.get(input: user) { valaszUser, valaszKesz in
+                    print("PROFILLEKERES KESZ? :\(valaszKesz)")
+                    print(valaszUser.username)
+                    
+                    if valaszKesz
+                    {
+                        self.userUI = valaszUser
+                        spinner.toggle()
+                    }
+                    
+                }
+            }
         
     }
 }

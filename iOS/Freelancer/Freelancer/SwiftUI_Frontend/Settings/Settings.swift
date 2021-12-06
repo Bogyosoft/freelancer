@@ -55,7 +55,7 @@ struct Settings: View {
          .navigationBarTitle("Beállítások")
       }.onAppear
        {
-           self.receive = UserSettingsWorker.shared.loadUserSettings(key: "automataLogin") as! Bool
+           self.receive = UserSettingsWorker.shared.loadUserSettings(key: "automataLogin") as? Bool ?? false
        }
    }
 }

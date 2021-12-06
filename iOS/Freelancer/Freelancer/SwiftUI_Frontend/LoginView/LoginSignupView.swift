@@ -427,7 +427,7 @@ struct RegistrationView: View{
                     if self.attemptsEmail == 0 && self.attemptsPassword == 0
                     {
                         print("LoginSigUpView_registration()")
-                        let user = User(inData: UserData(inUser: self.email, inPass: self.pass))
+                        let user = User(inData: UserData(inUser: self.email, inPass: self.pass, inRole: "", inScore: 0))
                         user.dataHandler.post(input: user, completion: {(valasz: Bool)->Void in
                             
                             print("NA MI LETT: \(valasz)")

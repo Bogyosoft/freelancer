@@ -15,10 +15,12 @@ class UserData: Codable
     var score: Int = 0
     var username: String
     
-    init(inUser: String, inPass: String)
+    init(inUser: String, inPass: String, inRole: String, inScore: Int)
     {
         username = inUser
         password = inPass
+        role = inRole
+        score = inScore
     }
 }
 

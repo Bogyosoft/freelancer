@@ -65,11 +65,7 @@ struct Home: View {
           }
 
          MenuView(show: $show)
-      }.onAppear()
-       {
-           //let item = Item()
-           //item.itemHandler.get(input: item)
-       }
+      }
       .background(Color("background"))
       .edgesIgnoringSafeArea(.all)
       .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -175,6 +171,7 @@ struct MenuView: View {
                 {
                     Button(action: {
                         Token.shared.tokenReceived = false
+                        UserSettingsWorker.shared.saveUserSettings(value: false, key: "automataLogin")
                         UserSettingsWorker.shared.resetUserSetting()
                         self.viewlaunch.currentPage = "login"
                         

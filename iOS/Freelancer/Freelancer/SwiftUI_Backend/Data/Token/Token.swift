@@ -18,7 +18,7 @@ class Token: Transferable, ObservableObject
     
     var link: String = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com/api/v1/auth"
     
-    var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani"))
+    var user: User = User(inData: UserData(inUser: "Dani", inPass: "dani", inRole: "",inScore: 0))
     var token: String = "nil"
     
     @Published var tokenReceived = false

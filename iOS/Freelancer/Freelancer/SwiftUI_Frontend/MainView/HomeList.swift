@@ -54,7 +54,12 @@ struct HomeList: View {
             CertificateRow()
          }
          .padding(.top, 78)
-      }
+      }.onAppear()
+       {
+           print("HOMELIST")
+           //let item = Item()
+           //item.itemHandler.get(input: item)
+       }
    }
 }
 
