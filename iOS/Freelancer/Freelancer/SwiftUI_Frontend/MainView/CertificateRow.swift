@@ -49,6 +49,25 @@ struct CertificateRow: View {
               }).opacity(0.9).transition(.opacity)
           }
           
+          if settings.jobDeleteSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          askJobData()
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+              
+              
+          }
+          
           if settings.jobAcceptSuccess
           {
               SuccessCardUIView().onAppear(perform: {
