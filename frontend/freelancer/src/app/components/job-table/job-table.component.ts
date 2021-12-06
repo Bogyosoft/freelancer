@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Job, JobDto } from 'src/app/entities/job';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
@@ -10,17 +11,21 @@ export class JobTableComponent implements OnInit {
 
   columnsToDisplay:string[] = [
     'id',
-    'item',
+    'itemLocation',
+    'itemDestination',
+    'itemStatus',
     'freelancer',
   ]
 
   displayedColumns:string[] = [
     'id',
-    'item',
+    'itemLocation',
+    'itemDestination',
+    'itemStatus',
     'freelancer',
   ]
 
-  jobs!:any;
+  jobs:Job[] = [];
 
   constructor(private service:RestapiService) { }
 
@@ -42,9 +47,13 @@ export class JobTableComponent implements OnInit {
     if(this.httpCall){
       this.httpCall.unsubsribe();
     }
-    this.service.getJobs().subscribe(data=>{
+    this.service.getJobs().subscribe((data:JobDto[])=>{
       console.log(data)
-      this.jobs = data;
+      let jobs:Job[] = []
+      data.forEach((j:JobDto) => {
+        jobs.push(new Job(j))
+      })
+      this.jobs = jobs;
     })
   }
 

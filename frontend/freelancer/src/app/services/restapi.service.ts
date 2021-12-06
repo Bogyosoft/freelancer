@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../entities/user';
 import { UserDto } from '../entities/user-dto';
 import { SourceDTO } from '../entities/source';
+import { JobDto } from '../entities/job';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class RestapiService {
   }
 
   public getJobs(){
-    return this.http.get(this.apiUrl + "/jobs", { withCredentials:true })
+    return this.http.get<JobDto[]>(this.apiUrl + "/jobs", { withCredentials:true })
   }
 
   public postUser(user:User){
@@ -51,11 +52,11 @@ export class RestapiService {
   }
 
   public deleteItem(id:number){
-    return this.http.delete(this.apiUrl + "/item/" + id, { withCredentials:true })
+    return this.http.delete(this.apiUrl + "/items/" + id, { withCredentials:true })
   }
 
   public deleteJob(id:number){
-    return this.http.put(this.apiUrl + "/job/" + id, { withCredentials:true })
+    return this.http.put(this.apiUrl + "/jobs/" + id, { withCredentials:true })
 
   }
 }

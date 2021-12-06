@@ -36,17 +36,19 @@ export class SourceTableComponent implements OnInit {
       this.httpCall.unsubsribe();
     }
     this.service.getSources().subscribe((data:SourceDTO[])=>{
+      let sources:Sourcew[] = []
       data.forEach(s => {
-        let sources = []
+
         let sourcew = new Sourcew();
         sourcew.id = s.id;
         sourcew.location = s.location
         sourcew.owner = s.owner?.username
         sources.push(sourcew)
-        this.sources = sources
         console.log("souce")
         console.log(this.sources)
       })
+      this.sources = sources
+
     })
   }
 
