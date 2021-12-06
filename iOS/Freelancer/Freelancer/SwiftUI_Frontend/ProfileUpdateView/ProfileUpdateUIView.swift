@@ -52,9 +52,17 @@ struct ProfileUpdateUIView: View {
                 if userUI.username != ""
                 {
                     VStack {
-                        Text("\(userUI.username)")
+                        Text("\(userUI.username)").font(.body)
+                            .fontWeight(.heavy)
+                            .foregroundColor(.black)
                         Text("\(userUI.role)")
+                            .font(.callout)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.gray)
                         Text("\(userUI.score)")
+                            .font(.footnote)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.black)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 else

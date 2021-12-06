@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeList: View {
 
-    var courses = coursesData
+    //var courses = coursesData
     @State var jobsUI: Array<JobData> = Array<JobData>()
     @State var showContent = false
     @State var userUI = UserData(inUser: "", inPass: "", inRole: "", inScore: 0)
@@ -37,13 +37,13 @@ struct HomeList: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                HStack(spacing: 30.0) {
-                  ForEach(courses) { item in
+                  ForEach(jobsUI) { job in
                      Button(action: { self.showContent.toggle() }) {
                         GeometryReader { geometry in
-                           CourseView(title: item.title,
-                                      //image: item.image,
-                                      color: item.color,
-                                      shadowColor: item.shadowColor)
+                            CourseView(title: job.item.propertis,
+                                      image: "workerhat",
+                                      color: Color("background8"),
+                                      shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5))
                               .rotation3DEffect(Angle(degrees:
                                  Double(geometry.frame(in: .global).minX - 30) / -40), axis: (x: 0, y: 10.0, z: 0))
                               .sheet(isPresented: self.$showContent) { /*ContentView()*/ }
@@ -68,7 +68,8 @@ struct HomeList: View {
                       withAnimation()
                       {
                           print("UJRATOLTES")
-                          ask()
+                          askUserData()
+                          askJobData()
                            
                       }
                   })
@@ -81,15 +82,54 @@ struct HomeList: View {
               
           }
           
+          if settings.jobPutSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          //askUserData()
+                          askJobData()
+                           
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+          }
+          
+          if settings.jobAcceptSuccess
+          {
+              SuccessCardUIView().onAppear(perform: {
+                  DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                      withAnimation()
+                      {
+                          print("UJRATOLTES")
+                          //askUserData()
+                          askJobData()
+                           
+                      }
+                  })
+                  
+                  
+                  
+                  
+              }).opacity(0.9).transition(.opacity)
+          }
+          
       }.onAppear()
        {
-           ask()
+           askUserData()
+           askJobData()
        }
        
        
    }
     
-    func ask()
+    func askUserData()
     {
         print("HOMELIST")
         let user = User(inData: UserData(inUser: UserSettingsWorker.shared.values["userName"] as? String ?? "", inPass: "0", inRole: "", inScore: 0))
@@ -105,6 +145,27 @@ struct HomeList: View {
             
         }
     }
+    
+    func askJobData()
+    {
+        print("HOMELIS:LEKEREEEES-JOB")
+        let lekertAdatok = Item(inData: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil")))
+        
+        let jobLekeres = Job(inData: JobData(inID: 0, inFreelancer: "nil", inItem: ItemData(inID: 0, inDestination: "nil", inProperties: "nil", inStatus: "nil", inSource: SourceData(inputID: -1, inputName: "nil", inputLocation: "nil"))), itemIn: lekertAdatok)
+        
+        
+        
+        jobLekeres.jobHandler.get(input: jobLekeres, completion: {(valaszArray: Array<JobData>, valaszKesz: Bool)->Void in
+            
+            print("VISSZA A UI-ra")
+            //print(valaszArray[0].propertis)
+            
+            self.jobsUI = valaszArray
+            //self.spinner = valaszKesz
+
+            
+        })
+    }
 }
 
 #if DEBUG
@@ -118,7 +179,7 @@ struct HomeList_Previews: PreviewProvider {
 struct CourseView: View {
 
    var title = "Build an app with SwiftUI"
-   //var image = "Illustration1"
+   var image = "workerhat"
    var color = Color("background3")
    var shadowColor = Color("backgroundShadow3")
 
@@ -133,12 +194,12 @@ struct CourseView: View {
 
          Spacer()
 
-         /*Image(image)
+         Image(image)
             .resizable()
             .renderingMode(.original)
             .aspectRatio(contentMode: .fit)
             .frame(width: 246, height: 150)
-            .padding(.bottom, 30)*/
+            .padding(.bottom, 30)
       }
       .background(color)
       .cornerRadius(30)
