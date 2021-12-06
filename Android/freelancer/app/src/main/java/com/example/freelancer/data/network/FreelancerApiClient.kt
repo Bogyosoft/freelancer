@@ -5,37 +5,23 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object FreelancerApiClient {
-//v1 vissza
-    const val BASE_URL = "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com"
+    //v1 vissza
+    const val BASE_URL =
+        "http://freelancerbackend-env.eba-34kjxuhr.eu-central-1.elasticbeanstalk.com"
 
-    private lateinit var application: Application
-    private  lateinit var retrofit :Retrofit.Builder
-    lateinit var  service:FreelancerAPIService
+    private var retrofit: Retrofit.Builder = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create())
+    var service: FreelancerAPIService = retrofit.build().create(FreelancerAPIService::class.java)
 
-    fun setContext(a:Application){
-        application = a
 
-    }
-
-    fun initRetrofit(){
-        retrofit =  Retrofit.Builder()
+    fun initRetrofit() {
+        retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
-                /*
-                *
-                * .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(ReceivedCookiesInterceptor(application.applicationContext))
-                    .build())
-                * */
 
 
     }
-    fun initService(){
-        service = retrofit.build().
-            create(FreelancerAPIService::class.java)
-    }
-
 
 }
 

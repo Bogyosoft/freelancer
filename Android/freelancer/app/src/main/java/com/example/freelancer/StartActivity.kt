@@ -22,10 +22,6 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        FreelancerApiClient.setContext(this.applicationContext as Application)
-        FreelancerApiClient.initRetrofit()
-        FreelancerApiClient.initService()
-
         Colors.initColors()
     }
 
