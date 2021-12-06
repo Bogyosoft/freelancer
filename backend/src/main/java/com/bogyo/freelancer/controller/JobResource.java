@@ -34,7 +34,7 @@ public class JobResource {
   @GetMapping
   public ResponseEntity<List<Job>> getJobs(){
     if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN")){
-      ResponseEntity.ok(jobRepository.findAll());
+      return ResponseEntity.ok(jobRepository.findAll());
     }
     List<Job> list = jobRepository.findByfreelancer(userRepository.findByUsername(securityUtils.getLoggedInUsername()));
     return ResponseEntity.ok(list);

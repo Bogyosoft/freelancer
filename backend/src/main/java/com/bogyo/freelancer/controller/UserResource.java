@@ -57,9 +57,10 @@ public class UserResource {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id){
-        userRepository.delete(userRepository.findById(id).get());
+        if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN"))
+            userRepository.delete(userRepository.findById(id).get());
         return ResponseEntity.ok().build();
     }
 

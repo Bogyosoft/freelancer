@@ -3,6 +3,7 @@ package com.bogyo.freelancer.controller;
 import com.bogyo.freelancer.enums.ItemStatus;
 import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.repository.ItemRepository;
+import com.bogyo.freelancer.repository.JobRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +26,9 @@ public class ItemResource {
 
   @Autowired
   private SecurityUtils securityUtils;
+
+  @Autowired
+  private JobRepository jobRepository;
 
   @PostMapping
   public ResponseEntity createItem(@RequestBody Item item){
@@ -64,5 +68,16 @@ public class ItemResource {
     return ResponseEntity.ok(itemRepository.save(updateItem));
   }
 
-
+  @DeleteMapping("/{id}")
+  public ResponseEntity deleteItem(@PathVariable Long id){
+    if(securityUtils.getLoggedInUserAuthorities().equals("ROLE_ADMIN")){
+      Optional<Item> item = itemRepository.findById(id);
+      if(item.isPresent()) {
+        jobRepository.delete(jobRepository.findByItem(item.get()));
+        itemRepository.delete(item.get());
+        return ResponseEntity.ok().build();
+      }
+    }
+    return ResponseEntity.badRequest().build();
+  }
 }

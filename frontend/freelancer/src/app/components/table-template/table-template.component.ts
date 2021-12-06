@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -25,6 +25,7 @@ export class TableTemplateComponent implements OnInit, OnChanges {
   @Input() displayedColumns!:string[];
   @Input() columnsToDisplay!:string[];
   @Input() deletable:boolean = false;
+  @Output() newItemEvent = new EventEmitter<number>();
   expandedElement!: any | null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort!: MatSort;
@@ -45,7 +46,11 @@ export class TableTemplateComponent implements OnInit, OnChanges {
         return a[val.active] > b[val.active] ? 1 : -1;
       })
       this.table.renderRows();
-    });   
+    });
+  }
+
+  deleteItem(element:any){
+    this.newItemEvent.emit(element.id)
   }
 
   setTableData(){

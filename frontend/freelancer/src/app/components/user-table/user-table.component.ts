@@ -31,6 +31,15 @@ export class UserTableComponent implements OnInit {
     this.getUsers()
   }
 
+  deleteUser(id:number){
+    this.service.deleteUser(id).subscribe(data => {
+      if(data.toString.length !> 0){
+        window.alert("Couldnt delete user!")
+      }
+    })
+    this.getUsers()
+  }
+
   httpCall:any
   getUsers(){
     if(this.httpCall){
@@ -42,4 +51,3 @@ export class UserTableComponent implements OnInit {
     })
   }
 }
-

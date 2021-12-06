@@ -1,6 +1,7 @@
-<app-table-template 
-[data]="this.users"  
-[displayedColumns]="this.displayedColumns" 
+<app-table-template
+[data]="this.users"
+[displayedColumns]="this.displayedColumns"
 [columnsToDisplay]="this.columnsToDisplay"
-[deletable]="true">
+[deletable]="true"
+(newItemEvent)="deleteUser($event)">
 </app-table-template>

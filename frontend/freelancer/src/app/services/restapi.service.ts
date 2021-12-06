@@ -9,7 +9,7 @@ import { SourceDTO } from '../entities/source';
   providedIn: 'root'
 })
 export class RestapiService {
- 
+
 
   apiUrl?:string
 
@@ -44,5 +44,18 @@ export class RestapiService {
 
   public logout() {
     return this.http.get(this.apiUrl + "/user/logout",{ withCredentials:true });
+  }
+
+  public deleteUser(id:number){
+    return this.http.delete(this.apiUrl + "/user/" + id, { withCredentials:true })
+  }
+
+  public deleteItem(id:number){
+    return this.http.delete(this.apiUrl + "/item/" + id, { withCredentials:true })
+  }
+
+  public deleteJob(id:number){
+    return this.http.put(this.apiUrl + "/job/" + id, { withCredentials:true })
+
   }
 }

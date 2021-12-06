@@ -1,5 +1,6 @@
 package com.bogyo.freelancer.repository;
 
+import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.model.Job;
 import com.bogyo.freelancer.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,7 @@ import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job,Long>, JpaSpecificationExecutor<Job> {
     List<Job> findByfreelancer(User freelancer);
+
+    Job findByItem(Item item);
 }
 

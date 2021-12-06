@@ -30,6 +30,15 @@ export class ItemTableComponent implements OnInit {
     this.getItems();
   }
 
+  deleteItem(id:number){
+    this.service.deleteItem(id).subscribe(data => {
+      if(data.toString.length !> 0){
+        window.alert("Couldnt delete item!")
+      }
+    })
+    this.getItems()
+  }
+
   httpCall:any
   getItems(){
     if(this.httpCall){

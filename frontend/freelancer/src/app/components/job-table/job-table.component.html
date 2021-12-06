@@ -1,6 +1,7 @@
-<app-table-template 
-[data]="this.jobs"  
-[displayedColumns]="this.displayedColumns" 
+<app-table-template
+[data]="this.jobs"
+[displayedColumns]="this.displayedColumns"
 [columnsToDisplay]="this.columnsToDisplay"
-[deletable]="true">
+[deletable]="true"
+(newItemEvent)="deleteJob($event)">
 </app-table-template>
