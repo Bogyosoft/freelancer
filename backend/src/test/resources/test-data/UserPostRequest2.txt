@@ -1,0 +1,6 @@
+{
+  "password": "securepw",
+  "role": "ROLE_USER",
+  "score": 1,
+  "username": "test"
+}

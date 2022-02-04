@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,6 +31,7 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 @SpringBootTest
 @DirtiesContext
 @AutoConfigureMockMvc(addFilters = false)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserResourceComponentTests {
 
     @Autowired
@@ -52,9 +55,10 @@ public class UserResourceComponentTests {
     }
 
     @Test
+    @Order(1)
     public void testCreateUser() throws Exception {
         postUser(testDataLoader.loadTestData("UserPostRequest.txt"));
-        User actualUser = userRepository.findById(1L).get();
+        User actualUser = userRepository.findById(3L).get();
 
         assertEquals("Users username do not match", getExpectedUser().getUsername(), actualUser.getUsername());
         assertEquals("Users password do not match", getExpectedUser().getPassword(), actualUser.getPassword());
@@ -63,6 +67,7 @@ public class UserResourceComponentTests {
     }
 
     @Test
+    @Order(2)
     public void testUpdateUser() throws Exception {
         postUser(testDataLoader.loadTestData("UserPostRequest2.txt"));
         updateUser(testDataLoader.loadTestData("UserPutRequest.txt"));
@@ -76,6 +81,7 @@ public class UserResourceComponentTests {
     }
 
     @Test
+    @Order(3)
     public void testGetUsers() throws Exception {
         String users =  getUsers();
         int expectedUsers = userRepository.findAll().size();
