@@ -6,23 +6,29 @@ import com.bogyo.freelancer.repository.UserRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 public class UserResourceComponentTests {
 
     @Autowired
@@ -32,19 +38,21 @@ public class UserResourceComponentTests {
     private UserRepository userRepository;
 
     TestDataLoader testDataLoader = new TestDataLoader();
+    String token;
 
-    @Before
-    public void setup() {
-
+    @BeforeEach
+    public void setup() throws Exception {
+        //userRepository.save(getMockAdmin());
+        //token = login(testDataLoader.loadTestData("LoginPostRequest.txt"));
     }
 
-    @After
+    @AfterEach
     public void teardown() {
         userRepository.deleteAll();
     }
 
     @Test
-    public void testTempEntitiyApi() throws Exception{
+    public void testCreateUser() throws Exception {
         postUser(testDataLoader.loadTestData("UserPostRequest.txt"));
         User actualUser = userRepository.findById(1L).get();
 
@@ -54,6 +62,27 @@ public class UserResourceComponentTests {
         assertEquals("Users score do not match", getExpectedUser().getScore(), actualUser.getScore());
     }
 
+    @Test
+    public void testUpdateUser() throws Exception {
+        postUser(testDataLoader.loadTestData("UserPostRequest2.txt"));
+        updateUser(testDataLoader.loadTestData("UserPutRequest.txt"));
+        User actualUser = userRepository.findById(2L).get();
+
+        assertEquals("Users username do not match", getUpdatedUser().getUsername(), actualUser.getUsername());
+        assertEquals("Users password do not match", getUpdatedUser().getPassword(), actualUser.getPassword());
+        assertEquals("Users role do not match", getUpdatedUser().getRole(), actualUser.getRole());
+        assertEquals("Users score do not match", getUpdatedUser().getScore(), actualUser.getScore());
+
+    }
+
+    @Test
+    public void testGetUsers() throws Exception {
+        String users =  getUsers();
+        int expectedUsers = userRepository.findAll().size();
+
+        assertEquals("The number of users do not match", expectedUsers, users.split("\"id\":").length - 1);
+    }
+
     private void postUser(String content) throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/user")
                 .contentType("application/json")
@@ -61,12 +90,39 @@ public class UserResourceComponentTests {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    private void updateUser(String content) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/user")
+                .contentType("application/json")
+                .content(content))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    private String getUsers() throws Exception {
+        return mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user")
+                .contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+        .andReturn().getResponse().getContentAsString();
+
+    }
+
     private User getExpectedUser(){
         User user = new User();
         user.setUsername("username");
         user.setPassword("password");
-        user.setRole("string");
+        user.setRole("ROLE_USER");
         user.setScore(1);
         return user;
     }
+
+    private User getUpdatedUser() {
+        User user = new User();
+        user.setUsername("test");
+        user.setPassword("newPassword");
+        user.setRole("ROLE_USER");
+        user.setScore(1);
+        return user;
+    }
+
+
 }
+
