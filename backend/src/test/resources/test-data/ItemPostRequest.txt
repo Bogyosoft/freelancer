@@ -1,17 +1,16 @@
 {
   "destination": "dest",
-  "id": 0,
   "properties": "properties",
   "source": {
     "id": 1,
-    "location": "string",
+    "location": "location",
     "owner": {
       "id": 1,
-      "password": "string",
-      "role": "string",
+      "password": "pw",
+      "role": "ROLE_USER",
       "score": 0,
-      "username": "string"
+      "username": "user"
     }
   },
-  "status": "OK"
+  "status": "TO_BE_DELIVERED"
 }

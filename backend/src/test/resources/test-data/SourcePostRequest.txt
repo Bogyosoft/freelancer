@@ -4,7 +4,7 @@
   "owner": {
     "id": 1,
     "password": "pw",
-    "role": "ROLE_TEST",
+    "role": "ROLE_USER",
     "score": 1,
     "username": "user"
   }
