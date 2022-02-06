@@ -1,10 +1,8 @@
 package com.bogyo.freelancer.component;
 
 import com.bogyo.freelancer.TestDataLoader;
-import com.bogyo.freelancer.model.Item;
 import com.bogyo.freelancer.model.Source;
 import com.bogyo.freelancer.model.User;
-import com.bogyo.freelancer.repository.ItemRepository;
 import com.bogyo.freelancer.repository.SourceRepository;
 import com.bogyo.freelancer.repository.UserRepository;
 import org.junit.After;
@@ -19,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import javax.servlet.http.Cookie;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
@@ -38,9 +38,10 @@ public class SourceResourceComponentTests {
 
     TestDataLoader testDataLoader = new TestDataLoader();
 
+    String token = null;
+
     @Before
-    public void setup(){
-        userRepository.save(getMockUser());
+    public void setup() throws Exception {
 
     }
 
@@ -50,36 +51,38 @@ public class SourceResourceComponentTests {
     }
 
     @Test
-    public void testTempEntitiyApi() throws Exception{
+    public void testSourceApi() throws Exception {
+        token = login(testDataLoader.loadTestData("LoginPostRequest.txt"));
+
         postSource(testDataLoader.loadTestData("SourcePostRequest.txt"));
         Source actualSource = sourceRepository.findById(1L).get();
 
-        assertEquals("Sources location do not match", getExpectedSource().getLocation(), actualSource.getLocation());
-        assertEquals("Sources owner do not match", getExpectedSource().getOwner(), actualSource.getOwner());
+        assertEquals("Sources location do not match", "test_location", actualSource.getLocation());
+        assertEquals("Owner username do not match", "admin", actualSource.getOwner().getUsername());
+        assertEquals("Owner password do not match", "admin", actualSource.getOwner().getPassword());
 
+        getSources();
     }
 
     private void postSource(String content) throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/sources")
                 .contentType("application/json")
-                .content(content))
+                .content(content)
+                .cookie(new Cookie("token", token)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    private User getMockUser(){
-        User user = new User();
-        user.setPassword("pw");
-        user.setRole("ROLE_TEST");
-        user.setScore(1);
-        user.setUsername("user");
-        user.setId(1);
-        return user;
+
+    private String login(String content) throws Exception {
+        return mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/auth")
+                .contentType("application/json")
+                .content(content)).andReturn().getResponse().getCookie("token").getValue();
     }
 
-    private Source getExpectedSource(){
-        Source source = new Source();
-        source.setLocation("test_location");
-        source.setOwner(getMockUser());
-        return source;
+    private void getSources() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/sources")
+                .contentType("application/json")
+                .cookie(new Cookie("token", token)))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
